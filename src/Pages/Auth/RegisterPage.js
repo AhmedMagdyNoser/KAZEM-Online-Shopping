@@ -1,41 +1,35 @@
 import React from 'react'
-import { Container,Row,Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import FloatingInput from '../../Component/Auth/FloatingInput';
 
-const RegisterPage = () => {
-    return (
-        <Container style={{ minHeight: "680px" }}>
-        <Row className="py-5 d-flex justify-content-center hieght-search">
-          <Col sm="12" className="d-flex flex-column ">
-            <label className="mx-auto title-login">Register a new account</label>
-            <input
-              placeholder="Username..."
-              type="text"
-              className="user-input mt-3 text-center mx-auto"
-            />
-            <input
-              placeholder="Email..."
-              type="text"
-              className="user-input my-3 text-center mx-auto"
-            />
-            <input
-              placeholder="Passowrd..."
-              type="password"
-              className="user-input text-center mx-auto"
-            />
-            <button className="btn-login mx-auto mt-4">Login</button>
-            <label className="mx-auto my-4">
-            You already have an account ?{" "}
-              <Link to="/login" style={{ textDecoration: "none" }}>
-                <span style={{ cursor: "pointer" }} className="text-danger">
-                  Click Here
-                </span>
-              </Link>
-            </label>
-          </Col>
-        </Row>
-      </Container>
-    )
+export default function RegisterPage() {
+  return (
+    <div className='d-flex align-items-center' style={{ minHeight: '85vh' }}>
+      <div className="container my-5 py-5 px-4 px-sm-5 bg-white shadow-sm rounded" style={{ maxWidth: "750px" }}>
+        <h2 className="fw-bold text-center mb-3">Register</h2>
+        <form>
+          <div className='d-flex gap-2 mb-2'>
+            <FloatingInput type='text' icon='fa-regular fa-user' label='First Name' className='flex-fill' />
+            <FloatingInput type='text' icon='fa-regular fa-user' label='Last Name' className='flex-fill' />
+          </div>
+          <div className='d-flex flex-column gap-2'>
+            <FloatingInput type='text' icon='fa-solid fa-user' label='Username' />
+            <FloatingInput type='email' icon='fa-solid fa-envelope' label='Email' />
+            <FloatingInput type='text' icon='fa-solid fa-phone' label='Phone Number' />
+            <FloatingInput type='text' icon='fa-solid fa-location-dot' label='Address' />
+            <FloatingInput type='password' icon='fa-solid fa-lock' label='Password' />
+          </div>
+
+          <div className="d-grid my-3">
+            <input type="submit" value="REGISTER" className="btn btn-primary" />
+          </div>
+
+          <div className="text-center">
+            <span>Already have an account ? </span>
+            <Link to="/login" className="text-decoration-none">Login</Link>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
 }
-
-export default RegisterPage
