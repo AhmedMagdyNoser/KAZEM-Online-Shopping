@@ -1,34 +1,37 @@
 import React from 'react'
 import ReactPaginate from 'react-paginate';
 
-const Pagination = () => {
+export default function Pagination() {
 
-    const handlePageClick = ()=>{
+  const handlePageClick = () => { }
 
-    }
+  return (
+    <ReactPaginate
+      containerClassName={"pagination justify-content-center p-3"}
 
-    return (
-        <ReactPaginate
-        breakLabel="..."
-        nextLabel="next >"
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={2}
-        marginPagesDisplayed = {2}
-        pageCount={500}
-        previousLabel="< previous"
-        renderOnZeroPageCount={null}
-        containerClassName = {"pagination justify-content-center p-3"}
-        pageClassName ={"page-item"}
-        pageLinkClassName = {"page-link"}
-        previousClassName = {"page-item"}
-        nextClassName = {"page-item"}
-        previousLinkClassName = {"page-link"}
-        nextLinkClassName = {"page-link"}
-        breakClassName ={"page-item"}
-        breakLinkClassName ={"page-link"}
-        activeClassName ={'active'}
-        />
-    )
+      breakLabel="..."
+      breakClassName={"page-item"}
+      breakLinkClassName={"page-link shadow-none"}
+
+      nextLabel="Next"
+      nextClassName={"page-item"}
+      nextLinkClassName={"page-link shadow-none"}
+
+      previousLabel="Previous"
+      previousClassName={"page-item"}
+      previousLinkClassName={"page-link shadow-none"}
+
+      pageClassName={"page-item"}
+      pageLinkClassName={"page-link shadow-none"}
+      activeClassName={'active'}
+
+      marginPagesDisplayed={1}
+      pageRangeDisplayed={2}
+      pageCount={500}
+
+      onPageChange={handlePageClick}
+      renderOnZeroPageCount={null}
+    />
+  )
 }
 
-export default Pagination

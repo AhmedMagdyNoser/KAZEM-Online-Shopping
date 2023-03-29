@@ -1,5 +1,5 @@
 import HomePage from "./Pages/Home/HomePage";
-import { BrowserRouter , Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./Component/Uitility/Header";
 import Footer from "./Component/Uitility/Footer";
 import LoginPage from "./Pages/Auth/LoginPage";
@@ -19,10 +19,10 @@ function App() {
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/allcategory" element={<AllCategoryPage />} />
           <Route path="/allbrand" element={<AllBrandPage />} />
-          <Route path="/products" element={<ShopProductPage  />} />
+          <Route path="/products" element={<ShopProductPage />} />
         </Routes>
+        <Footer></Footer>
       </BrowserRouter>
-      <Footer></Footer>
     </div>
   );
 }
