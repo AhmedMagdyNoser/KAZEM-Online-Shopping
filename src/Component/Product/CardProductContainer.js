@@ -1,21 +1,17 @@
 import React from 'react'
-import { Container, Row } from 'react-bootstrap'
 import SubTitle from '../Uitility/SubTitle'
 import ProductCard from './ProductCard'
 
-const CardProductContainer = ({ title, btntitle , pathText }) => {
-    return (
-        <Container>
-        <SubTitle title={title} btnTitle={btntitle}  pathText = {pathText} />
-        <Row className="justify-content-between ">
-            <ProductCard title="1"  />
-            <ProductCard title="2" />
-            <ProductCard title="3"  />
-            <ProductCard title="4"  />
-            
-        </Row>
-      </Container>
-    )
+export default function CardProductContainer({ title, btnTitle, pathText }) {
+  return (
+    <div className='container'>
+      <SubTitle title={title} btnTitle={btnTitle} pathText={pathText} />
+      <div className='my-grid'>
+        <ProductCard title="Nova Y70 Dual Sim Pearl White 4GB RAM 128GB" price='350.00' rating='4.5' />
+        <ProductCard title="Nova Y70 Dual Sim Pearl White 4GB RAM 128GB" price='350.00' rating='4.5' />
+        <ProductCard title="Nova Y70 Dual Sim Pearl White 4GB RAM 128GB" price='350.00' rating='4.5' />
+        <ProductCard title="Nova Y70 Dual Sim Pearl White 4GB RAM 128GB" price='350.00' rating='4.5' />
+      </div>
+    </div>
+  )
 }
-
-export default CardProductContainer

@@ -10,13 +10,10 @@ const HomePage = () => {
         <div>
             <Slider />
             <HomeCategory />
-            <CardProductContainer  title="Best Seller" btntitle = "More" pathText="/products" />
+            <CardProductContainer title="Best Seller" btnTitle="More" pathText="/products" />
             <DiscountSection />
-
-            <CardProductContainer  title="Best Selles" btntitle = "More" pathText="/products"  />
+            <CardProductContainer title="Best Selles" btnTitle="More" pathText="/products" />
             <BrandFeatured></BrandFeatured>
-
-            
         </div>
     )
 }
