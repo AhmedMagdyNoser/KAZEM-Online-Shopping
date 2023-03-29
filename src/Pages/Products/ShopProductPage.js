@@ -11,9 +11,9 @@ const ShopProductPage = () => {
       <CategoryHeader title= "400 منتج" />
 
       <Container>
-        <SearchCountResult title="400 منتج بحث "></SearchCountResult>
+        {/* <SearchCountResult title="400 منتج بحث "></SearchCountResult> */}
         <Row>
-          <Col sm ={2} xs="2" md="1" className='d-flex'>
+          <Col sm ={3}  className='d-flex'>
             <SideFilter />
           </Col>
           <Col sm ="10" xs="10" md="11">

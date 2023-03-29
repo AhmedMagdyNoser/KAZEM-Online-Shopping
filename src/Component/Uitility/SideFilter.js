@@ -1,70 +1,43 @@
 import React from 'react'
-import { Row } from 'react-bootstrap'
 
-const SideFilter = () => {
+export default function SideFilter() {
   return (
-    <div className="mt-3">
-    <Row>
-      <div className="d-flex flex-column mt-2">
-        <div className="filter-title">الفئة</div>
-        <div className="d-flex mt-3">
-          <input type="checkbox" value="" />
-          <div className="filter-sub me-2 ">الكل</div>
-        </div>
-        <div className="d-flex mt-2">
-          <input type="checkbox" value="" />
-          <div className="filter-sub me-2 ">اجهزة منزلية</div>
-        </div>
-        <div className="d-flex mt-2">
-          <input type="checkbox" value="" />
-          <div className="filter-sub me-2 ">اجهزة منزلية</div>
-        </div>
-        <div className="d-flex mt-2">
-          <input type="checkbox" value="" />
-          <div className="filter-sub me-2 ">اجهزة منزلية</div>
-        </div>
-        <div className="d-flex mt-2">
-          <input type="checkbox" value="" />
-          <div className="filter-sub me-2 ">اجهزة منزلية</div>
+    <div className='pt-4'>
+
+      <div className='mb-4'>
+        <p className='fw-bold mb-2'>Category</p>
+        <div className='d-flex flex-column gap-2'>
+          <CheckItem label='Category1' />
+          <CheckItem label='Category2' />
+          <CheckItem label='Category3' />
         </div>
       </div>
 
-      <div className="d-flex flex-column mt-2">
-        <div className="filter-title mt-3">الماركة</div>
-        <div className="d-flex mt-3">
-          <input type="checkbox" value="" />
-          <div className="filter-sub me-2 ">الكل</div>
-        </div>
-        <div className="d-flex mt-2">
-          <input type="checkbox" value="" />
-          <div className="filter-sub me-2 ">ابل</div>
-        </div>
-        <div className="d-flex mt-2">
-          <input type="checkbox" value="" />
-          <div className="filter-sub me-2 ">سامسونج</div>
+      <div className='mb-4'>
+        <p className='fw-bold mb-2'>Brand</p>
+        <div className='d-flex flex-column gap-2'>
+          <CheckItem label='Apple' />
+          <CheckItem label='Samsung' />
+          <CheckItem label='Oppo' />
         </div>
       </div>
 
-      <div className="filter-title my-3">السعر</div>
-      <div className="d-flex">
-        <p className="filter-sub my-2">من:</p>
-        <input
-          className="m-2 text-center"
-          type="number"
-          style={{ width: "50px", height: "25px" }}
-        />
+      <div className='mb-4'>
+        <p className='fw-bold mb-2'>Price</p>
+        <input id='price-start' type='number' className='form-control shadow-none mb-2' placeholder='From' />
+        <input id='price-start' type='number' className='form-control shadow-none mb-2' placeholder='To' />
+        <button className='btn btn-primary'>Filter</button>
       </div>
-      <div className="d-flex">
-        <p className="filter-sub my-2">الي:</p>
-        <input
-          className="m-2 text-center"
-          type="number"
-          style={{ width: "50px", height: "25px" }}
-        />
-      </div>
-    </Row>
-  </div>
+
+    </div>
   )
 }
 
-export default SideFilter
+function CheckItem({ label }) {
+  return (
+    <div>
+      <input id={label} type='checkbox' value={label} className='form-check-input shadow-none me-2' />
+      <label htmlFor={label} className='form-check-label'>{label}</label>
+    </div>
+  )
+}

@@ -9,7 +9,7 @@ import SubTitle from '../Uitility/SubTitle'
 const BrandFeatured = () => {
     return (
         <Container>
-            <SubTitle title = "Category" btntitle="More" pathText="/allbrand" />
+            <SubTitle title = "Category" btnTitle="More" pathText="/allbrand" />
             <Row className="my-2 d-flex  justify-content-between">
             <BrandCard img={brand1} background="#F4DBA5" title="اجهزة منزلية" />
             <BrandCard img={brand2} background="#F4DBA5" title="اجهزة منزلية" />

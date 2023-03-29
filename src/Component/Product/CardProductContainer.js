@@ -6,7 +6,7 @@ import ProductCard from './ProductCard'
 const CardProductContainer = ({ title, btntitle , pathText }) => {
     return (
         <Container>
-        <SubTitle title={title} btntitle={btntitle}  pathText = {pathText} />
+        <SubTitle title={title} btnTitle={btntitle}  pathText = {pathText} />
         <Row className="justify-content-between ">
             <ProductCard title="1"  />
             <ProductCard title="2" />
