@@ -5,7 +5,7 @@ import Footer from "./Component/Uitility/Footer";
 import LoginPage from "./Pages/Auth/LoginPage";
 import RegisterPage from "./Pages/Auth/RegisterPage";
 import AllCategoriesPage from "./Pages/Category/AllCategoriesPage";
-import AllBrandPage from "./Pages/Brand/AllBrandPage";
+import AllBrandsPage from "./Pages/Brand/AllBrandsPage";
 import ShopProductPage from "./Pages/Products/ShopProductPage";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/allcategories" element={<AllCategoriesPage />} />
-          <Route path="/allbrand" element={<AllBrandPage />} />
+          <Route path="/allbrands" element={<AllBrandsPage />} />
           <Route path="/products" element={<ShopProductPage />} />
         </Routes>
         <Footer />

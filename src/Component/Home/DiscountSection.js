@@ -1,8 +1,6 @@
 import React from 'react'
 import laptops from "../../Images/laptops.png";
 
-
-
 export default function DiscountSection() {
   return (
     <div

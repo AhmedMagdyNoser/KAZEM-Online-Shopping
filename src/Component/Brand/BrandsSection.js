@@ -20,7 +20,7 @@ import AbuAuf from '../../Images/Brands/AbuAuf.png'
 export default function BrandsSection() {
   return (
     <div className='container bg-white p-3 shadow-sm'>
-      <SectionTitle title="Top Brands" btnTitle='More' pathText='/allBrand' />
+      <SectionTitle title="Top Brands" btnTitle='More' pathText='/allbrands' />
       <div className='kazem-sm-grid'>
         <SimpleCard img={Apple} title="Apple" />
         <SimpleCard img={Samsung} title="Samsung" />

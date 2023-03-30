@@ -1,5 +1,5 @@
 import React from 'react'
-import CategoryCard from '../../Component/Uitility/SimpleCard'
+import SimpleCard from '../../Component/Uitility/SimpleCard'
 
 import Electronics from "../../Images/Categories/Electronics.png"
 import MobilesAndAccessories from "../../Images/Categories/Moblies & Accessories.png"
@@ -15,19 +15,19 @@ import KidsAndBaby from "../../Images/Categories/Kids & Baby.png"
 export default function AllCategoryPage() {
   return (
     <div style={{ minHeight: "675px" }}>
-      <div className='container'>
+      <div className='container pb-4'>
         <h2 className='my-4 pb-3 fw-bold text-center text-uppercase border-bottom'>All Categories</h2>
-        <div className='kazem-sm-grid'>
-          <CategoryCard img={Electronics} title="Electronics" />
-          <CategoryCard img={MobilesAndAccessories} title="Moblies & Accessories" />
-          <CategoryCard img={MenFashion} title="Men's Fashion" />
-          <CategoryCard img={WomenFashion} title="Women's Fashion" />
-          <CategoryCard img={Sports} title="Sports" />
-          <CategoryCard img={Supermarket} title="Supermarket" />
-          <CategoryCard img={Computers} title="Computers" />
-          <CategoryCard img={Gaming} title="Gaming" />
-          <CategoryCard img={BeautyAndHealth} title="Beauty & Health" />
-          <CategoryCard img={KidsAndBaby} title="Kids & Baby" />
+        <div className='kazem-grid'>
+          <SimpleCard img={Electronics} title="Electronics" />
+          <SimpleCard img={MobilesAndAccessories} title="Moblies & Accessories" />
+          <SimpleCard img={MenFashion} title="Men's Fashion" />
+          <SimpleCard img={WomenFashion} title="Women's Fashion" />
+          <SimpleCard img={Sports} title="Sports" />
+          <SimpleCard img={Supermarket} title="Supermarket" />
+          <SimpleCard img={Computers} title="Computers" />
+          <SimpleCard img={Gaming} title="Gaming" />
+          <SimpleCard img={BeautyAndHealth} title="Beauty & Health" />
+          <SimpleCard img={KidsAndBaby} title="Kids & Baby" />
         </div>
       </div>
     </div>
