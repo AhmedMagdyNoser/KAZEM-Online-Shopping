@@ -1,7 +1,7 @@
 import React from 'react'
 import UnopDropdown from 'unop-react-dropdown';
 
-export default function SearchCountResult({ title }) {
+export default function ResultSorter({ title }) {
 
   const handler = () => { }
 
@@ -16,7 +16,7 @@ export default function SearchCountResult({ title }) {
           delay={0}
           click>
           <div className="list-group shadow-sm" style={{ minWidth: '250px' }}>
-            <a href='/' className="list-group-item list-group-item-action">Most Popdivar</a>
+            <a href='/' className="list-group-item list-group-item-action">Most Popular</a>
             <a href='/' className="list-group-item list-group-item-action">Top Rated</a>
             <a href='/' className="list-group-item list-group-item-action">High Price to Low Price</a>
             <a href='/' className="list-group-item list-group-item-action">Low Price to High Price</a>
