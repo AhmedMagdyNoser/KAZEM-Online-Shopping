@@ -1,6 +1,6 @@
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
-import laptops from "../../images/laptops.png";
+import laptops from "../../Images/laptops.png";
 
 
 

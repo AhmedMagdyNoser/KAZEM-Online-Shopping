@@ -11,11 +11,11 @@ export default function Footer() {
         </div>
         <div className='text-muted d-flex gap-3'>
           <span>
-            <i class="fa-solid fa-phone me-2"></i>
+            <i className="fa-solid fa-phone me-2"></i>
             +20 123 456 7890
           </span>
-          <a href='/'><i class="fa-brands fa-facebook-f text-muted"></i></a>
-          <a href='/'><i class="fa-brands fa-instagram text-muted"></i></a>
+          <a href='/'><i className="fa-brands fa-facebook-f text-muted"></i></a>
+          <a href='/'><i className="fa-brands fa-instagram text-muted"></i></a>
         </div>
       </div>
     </div>

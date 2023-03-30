@@ -1,11 +1,11 @@
 import React from 'react'
 import { Container, Row } from 'react-bootstrap'
 import CategoryCard from './CategoryCard'
-import clothe from "../../images/clothe.png";
-import cat2 from "../../images/cat2.png";
-import labtop from "../../images/labtop.png";
-import sale from "../../images/sale.png";
-import pic from "../../images/pic.png";
+import clothe from "../../Images/clothe.png";
+import cat2 from "../../Images/cat2.png";
+import labtop from "../../Images/labtop.png";
+import sale from "../../Images/sale.png";
+import pic from "../../Images/pic.png";
 
 
 const CaregoryContainer = () => {

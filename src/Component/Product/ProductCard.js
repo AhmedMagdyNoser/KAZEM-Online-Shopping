@@ -1,11 +1,11 @@
 import React from 'react'
-import prod1 from "../../images/item.png";
+import productImg from '../../Images/item.png';
 import { Link } from 'react-router-dom';
 
 export default function ProductCard({ title, price, rating }) {
   return (
     <Link to={"/products/:id"} className='text-decoration-none bg-white text-black shadow-sm rounded p-3'>
-      <img style={{ width: "100%" }} src={prod1} />
+      <img style={{ width: "100%" }} src={productImg} alt={productImg} />
       <p>{title}</p>
       <div className='d-flex justify-content-between'>
         <b>{price}$</b>

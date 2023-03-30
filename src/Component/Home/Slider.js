@@ -1,79 +1,57 @@
-import React, { useState } from 'react'
-import { Carousel } from 'react-bootstrap'
-import sliderimg from "../../images/slider1.png";
-import slider4 from "../../images/slider4.png";
-import prod3 from "../../images/prod3.png";
-import prod4 from "../../images/prod4.png";
+// images must be png without a background
+// images must have the same dimintions as (width: 730, height: 550)
+import img1 from "../../Images/slideImg1.png";
+import img2 from "../../Images/slideImg2.png";
+import img3 from "../../Images/slideImg3.png";
 
-const Slider = () => {
-  const [index , setIndex] = useState(0) ; 
-  const handleSelect = (selected)=>{
-    
-    setIndex(selected) ; 
-  }
-
+export default function Slider() {
   return (
-    <Carousel activeIndex={index} onSelect={handleSelect}>
-      <Carousel.Item className="slider-background" interval={2000}>
-        <div className="d-flex flex-row justify-content-center align-items-center">
-          <img
-            style={{ height: "296px", width: "313.53px" }}
-            className=""
-            src={slider4}
-            alt="First slide"
-          />
-          <div className="">
-            <h3 className="slider-title">هناك خصم كبير</h3>
-            <p className="slider-text">خصم يصل ٥٠٪ عند شرائك</p>
-          </div>
-        </div>
-      </Carousel.Item>
-      <Carousel.Item className="slider-background2" interval={2000}>
-        <div className="d-flex flex-row justify-content-center align-items-center">
-          <img
-            style={{ height: "296px", width: "313.53px" }}
-            className=""
-            src={sliderimg}
-            alt="First slide"
-          />
-          <div className="">
-            <h3 className="slider-title">هناك خصم كبير</h3>
-            <p className="slider-text">خصم يصل ٥٠٪ عند شرائك</p>
-          </div>
-        </div>
-      </Carousel.Item>
+    <div id="carouselExampleAutoplaying" className="carousel slide" data-bs-ride="carousel">
+      <div className="carousel-inner">
+        <Slide
+          img={img1}
+          title='up to 50% off'
+          subTitle='on our products'
+          bgColor='linear-gradient(175deg, #ffedf5 0%, #ffd5e7 100%)'
+          className='active'
+        />
+        <Slide
+          img={img2}
+          title='up to 50% off'
+          subTitle='on our products'
+          bgColor='linear-gradient(175deg, #d3deff 0%, #a8baff 100%)'
+        />
+        <Slide
+          img={img3}
+          title='up to 50% off'
+          subTitle='on our products'
+          bgColor='linear-gradient(175deg, #f8f0d5 0%, #efdcab 100%)'
+        />
+      </div>
 
-      <Carousel.Item className="slider-background3" interval={2000}>
-        <div className="d-flex flex-row justify-content-center align-items-center">
-          <img
-            style={{ height: "296px", width: "373.53px" }}
-            className=""
-            src={prod3}
-            alt="First slide"
-          />
-          <div className="">
-            <h3 className="slider-title">هناك خصم كبير</h3>
-            <p className="slider-text">خصم يصل ٥٠٪ عند شرائك</p>
-          </div>
-        </div>
-      </Carousel.Item>
-
-      <Carousel.Item className="slider-background4" interval={2000}>
-        <div className="d-flex flex-row justify-content-center align-items-center">
-          <img
-            style={{ height: "296px", width: "373.53px" }}
-            className=""
-            src={prod4}
-            alt="First slide"
-          />
-          <div className="">
-            <h3 className="slider-title">هناك خصم كبير</h3>
-            <p className="slider-text">خصم يصل ٥٠٪ عند شرائك</p>
-          </div>
-        </div>
-      </Carousel.Item>
-    </Carousel>
+      <button className="carousel-control-prev" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Previous</span>
+      </button>
+      <button className="carousel-control-next" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+        <span className="visually-hidden">Next</span>
+      </button>
+    </div>
   )
 }
 
-export default Slider
+
+function Slide({ img, title, subTitle, className, bgColor }) {
+  return (
+    <div className={"carousel-item " + className} style={{ background: bgColor }} >
+      <div className='d-flex align-items-center justify-content-center gap-3 pt-3'>
+        <img src={img} className='w-25' alt={img} />
+        <div style={{ color: "#915970" }}>
+          <p className='fw-bold mb-0 fs-4' style={{ textTransform: "uppercase" }}>{title}</p>
+          <p style={{ textTransform: "capitalize" }}>{subTitle}</p>
+        </div>
+      </div>
+    </div>
+  )
+}

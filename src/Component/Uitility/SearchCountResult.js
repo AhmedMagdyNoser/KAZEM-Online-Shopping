@@ -12,14 +12,14 @@ export default function SearchCountResult({ title }) {
         <UnopDropdown
           onAppear={handler}
           onDisappearStart={handler}
-          trigger={<b className='text-muted'><i class="fa-solid fa-arrow-down-wide-short me-2"></i>SORT BY</b>}
+          trigger={<b className='text-muted'><i className="fa-solid fa-arrow-down-wide-short me-2"></i>SORT BY</b>}
           delay={0}
           click>
-          <div class="list-group shadow-sm" style={{ minWidth: '250px' }}>
-            <a href='/' class="list-group-item list-group-item-action">Most Popdivar</a>
-            <a href='/' class="list-group-item list-group-item-action">Top Rated</a>
-            <a href='/' class="list-group-item list-group-item-action">High Price to Low Price</a>
-            <a href='/' class="list-group-item list-group-item-action">Low Price to High Price</a>
+          <div className="list-group shadow-sm" style={{ minWidth: '250px' }}>
+            <a href='/' className="list-group-item list-group-item-action">Most Popdivar</a>
+            <a href='/' className="list-group-item list-group-item-action">Top Rated</a>
+            <a href='/' className="list-group-item list-group-item-action">High Price to Low Price</a>
+            <a href='/' className="list-group-item list-group-item-action">Low Price to High Price</a>
           </div>
         </UnopDropdown>
       </div>
