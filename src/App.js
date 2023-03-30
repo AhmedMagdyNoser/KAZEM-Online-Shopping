@@ -21,7 +21,7 @@ function App() {
           <Route path="/allbrand" element={<AllBrandPage />} />
           <Route path="/products" element={<ShopProductPage />} />
         </Routes>
-        <Footer></Footer>
+        <Footer />
       </BrowserRouter>
     </div>
   );

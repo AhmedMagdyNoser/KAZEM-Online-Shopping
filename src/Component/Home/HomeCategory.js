@@ -14,9 +14,9 @@ import KidsAndBaby from "../../Images/Categories/Kids & Baby.png"
 
 export default function HomeCategory() {
   return (
-    <div className='container bg-white'>
+    <div className='container bg-white p-3 shadow-sm'>
       <SubTitle title="Explore Categories" btnTitle='More' pathText='/allCategories' />
-      <div className='kazem-sm-grid p-3'>
+      <div className='kazem-sm-grid'>
         <CategoryCard img={Electronics} title="Electronics" />
         <CategoryCard img={MobilesAndAccessories} title="Moblies & Accessories" />
         <CategoryCard img={MenFashion} title="Men's Fashion" />
