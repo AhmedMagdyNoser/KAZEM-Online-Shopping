@@ -1,27 +1,33 @@
 import React from 'react'
-import { Container, Row } from 'react-bootstrap'
 import CategoryCard from '../Category/CategoryCard'
 import SubTitle from '../Uitility/SubTitle'
-import clothe from "../../Images/clothe.png";
-import cat2 from "../../Images/cat2.png";
-import labtop from "../../Images/labtop.png";
-import sale from "../../Images/sale.png";
-import pic from "../../Images/pic.png";
+import Electronics from "../../Images/Categories/Electronics.png"
+import MobilesAndAccessories from "../../Images/Categories/Moblies & Accessories.png"
+import MenFashion from "../../Images/Categories/Men's Fashion.png"
+import WomenFashion from "../../Images/Categories/Women's Fashion.png"
+import Supermarket from "../../Images/Categories/Supermarket.png"
+import Sports from "../../Images/Categories/Sports.png"
+import Computers from "../../Images/Categories/Computers.png"
+import Gaming from "../../Images/Categories/Gaming.png"
+import BeautyAndHealth from "../../Images/Categories/Beauty & Health.png"
+import KidsAndBaby from "../../Images/Categories/Kids & Baby.png"
 
-const HomeCategory = () => {
-    return (
-        <Container>
-            <SubTitle title="Category" btnTitle="More" pathText="/allcategory" />
-            <Row className="my-2 d-flex  justify-content-between">
-                <CategoryCard img={clothe} background="#F4DBA5" title="اجهزة منزلية" />
-                <CategoryCard img={cat2} background="#0034FF" title="اجهزة منزلية" />
-                <CategoryCard img={labtop} background="#FFD3E8" title="اجهزة منزلية" />
-                <CategoryCard img={clothe} background="#55CFDF" title="اجهزة منزلية" />
-                <CategoryCard img={sale} background="#FF6262" title="اجهزة منزلية" />
-                <CategoryCard img={pic} background="#F4DBA5" />
-            </Row>
-        </Container>
-    )
+export default function HomeCategory() {
+  return (
+    <div className='container bg-white'>
+      <SubTitle title="Explore Categories" btnTitle='More' pathText='/allCategories' />
+      <div className='kazem-sm-grid p-3'>
+        <CategoryCard img={Electronics} title="Electronics" />
+        <CategoryCard img={MobilesAndAccessories} title="Moblies & Accessories" />
+        <CategoryCard img={MenFashion} title="Men's Fashion" />
+        <CategoryCard img={WomenFashion} title="Women's Fashion" />
+        <CategoryCard img={Sports} title="Sports" />
+        <CategoryCard img={Supermarket} title="Supermarket" />
+        <CategoryCard img={Computers} title="Computers" />
+        <CategoryCard img={Gaming} title="Gaming" />
+        <CategoryCard img={BeautyAndHealth} title="Beauty & Health" />
+        <CategoryCard img={KidsAndBaby} title="Kids & Baby" />
+      </div>
+    </div>
+  )
 }
-
-export default HomeCategory

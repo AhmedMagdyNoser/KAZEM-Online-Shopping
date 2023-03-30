@@ -1,23 +1,13 @@
 import React from 'react'
-import { Col } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-const CategoryCard = ({img , background}) => {
-    return (
-        <Col
-        xs="6"
-        sm="6"
-        md="4"
-        lg="2"
-        className="my-4 d-flex justify-content-around ">
-        <div className="allCard mb-3 ">
-          <div
-            className="categoty-card "
-            style={{ backgroundColor: `${background}` }}></div>{" "}
-          <img alt="zcv" src={img} className="categoty-card-img" />
-          <p className="categoty-card-text my-2">Discount</p>
-        </div>
-      </Col>
-    )
+const CategoryCard = ({ img, title }) => {
+  return (
+    <Link to={'/products'} className='text-decoration-none d-flex flex-column justify-content-center gap-2'>
+      <img src={img} alt={img} className='img-fluid' />
+      <span className="text-dark fw-bold text-center text-nowrap">{title}</span>
+    </Link>
+  )
 }
 
 export default CategoryCard

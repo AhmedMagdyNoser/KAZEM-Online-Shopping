@@ -7,7 +7,7 @@ import CardProductContainer from '../../Component/Product/CardProductContainer'
 
 const HomePage = () => {
     return (
-        <div>
+        <div className='d-flex flex-column gap-3'>
             <Slider />
             <HomeCategory />
             <CardProductContainer title="Best Seller" btnTitle="More" pathText="/products" />

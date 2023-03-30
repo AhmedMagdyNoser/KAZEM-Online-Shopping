@@ -2,11 +2,17 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  background-color: #f3f3f3;
+  background-color: #f6f6f6;
 }
 
-.my-grid {
+.kazem-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(195px, auto));
+  grid-template-columns: repeat(auto-fit, minmax(200px, auto));
   gap: 25px;
+}
+
+.kazem-sm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, auto));
+  gap: 20px;
 }

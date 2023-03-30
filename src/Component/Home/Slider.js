@@ -1,8 +1,8 @@
 // images must be png without a background
 // images must have the same dimintions as (width: 730, height: 550)
-import img1 from "../../Images/slideImg1.png";
-import img2 from "../../Images/slideImg2.png";
-import img3 from "../../Images/slideImg3.png";
+import img1 from "../../Images/Slider/slideImg1.png";
+import img2 from "../../Images/Slider/slideImg2.png";
+import img3 from "../../Images/Slider/slideImg3.png";
 
 export default function Slider() {
   return (
@@ -19,7 +19,7 @@ export default function Slider() {
           img={img2}
           title='up to 50% off'
           subTitle='on our products'
-          bgColor='linear-gradient(175deg, #d3deff 0%, #a8baff 100%)'
+          bgColor='linear-gradient(175deg, #d3deff 0%, #a8badf 100%)'
         />
         <Slide
           img={img3}
