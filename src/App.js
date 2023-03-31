@@ -1,5 +1,5 @@
 import HomePage from "./Pages/Home/HomePage";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import Header from "./Component/Uitility/Header";
 import Footer from "./Component/Uitility/Footer";
 import LoginPage from "./Pages/Auth/LoginPage";
@@ -11,7 +11,7 @@ import AllProductsPage from "./Pages/Products/AllProductsPage";
 export default function App() {
   return (
     <div>
-      <BrowserRouter>
+      <HashRouter>
         <Header />
         <Routes>
           <Route index element={<HomePage />} />
@@ -22,7 +22,7 @@ export default function App() {
           <Route path="/allproducts" element={<AllProductsPage />} />
         </Routes>
         <Footer />
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
