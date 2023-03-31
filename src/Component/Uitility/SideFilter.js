@@ -7,9 +7,10 @@ export default function SideFilter() {
       <div className='mb-4'>
         <p className='fw-bold mb-2'>Category</p>
         <div className='d-flex flex-column gap-2'>
-          <CheckItem label='Category1' />
-          <CheckItem label='Category2' />
-          <CheckItem label='Category3' />
+          <CheckItem label='Electronics' />
+          <CheckItem label='Moblies' />
+          <CheckItem label='Computers' />
+          <CheckItem label='Gaming' />
         </div>
       </div>
 

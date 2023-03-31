@@ -14,7 +14,7 @@ import Adidas from '../../Images/Brands/Adidas.png'
 import Defacto from '../../Images/Brands/Defacto.png'
 import Caesar from '../../Images/Brands/Caesar.png'
 import Nivea from '../../Images/Brands/Nivea.png'
-import oxi from '../../Images/Brands/oxi.png'
+import oxi from '../../Images/Brands/Oxi.png'
 import AbuAuf from '../../Images/Brands/AbuAuf.png'
 
 export default function BrandsSection() {

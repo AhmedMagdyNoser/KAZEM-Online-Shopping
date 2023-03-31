@@ -1,8 +1,8 @@
 import React from 'react'
 import Slider from '../../Component/Home/Slider'
-import CategoriesSection from '../../Component/Category/CategoriesSection'
-import BrandsSection from '../../Component/Brand/BrandsSection'
-import ProductsSection from '../../Component/Product/ProductsSection'
+import CategoriesSection from '../../Component/Home/CategoriesSection'
+import BrandsSection from '../../Component/Home/BrandsSection'
+import ProductsSection from '../../Component/Home/ProductsSection'
 import DiscountSection from '../../Component/Home/DiscountSection'
 
 export default function HomePage() {
@@ -11,10 +11,10 @@ export default function HomePage() {
       <Slider />
       <CategoriesSection />
       <BrandsSection />
-      <ProductsSection title="Best Seller" btnTitle="More" pathText="/products" />
-      <ProductsSection title="For You" btnTitle="More" pathText="/products" />
+      <ProductsSection title="Best Seller" btnTitle="More" pathText="/allproducts" />
+      <ProductsSection title="For You" btnTitle="More" pathText="/allproducts" />
       <DiscountSection />
-      <ProductsSection title="Explore Electronics" btnTitle="More" pathText="/products" />
+      <ProductsSection title="Explore Electronics" btnTitle="More" pathText="/allproducts" />
     </div>
   )
 }
