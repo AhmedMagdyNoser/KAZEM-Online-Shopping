@@ -11,10 +11,10 @@ import WomenFashion from "../../Images/Categories/Women's Fashion.png"
 import Supermarket from "../../Images/Categories/Supermarket.png"
 import Sports from "../../Images/Categories/Sports.png"
 
-import Computers from "../../Images/Categories/Computers.png"
-import Gaming from "../../Images/Categories/Gaming.png"
-import BeautyAndHealth from "../../Images/Categories/Beauty & Health.png"
-import KidsAndBaby from "../../Images/Categories/Kids & Baby.png"
+// import Computers from "../../Images/Categories/Computers.png"
+// import Gaming from "../../Images/Categories/Gaming.png"
+// import BeautyAndHealth from "../../Images/Categories/Beauty & Health.png"
+// import KidsAndBaby from "../../Images/Categories/Kids & Baby.png"
 
 export default function CategoriesSection() {
   return (
@@ -27,12 +27,14 @@ export default function CategoriesSection() {
         <SimpleCard img={WomenFashion} title="Women's Fashion" />
         <SimpleCard img={Sports} title="Sports" />
         <SimpleCard img={Supermarket} title="Supermarket" />
+
         {/*
         <CategoryCard img={Computers} title="Computers" />
         <CategoryCard img={Gaming} title="Gaming" />
         <CategoryCard img={BeautyAndHealth} title="Beauty & Health" />
         <CategoryCard img={KidsAndBaby} title="Kids & Baby" />
         */}
+
       </div>
     </div>
   )
