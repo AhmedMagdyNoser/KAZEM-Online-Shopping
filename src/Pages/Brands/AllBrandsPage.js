@@ -31,7 +31,7 @@ export default function AllBrandsPage() {
   return (
     <div style={{ minHeight: "675px" }}>
       <div className='container pb-4'>
-        <h2 className='my-4 pb-3 fw-bold text-center text-uppercase border-bottom'>All Brands</h2>
+        <h2 className='my-4 py-3 bg-dark text-white text-center text-uppercase'>All brands</h2>
         <div className='kazem-sm-grid'>
           <SimpleCard img={Apple} title="Apple" />
           <SimpleCard img={Samsung} title="Samsung" />

@@ -5,7 +5,7 @@ import FloatingInput from '../../Component/Auth/FloatingInput';
 export default function RegisterPage() {
   return (
     <div className='d-flex align-items-center' style={{ minHeight: '85vh' }}>
-      <div className="container my-5 py-5 px-4 px-sm-5 bg-white shadow-sm rounded" style={{ maxWidth: "750px" }}>
+      <div className="container my-5 py-5 px-4 px-sm-5 bg-white border-bottom border-top" style={{ maxWidth: "750px" }}>
         <h2 className="fw-bold text-center mb-3">Register</h2>
         <form>
           <div className='d-flex gap-2 mb-2'>
