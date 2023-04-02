@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/KAZEM-Online-Shopping/static/css/main.d4e79b7c.css",
-    "main.js": "/KAZEM-Online-Shopping/static/js/main.782b208f.js",
+    "main.js": "/KAZEM-Online-Shopping/static/js/main.d9a7f368.js",
     "static/media/laptops.png": "/KAZEM-Online-Shopping/static/media/laptops.a5a6ab642345b5d38784.png",
     "static/media/slideImg1.png": "/KAZEM-Online-Shopping/static/media/slideImg1.d3f59304d1234076e906.png",
     "static/media/slideImg2.png": "/KAZEM-Online-Shopping/static/media/slideImg2.325230d272df31e36df9.png",
     "static/media/slideImg3.png": "/KAZEM-Online-Shopping/static/media/slideImg3.cfaebaca614293f1a826.png",
     "static/media/item.png": "/KAZEM-Online-Shopping/static/media/item.79eafdfba70f40ed66c5.png",
-    "static/media/Beauty & Health.png": "/KAZEM-Online-Shopping/static/media/Beauty & Health.52c4811e6f2a7b51c044.png",
-    "static/media/Supermarket.png": "/KAZEM-Online-Shopping/static/media/Supermarket.87d7676940afb9ee1685.png",
-    "static/media/Electronics.png": "/KAZEM-Online-Shopping/static/media/Electronics.757cb70bfc9e844e8ec0.png",
-    "static/media/Men's Fashion.png": "/KAZEM-Online-Shopping/static/media/Men's Fashion.70651a2e01004dba7227.png",
-    "static/media/Gaming.png": "/KAZEM-Online-Shopping/static/media/Gaming.5144ca93d4c0053a5306.png",
-    "static/media/Women's Fashion.png": "/KAZEM-Online-Shopping/static/media/Women's Fashion.e71a93e812990a053344.png",
-    "static/media/Kids & Baby.png": "/KAZEM-Online-Shopping/static/media/Kids & Baby.ef595faea11e2add0bc4.png",
-    "static/media/Sports.png": "/KAZEM-Online-Shopping/static/media/Sports.ca0701a31a3e60f71804.png",
-    "static/media/Computers.png": "/KAZEM-Online-Shopping/static/media/Computers.8dda861ab21d3a629fa8.png",
+    "static/media/Beauty & Health.png": "/KAZEM-Online-Shopping/static/media/Beauty & Health.d02fb6e1808a968f1085.png",
+    "static/media/Supermarket.png": "/KAZEM-Online-Shopping/static/media/Supermarket.1bb0c64ed2ef0f0bd2b9.png",
+    "static/media/Electronics.png": "/KAZEM-Online-Shopping/static/media/Electronics.5780b511d6fcd95fc79e.png",
+    "static/media/Men's Fashion.png": "/KAZEM-Online-Shopping/static/media/Men's Fashion.0ebd3e91bc24dc95c50b.png",
+    "static/media/Gaming.png": "/KAZEM-Online-Shopping/static/media/Gaming.d773c5329de0bc575e8f.png",
+    "static/media/Women's Fashion.png": "/KAZEM-Online-Shopping/static/media/Women's Fashion.2436434a9b9e24625141.png",
+    "static/media/Kids & Baby.png": "/KAZEM-Online-Shopping/static/media/Kids & Baby.15a29506fc2aace3e064.png",
+    "static/media/Sports.png": "/KAZEM-Online-Shopping/static/media/Sports.af59dd28ac122e8b39b6.png",
     "static/media/Aldoha.png": "/KAZEM-Online-Shopping/static/media/Aldoha.55bf2e792aa37f62b405.png",
     "static/media/Oxi.png": "/KAZEM-Online-Shopping/static/media/Oxi.f0f61d815e3f74f55887.png",
-    "static/media/Moblies & Accessories.png": "/KAZEM-Online-Shopping/static/media/Moblies & Accessories.f8211e0cb43dd97ca3f4.png",
+    "static/media/Computers.png": "/KAZEM-Online-Shopping/static/media/Computers.b0ede735f53806586564.png",
+    "static/media/Moblies & Accessories.png": "/KAZEM-Online-Shopping/static/media/Moblies & Accessories.47c0d75460977042efab.png",
     "static/media/Defacto.png": "/KAZEM-Online-Shopping/static/media/Defacto.38656389c48cd23edf60.png",
     "static/media/Adidas.png": "/KAZEM-Online-Shopping/static/media/Adidas.3808caf4b96ecd6ed18b.png",
     "static/media/AEOEgypt.png": "/KAZEM-Online-Shopping/static/media/AEOEgypt.98afe07b58a4ef3764db.png",
@@ -41,10 +41,10 @@
     "static/media/Xiaomi.png": "/KAZEM-Online-Shopping/static/media/Xiaomi.8949472c6cb0a0fbd793.png",
     "index.html": "/KAZEM-Online-Shopping/index.html",
     "main.d4e79b7c.css.map": "/KAZEM-Online-Shopping/static/css/main.d4e79b7c.css.map",
-    "main.782b208f.js.map": "/KAZEM-Online-Shopping/static/js/main.782b208f.js.map"
+    "main.d9a7f368.js.map": "/KAZEM-Online-Shopping/static/js/main.d9a7f368.js.map"
   },
   "entrypoints": [
     "static/css/main.d4e79b7c.css",
-    "static/js/main.782b208f.js"
+    "static/js/main.d9a7f368.js"
   ]
 }
