@@ -18,7 +18,7 @@ export default function Header() {
           <input className="form-control my-2 mx-md-2 w-100 shadow-none" type="search" placeholder="Search.." />
           <div className='d-flex gap-2'>
             <HeaderLink destination='/login' icon='fa-solid fa-user' text='Login' />
-            <HeaderLink destination='/cart' icon='fa-solid fa-cart-shopping' text='Cart' />
+            <HeaderLink destination='/buyer/cart' icon='fa-solid fa-cart-shopping' text='Cart' />
           </div>
         </div>
 
