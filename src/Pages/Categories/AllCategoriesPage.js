@@ -16,7 +16,7 @@ export default function AllCategoryPage() {
   return (
     <div style={{ minHeight: "675px" }}>
       <div className='container pb-4'>
-        <h2 className='my-4 pb-3 fw-bold text-center text-uppercase border-bottom'>All Categories</h2>
+        <h2 className='my-4 py-3 bg-dark text-white text-center text-uppercase'>All Categories</h2>
         <div className='kazem-sm-grid'>
           <SimpleCard img={Electronics} title="Electronics" />
           <SimpleCard img={MobilesAndAccessories} title="Moblies & Accessories" />

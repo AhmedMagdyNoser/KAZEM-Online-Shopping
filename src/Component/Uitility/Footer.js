@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 export default function Footer() {
   return (
-    <div className='bg-white py-4'>
+    <div className='bg-white border-top py-4'>
       <div className='container d-flex justify-content-center justify-content-sm-between flex-wrap gap-4'>
         <div className='d-flex gap-3'>
           <Link to={'/'} className='text-muted text-decoration-none fw-bold'>Conditions of Use</Link>

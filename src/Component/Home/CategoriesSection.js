@@ -18,9 +18,9 @@ import KidsAndBaby from "../../Images/Categories/Kids & Baby.png"
 
 export default function CategoriesSection() {
   return (
-    <div className='container bg-white p-3 shadow-sm'>
+    <div className='container p-0 bg-white border-bottom'>
       <SectionTitle title="Explore Categories" btnTitle='More' pathText='/allCategories' />
-      <div className='kazem-sm-grid'>
+      <div className='kazem-sm-grid p-3'>
         <SimpleCard img={Electronics} title="Electronics" />
         <SimpleCard img={MobilesAndAccessories} title="Moblies & Accessories" />
         <SimpleCard img={MenFashion} title="Men's Fashion" />
