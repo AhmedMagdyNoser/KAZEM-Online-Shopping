@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import FloatingInput from '../../Component/Auth/FloatingInput';
+import FloatingInput from '../../Component/Uitility/FloatingInput';
 
 export default function RegisterPage() {
   return (

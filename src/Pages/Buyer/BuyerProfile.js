@@ -1,5 +1,5 @@
 import { useRef } from "react"
-import FloatingInput from "../../Component/Auth/FloatingInput"
+import FloatingInput from "../../Component/Uitility/FloatingInput"
 import BuyerTabs from "../../Component/Buyer/BuyerTabs"
 
 export default function BuyerProfile() {
