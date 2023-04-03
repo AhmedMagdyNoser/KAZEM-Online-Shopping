@@ -1,9 +1,9 @@
-import BuyerTaps from "../../Component/Buyer/BuyerTaps"
+import BuyerTabs from "../../Component/Buyer/BuyerTabs"
 
 export default function BuyerOrders() {
   return (
     <div>
-      <BuyerTaps active='Orders' />
+      <BuyerTabs active='Orders' />
       <div className="container">
         Orders
       </div>

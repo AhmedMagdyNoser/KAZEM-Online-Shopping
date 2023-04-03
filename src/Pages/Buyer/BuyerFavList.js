@@ -1,10 +1,10 @@
-import BuyerTaps from "../../Component/Buyer/BuyerTaps"
+import BuyerTabs from "../../Component/Buyer/BuyerTabs"
 import ProductWideCard from "../../Component/Uitility/ProductWideCard"
 
 export default function BuyerFavList() {
   return (
     <div>
-      <BuyerTaps active='Favorites List' />
+      <BuyerTabs active='Favorites List' />
       <h3 className='container my-4 py-3 bg-dark text-white text-center text-uppercase'>Your Favorites List</h3>
       <div className="container px-0 pb-3">
         <ProductWideCard

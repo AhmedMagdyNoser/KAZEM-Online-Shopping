@@ -11,6 +11,10 @@ import BuyerProfile from "./Pages/Buyer/BuyerProfile";
 import BuyerFavList from "./Pages/Buyer/BuyerFavList";
 import BuyerCart from "./Pages/Buyer/BuyerCart";
 import BuyerOrders from "./Pages/Buyer/BuyerOrders";
+import AdminProdsCates from "./Pages/Admin/AdminProdsCates";
+import AdminNewOrders from "./Pages/Admin/AdminNewOrders";
+import AdminAllOrders from "./Pages/Admin/AdminAllOrders";
+import AdminAllBuyers from "./Pages/Admin/AdminAllBuyers";
 
 export default function App() {
   return (
@@ -30,6 +34,13 @@ export default function App() {
             <Route path="/buyer/favList" element={<BuyerFavList />} />
             <Route path="/buyer/cart" element={<BuyerCart />} />
             <Route path="/buyer/orders" element={<BuyerOrders />} />
+          </Route>
+
+          <Route>
+            <Route path="/admin/products&categories" element={<AdminProdsCates />} />
+            <Route path="/admin/newOrders" element={<AdminNewOrders />} />
+            <Route path="/admin/allOrders" element={<AdminAllOrders />} />
+            <Route path="/admin/allBuyers" element={<AdminAllBuyers />} />
           </Route>
 
         </Routes>
