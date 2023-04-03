@@ -2,7 +2,7 @@ export default function FloatingInput({ type, name, value, defaultValue, onChang
   return (
     <div className={className + " form-floating"}>
       <input
-        className="form-control shadow-none fw-bold"
+        className="form-control shadow-none fw-bold rounded-0 border-start-0 border-end-0 "
         type={type}
         name={name}
         value={value}

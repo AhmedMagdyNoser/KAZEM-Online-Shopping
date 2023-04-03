@@ -14,7 +14,7 @@ export default function LoginPage() {
           </div>
 
           <div className="d-grid my-3">
-            <input type="submit" value="LOGIN" className="btn btn-primary" />
+            <input type="submit" value="LOGIN" className="btn btn-primary rounded-0" />
           </div>
 
           <div className="text-center">
