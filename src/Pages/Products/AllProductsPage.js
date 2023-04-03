@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductCard from '../../Component/Uitility/ProductCard'
+import ProductCard from '../../Component/Product/ProductCard'
 import SideFilter from '../../Component/Uitility/SideFilter'
 
 export default function AllProductsPage() {

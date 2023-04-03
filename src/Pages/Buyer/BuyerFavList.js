@@ -1,5 +1,5 @@
 import BuyerTabs from "../../Component/Buyer/BuyerTabs"
-import ProductWideCard from "../../Component/Uitility/ProductWideCard"
+import ProductWideCard from "../../Component/Product/ProductWideCard"
 
 export default function BuyerFavList() {
   return (
