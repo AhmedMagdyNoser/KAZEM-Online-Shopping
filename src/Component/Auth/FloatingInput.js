@@ -1,4 +1,4 @@
-export default function FloatingInput({ type, name, value, defaultValue, onChange, icon, label, readonly, className }) {
+export default function FloatingInput({ type, name, value, defaultValue, onChange, icon, label, readonly, required, className }) {
   return (
     <div className={className + " form-floating"}>
       <input
@@ -10,6 +10,7 @@ export default function FloatingInput({ type, name, value, defaultValue, onChang
         placeholder={label}
         onChange={onChange}
         readOnly = {readonly? true : false}
+        required = {required? true : false}
         />
       <label className="form-label">
         <i className={icon + " ms-1 me-2"}></i>

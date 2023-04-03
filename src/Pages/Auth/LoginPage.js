@@ -9,8 +9,8 @@ export default function LoginPage() {
         <h2 className="fw-bold text-center mb-3">Login</h2>
         <form>
           <div className='d-flex flex-column gap-2'>
-            <FloatingInput type='text' icon='fa-solid fa-user' label='Username or Email' />
-            <FloatingInput type='password' icon='fa-solid fa-lock' label='Password' />
+            <FloatingInput type='text' icon='fa-solid fa-user' label='Username or Email' required/>
+            <FloatingInput type='password' icon='fa-solid fa-lock' label='Password' required/>
           </div>
 
           <div className="d-grid my-3">

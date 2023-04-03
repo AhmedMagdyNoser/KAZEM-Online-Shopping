@@ -34,7 +34,7 @@ export default function BuyerProfile() {
             <FloatingInput type='text' name='fname' defaultValue='Egypt, Cairo, Helwan' icon='fa-solid fa-location-dot' label='Address' onChange={activateSaving} />
           </div>
           <div className="d-grid mt-3">
-            <input type="submit" value="SAVE" className="btn btn-primary disabled" ref={saveButton} style={{ transition: '0.25s' }} />
+            <input type="submit" value="SAVE" className="btn btn-primary rounded-0 disabled" ref={saveButton} style={{ transition: '0.25s' }} />
           </div>
         </form>
 
@@ -53,10 +53,9 @@ export default function BuyerProfile() {
           <div className='d-flex flex-column gap-2'>
             <FloatingInput type='password' name='old-passord' icon='fa-solid fa-lock' label='Old Password' />
             <FloatingInput type='password' name='new-passord' icon='fa-solid fa-lock' label='New Password' onChange={activateChangingPassword} />
-            <FloatingInput type='password' name='new-passord-config' icon='fa-solid fa-lock' label='New Password Configration' onChange={activateChangingPassword} />
           </div>
           <div className="d-grid mt-3">
-            <input type="submit" value="CHANGE" className="btn btn-primary disabled" ref={changePasswordButton} style={{ transition: '0.25s' }} />
+            <input type="submit" value="CHANGE" className="btn btn-primary rounded-0 disabled" ref={changePasswordButton} style={{ transition: '0.25s' }} />
           </div>
         </form>
 

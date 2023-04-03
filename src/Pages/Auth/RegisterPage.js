@@ -9,15 +9,15 @@ export default function RegisterPage() {
         <h2 className="fw-bold text-center mb-3">Register</h2>
         <form>
           <div className='d-flex gap-2 mb-2'>
-            <FloatingInput type='text' icon='fa-regular fa-user' label='First Name' className='flex-fill' />
-            <FloatingInput type='text' icon='fa-regular fa-user' label='Last Name' className='flex-fill' />
+            <FloatingInput type='text' icon='fa-regular fa-user' label='First Name' className='flex-fill' required />
+            <FloatingInput type='text' icon='fa-regular fa-user' label='Last Name' className='flex-fill' required />
           </div>
           <div className='d-flex flex-column gap-2'>
-            <FloatingInput type='text' icon='fa-solid fa-user' label='Username' />
-            <FloatingInput type='email' icon='fa-solid fa-envelope' label='Email' />
-            <FloatingInput type='text' icon='fa-solid fa-phone' label='Phone Number' />
-            <FloatingInput type='text' icon='fa-solid fa-location-dot' label='Address' />
-            <FloatingInput type='password' icon='fa-solid fa-lock' label='Password' />
+            <FloatingInput type='text' icon='fa-solid fa-user' label='Username' required />
+            <FloatingInput type='email' icon='fa-solid fa-envelope' label='Email' required />
+            <FloatingInput type='text' icon='fa-solid fa-phone' label='Phone Number' required />
+            <FloatingInput type='text' icon='fa-solid fa-location-dot' label='Address' required />
+            <FloatingInput type='password' icon='fa-solid fa-lock' label='Password' required />
           </div>
 
           <div className="d-grid my-3">
