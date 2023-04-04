@@ -9,8 +9,8 @@ export default function LoginPage() {
         <h2 className="fw-bold text-center mb-3">Login</h2>
         <form>
           <div className='d-flex flex-column gap-2'>
-            <FloatingInput type='text' icon='fa-solid fa-user' label='Username or Email' required />
-            <FloatingInput type='password' icon='fa-solid fa-lock' label='Password' required />
+            <FloatingInput type='email' name='email' required icon='fa-solid fa-user' label='Email' />
+            <FloatingInput type='password' name='password' required icon='fa-solid fa-lock' label='Password' />
           </div>
 
           <div className="d-grid my-3">
@@ -22,10 +22,13 @@ export default function LoginPage() {
             <Link to="/register" className="text-decoration-none">Sign Up</Link>
           </div>
         </form>
+
+        {/* For testing */}
         <div className='d-flex justify-content-between mt-3'>
           <Link to={'/buyer/profile'} className='text-decoration-none'>TestBuyerModule</Link>
           <Link to={'/admin/products&categories'} className='text-decoration-none'>TestAdminModule</Link>
         </div>
+
       </div>
     </div>
   )

@@ -24,7 +24,6 @@ export default function BuyerProfile() {
             <FloatingInput type='text' name='lname' defaultValue='Magdy' required icon='fa-regular fa-user' label='Last Name' onChange={() => activateButton(saveInfoButton)} className='flex-fill' />
           </div>
           <div className='d-flex flex-column gap-2'>
-            <FloatingInput type='text' name='username' defaultValue='AhmedMagdy125' required icon='fa-solid fa-user' label='Username' onChange={() => activateButton(saveInfoButton)} />
             <FloatingInput type='email' name='email' defaultValue='Ahmed125@gmail.com' required icon='fa-solid fa-envelope' label='Email' onChange={() => activateButton(saveInfoButton)} />
             <FloatingInput type='text' name='phone' defaultValue='01234567890' required icon='fa-solid fa-phone' label='Phone Number' onChange={() => activateButton(saveInfoButton)} />
             <FloatingInput type='text' name='fname' defaultValue='Egypt, Cairo, Helwan' required icon='fa-solid fa-location-dot' label='Address' onChange={() => activateButton(saveInfoButton)} />
@@ -38,8 +37,8 @@ export default function BuyerProfile() {
         <form>
           <p className="fw-bold text-center">Change Your Password</p>
           <div className='d-flex flex-column gap-2'>
-            <FloatingInput type='password' name='old-passord' required icon='fa-solid fa-lock' label='Old Password' />
-            <FloatingInput type='password' name='new-passord' required icon='fa-solid fa-lock' label='New Password' onChange={() => activateButton(changePasswordButton)} />
+            <FloatingInput type='password' name='oldPassord' required icon='fa-solid fa-lock' label='Old Password' />
+            <FloatingInput type='password' name='newPassord' required icon='fa-solid fa-lock' label='New Password' onChange={() => activateButton(changePasswordButton)} />
           </div>
           <div className="d-grid mt-3">
             <input type="submit" value="CHANGE" className="btn btn-primary rounded-0 disabled" ref={changePasswordButton} style={{ transition: '0.25s' }} />
