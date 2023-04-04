@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/KAZEM-Online-Shopping/static/css/main.d4e79b7c.css",
-    "main.js": "/KAZEM-Online-Shopping/static/js/main.0bec6f30.js",
+    "main.js": "/KAZEM-Online-Shopping/static/js/main.3f74d5aa.js",
     "static/media/laptops.png": "/KAZEM-Online-Shopping/static/media/laptops.a5a6ab642345b5d38784.png",
     "static/media/slideImg1.png": "/KAZEM-Online-Shopping/static/media/slideImg1.d3f59304d1234076e906.png",
     "static/media/slideImg2.png": "/KAZEM-Online-Shopping/static/media/slideImg2.325230d272df31e36df9.png",
@@ -41,10 +41,10 @@
     "static/media/Xiaomi.png": "/KAZEM-Online-Shopping/static/media/Xiaomi.8949472c6cb0a0fbd793.png",
     "index.html": "/KAZEM-Online-Shopping/index.html",
     "main.d4e79b7c.css.map": "/KAZEM-Online-Shopping/static/css/main.d4e79b7c.css.map",
-    "main.0bec6f30.js.map": "/KAZEM-Online-Shopping/static/js/main.0bec6f30.js.map"
+    "main.3f74d5aa.js.map": "/KAZEM-Online-Shopping/static/js/main.3f74d5aa.js.map"
   },
   "entrypoints": [
     "static/css/main.d4e79b7c.css",
-    "static/js/main.0bec6f30.js"
+    "static/js/main.3f74d5aa.js"
   ]
 }
