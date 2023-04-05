@@ -16,3 +16,101 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(150px, auto));
   gap: 20px;
 }
+
+
+
+/* Start All Buyer Sction  */
+
+.kcard{
+  width: 300px;
+  height: 450px;
+  margin-right:30px ;
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 6px;
+
+}
+
+.kcontainer{
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  padding: 60px 0;
+  
+}
+
+.kcard .image{
+  height: 120px;
+  background-color: #0075FF;
+  position: relative;
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
+
+
+}
+.kcard .image img{
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50% , 50%);
+}
+.kcard .info{
+  margin-top: 80px;
+  padding: 0 30px;
+}
+
+.kcard h2{
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 27px;
+
+}
+
+@media(max-width :1200px)
+{
+  .kcard{
+    width: 270px;
+  }
+
+  .kcard .image img{
+    width: 90px;
+    height: 90px;
+  }
+}
+
+
+@media(max-width :767px)
+{
+ 
+  .kcard{
+    width: 240px;
+  }
+
+  .kcard .image img{
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media(max-width :570px)
+{
+ 
+  .kcontainer{
+    flex-direction: column;
+    align-items: center;
+  }
+  .kcard{
+    width: 240px;
+  }
+
+  .kcard .image img{
+    width: 90px;
+    height: 90px;
+  }
+}
+
+/* End All Buyer Sction  */
