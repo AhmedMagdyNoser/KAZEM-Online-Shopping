@@ -8,7 +8,7 @@ export default function ProductCard({ title, price, rating, editable }) {
   function checkEditability() {
     if (editable) {
       return (
-        <div className='d-flex gap-2 mt-3'>
+        <div className='d-flex mt-3'>
           <Link to={'/admin/editProduct/:id'} className='btn btn-primary btn-sm rounded-0 flex-fill'><i className='fa-solid fa-edit'></i> Edit</Link>
           <Link className='btn btn-danger btn-sm rounded-0 flex-fill'><i className='fa-solid fa-trash'></i> Delete</Link>
         </div>
