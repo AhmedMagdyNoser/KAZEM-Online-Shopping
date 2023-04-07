@@ -10,12 +10,12 @@ export default function BuyerInfo({ name, email, phone, address }) {
         <i className='fa-solid fa-user text-secondary p-4 fs-2 rounded-circle position-relative' style={{ background: '#eee', zIndex: '2' }}></i>
       </div>
 
-      <div className='p-3 text-nowrap'>
+      <div className='p-4 pt-3 text-nowrap'>
         <h5 className='fw-bold text-center mb-3'>{name}</h5>
         <small className='text-muted'>
-          <p><i class="fa-solid fa-envelope"></i> {email}</p>
-          <p><i class="fa-solid fa-phone"></i> {phone}</p>
-          <p><i class="fa-solid fa-location-dot"></i> {address}</p>
+          <p><i className="fa-solid fa-envelope me-2"></i>{email}</p>
+          <p><i className="fa-solid fa-phone me-2"></i>{phone}</p>
+          <p><i className="fa-solid fa-location-dot me-2"></i>{address}</p>
         </small>
 
         <div className='d-flex mt-3'>

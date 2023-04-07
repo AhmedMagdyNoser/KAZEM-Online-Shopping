@@ -6,7 +6,7 @@ export default function BuyerFavList() {
     <div>
       <BuyerTabs active='Favorites List' />
       <h3 className='container my-4 py-3 bg-dark text-white text-center text-uppercase'>Your Favorites List</h3>
-      <div className="container px-0 pb-3">
+      <div className="container pb-3">
         <ProductWideCard
           title="Nova Y70 Dual Sim Pearl White 4GB RAM 128GB"
           price='350'
