@@ -11,7 +11,7 @@ export default function BuyerInfo({ name, email, phone, address }) {
       </div>
 
       <div className='p-3 text-nowrap'>
-        <h4 className='fw-bold text-center'>{name}</h4>
+        <h5 className='fw-bold text-center mb-3'>{name}</h5>
         <small className='text-muted'>
           <p><i class="fa-solid fa-envelope"></i> {email}</p>
           <p><i class="fa-solid fa-phone"></i> {phone}</p>
