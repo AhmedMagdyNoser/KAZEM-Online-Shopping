@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function BuyerInfo({ name, email, phone, address }) {
+export default function UserDataCard({ user }) {
   return (
     <div className='bg-white border-bottom position-relative overflow-hidden'>
 
@@ -11,15 +11,15 @@ export default function BuyerInfo({ name, email, phone, address }) {
       </div>
 
       <div className='p-4 pt-3 text-nowrap'>
-        <h5 className='fw-bold text-center mb-3'>{name}</h5>
+        <h5 className='fw-bold text-center mb-3'>{user.firstName} {user.lastName}</h5>
         <small className='text-muted'>
-          <p><i className="fa-solid fa-envelope me-2"></i>{email}</p>
-          <p><i className="fa-solid fa-phone me-2"></i>{phone}</p>
-          <p><i className="fa-solid fa-location-dot me-2"></i>{address}</p>
+          <p><i className="fa-solid fa-envelope me-2"></i>{user.email}</p>
+          <p><i className="fa-solid fa-phone me-2"></i>{user.phone}</p>
+          <p><i className="fa-solid fa-location-dot me-2"></i>{user.address}</p>
         </small>
 
         <div className='d-flex mt-3'>
-          <Link to={'/admin/editUser/:id'} className='btn btn-primary btn-sm rounded-0 flex-fill'><i className='fa-solid fa-edit'></i> Edit</Link>
+          <Link to={'/admin/editUser/' + user.id} className='btn btn-primary btn-sm rounded-0 flex-fill'><i className='fa-solid fa-edit'></i> Edit</Link>
           <Link className='btn btn-danger btn-sm rounded-0 flex-fill'><i className='fa-solid fa-trash'></i> Delete</Link>
         </div>
       </div>
