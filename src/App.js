@@ -15,6 +15,8 @@ import AdminProdsCates from "./Pages/Admin/AdminProdsCates";
 import AdminNewOrders from "./Pages/Admin/AdminNewOrders";
 import AdminAllOrders from "./Pages/Admin/AdminAllOrders";
 import AdminAllBuyers from "./Pages/Admin/AdminAllBuyers";
+import AddNewCategory from "./Pages/Admin/AddNewCategory";
+import AddNewProduct from "./Pages/Admin/AddNewProduct";
 
 export default function App() {
   return (
@@ -42,6 +44,8 @@ export default function App() {
             <Route path="/admin/newOrders" element={<AdminNewOrders />} />
             <Route path="/admin/allOrders" element={<AdminAllOrders />} />
             <Route path="/admin/allBuyers" element={<AdminAllBuyers />} />
+            <Route path="/admin/addNewCategory" element={<AddNewCategory />} />
+            <Route path="/admin/addNewProduct" element={<AddNewProduct />} />
           </Route>
 
         </Routes>
