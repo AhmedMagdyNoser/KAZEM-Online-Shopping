@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import FloatingInput from "../../Component/Uitility/FloatingInput";
 
-export default function EditUser({ user }) {
+export default function EditUser() {
 
   const params = useParams(); // it's the parameters in the current url '/admin/editUser/:id' the only param is the id
   
   // We must fetch data from api using the parameter (id) but for testing we consume that
-  user = { id: 2, firstName: "Ahmed", lastName: "Magdy", email: "Ahmed@gmail.com", phone: "0123456789", address: "Cairo", password: '123456', admin: true, active: true };
+  let user = { id: 2, firstName: "Ahmed", lastName: "Magdy", email: "Ahmed@gmail.com", phone: "0123456789", address: "Cairo", password: '123456', admin: true, active: true };
 
   return (
     <div className="container d-flex flex-column gap-4 my-4">

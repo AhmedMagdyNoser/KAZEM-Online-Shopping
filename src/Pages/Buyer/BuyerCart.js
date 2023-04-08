@@ -37,7 +37,7 @@ export default function BuyerCart() {
         <span className="fs-4">Total: <b>1000$</b></span>
       </div>
       <div className="container p-0 mb-4">
-        <Link to="/buyer/cart/checkout" style={{textDecoration: "none"}}>
+        <Link to="/buyer/checkout" style={{textDecoration: "none"}}>
             <button className="btn btn-primary rounded-0 w-100">Buy Now</button>
         </Link>
       </div>

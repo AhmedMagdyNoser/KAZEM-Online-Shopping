@@ -1,5 +1,5 @@
-import HomePage from "./Pages/Home/HomePage";
 import { Routes, Route, HashRouter } from "react-router-dom";
+import HomePage from "./Pages/Home/HomePage";
 import Header from "./Component/Uitility/Header";
 import Footer from "./Component/Uitility/Footer";
 import LoginPage from "./Pages/Auth/LoginPage";
@@ -42,7 +42,7 @@ export default function App() {
             <Route path="/buyer/favList" element={<BuyerFavList />} />
             <Route path="/buyer/cart" element={<BuyerCart />} />
             <Route path="/buyer/orders" element={<BuyerOrders />} />
-            <Route path="/buyer/cart/checkout" element={<CheckoutPage />} />
+            <Route path="/buyer/checkout" element={<CheckoutPage />} />
           </Route>
 
           <Route>
