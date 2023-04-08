@@ -14,8 +14,13 @@ import BuyerOrders from "./Pages/Buyer/BuyerOrders";
 import AdminProdsCates from "./Pages/Admin/AdminProdsCates";
 import AdminNewOrders from "./Pages/Admin/AdminNewOrders";
 import AdminAllOrders from "./Pages/Admin/AdminAllOrders";
-import AdminAllBuyers from "./Pages/Admin/AdminAllBuyers";
 import CheckoutPage from "./Pages/Checkout/CheckoutPage";
+import AdminAllUsers from "./Pages/Admin/AdminAllUsers";
+import AddNewCategory from "./Pages/Admin/AddNewCategory";
+import AddNewProduct from "./Pages/Admin/AddNewProduct";
+import AddNewUser from "./Pages/Admin/AddNewUser";
+import EditUser from "./Pages/Admin/EditUser";
+import ProductDetailsPage from "./Pages/Products/ProductDetailsPage";
 
 export default function App() {
   return (
@@ -30,6 +35,7 @@ export default function App() {
           <Route path="/allcategories" element={<AllCategoriesPage />} />
           <Route path="/allbrands" element={<AllBrandsPage />} />
           <Route path="/allproducts" element={<AllProductsPage />} />
+          <Route path="/product/:id" element={<ProductDetailsPage />} />
 
           <Route>
             <Route path="/buyer/profile" element={<BuyerProfile />} />
@@ -43,7 +49,11 @@ export default function App() {
             <Route path="/admin/products&categories" element={<AdminProdsCates />} />
             <Route path="/admin/newOrders" element={<AdminNewOrders />} />
             <Route path="/admin/allOrders" element={<AdminAllOrders />} />
-            <Route path="/admin/allBuyers" element={<AdminAllBuyers />} />
+            <Route path="/admin/allUsers" element={<AdminAllUsers />} />
+            <Route path="/admin/addNewCategory" element={<AddNewCategory />} />
+            <Route path="/admin/addNewProduct" element={<AddNewProduct />} />
+            <Route path="/admin/addNewUser" element={<AddNewUser />} />
+            <Route path="/admin/editUser/:id" element={<EditUser />} />
           </Route>
 
         </Routes>

@@ -11,7 +11,7 @@ export default function ProductWideCard({ title, price, quantity, description })
   }
 
   return (
-    <div className='bg-white border-bottom text-black p-3 mb-3 d-flex flex-column flex-md-row gap-3'>
+    <div className='bg-white border-bottom border-top text-black p-3 mb-3 d-flex flex-column flex-md-row gap-3'>
       <Link to={"/products/:id"} className='align-self-center'>
         <img style={{ height: "200px" }} src={productImg} alt={productImg} />
       </Link>
@@ -21,7 +21,7 @@ export default function ProductWideCard({ title, price, quantity, description })
         {quantity ?
           <div className='d-flex align-items-center gap-2'>
             <label className='fw-bold'>Quantity:</label>
-            <input className='form-control shadow-none rounded-0' onChange={(e) => calcPrice(e)} type='number' min='1' defaultValue='1' style={{ width: '100px' }} />
+            <input className='form-control shadow-none rounded-0' onChange={(e) => calcPrice(e)} type='number' min='1' defaultValue={quantity} style={{ width: '100px' }} />
           </div>
           : null}
         <div className='d-flex justify-content-between align-items-center'>

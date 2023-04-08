@@ -10,7 +10,6 @@ export default function SectionTitle({ title, btnTitle, pathText, editable }) {
     } else if (editable) {
       return (
         <div className='d-flex gap-2'>
-          <Link className='btn btn-success rounded-0' title="Add new product to this category"><i className='fa-solid fa-add'></i></Link>
           <Link className='btn btn-primary rounded-0' title="Edit this category"><i className='fa-solid fa-edit'></i></Link>
           <Link className='btn btn-danger rounded-0' title="Delete this category"><i className='fa-solid fa-trash'></i></Link>
         </div>
