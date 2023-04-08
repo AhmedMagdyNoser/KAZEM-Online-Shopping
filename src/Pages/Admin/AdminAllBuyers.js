@@ -1,6 +1,5 @@
 import AdminTabs from "../../Component/Admin/AdminTabs";
 import BuyerInfo from "../../Component/Buyer/BuyerInfo";
-
 export default function AdminAllBuyers() {
 
   const Buyers = [
@@ -38,13 +37,15 @@ export default function AdminAllBuyers() {
   return (
     <div>
       <AdminTabs active='All Buyers' />
+      
       <div className="container kcontainer">
           {
-            Buyers.map((item)=>{
-              return <BuyerInfo name={item.name} email={item.email} password={item.password} address={item.address} />
+            Buyers.map((item , idx)=>{
+              return <BuyerInfo key={idx} name={item.name} email={item.email} password={item.password} address={item.address} />
             })
           }
       </div>
+      
     </div>
   )
 }

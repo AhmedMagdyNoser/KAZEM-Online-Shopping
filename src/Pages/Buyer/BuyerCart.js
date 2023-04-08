@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import BuyerTabs from "../../Component/Buyer/BuyerTabs"
 import ProductWideCard from "../../Component/Product/ProductWideCard"
 
@@ -36,7 +37,9 @@ export default function BuyerCart() {
         <span className="fs-4">Total: <b>1000$</b></span>
       </div>
       <div className="container p-0 mb-4">
-        <button className="btn btn-primary rounded-0 w-100">Buy Now</button>
+        <Link to="/buyer/cart/checkout" style={{textDecoration: "none"}}>
+            <button className="btn btn-primary rounded-0 w-100">Buy Now</button>
+        </Link>
       </div>
     </div>
   )

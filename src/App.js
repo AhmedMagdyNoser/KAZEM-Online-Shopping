@@ -15,6 +15,7 @@ import AdminProdsCates from "./Pages/Admin/AdminProdsCates";
 import AdminNewOrders from "./Pages/Admin/AdminNewOrders";
 import AdminAllOrders from "./Pages/Admin/AdminAllOrders";
 import AdminAllBuyers from "./Pages/Admin/AdminAllBuyers";
+import CheckoutPage from "./Pages/Checkout/CheckoutPage";
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
             <Route path="/buyer/favList" element={<BuyerFavList />} />
             <Route path="/buyer/cart" element={<BuyerCart />} />
             <Route path="/buyer/orders" element={<BuyerOrders />} />
+            <Route path="/buyer/cart/checkout" element={<CheckoutPage />} />
           </Route>
 
           <Route>
