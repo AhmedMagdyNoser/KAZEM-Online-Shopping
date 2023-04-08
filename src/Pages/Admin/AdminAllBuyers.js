@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import AdminTabs from "../../Component/Admin/AdminTabs";
 import UserDataCard from "../../Component/Uitility/UserDataCard";
 
@@ -17,11 +18,21 @@ export default function AdminAllBuyers() {
   return (
     <div>
       <AdminTabs active='All Buyers' />
-      <h3 className='container my-4 py-3 bg-dark text-white text-center text-uppercase'>All Kazem Users</h3>
-      <div className="container kazem-grid pb-4">
-        {Buyers.map((user) =>
-          <UserDataCard key={user.id} name={user.name} email={user.email} phone={user.phone} address={user.address} />
-        )}
+      <div className="container d-flex flex-column gap-4 py-4">
+
+        <h3 className='py-3 m-0 bg-dark text-white text-center text-uppercase'>All Kazem Users</h3>
+
+        <Link to={'/admin/addNewUser'} className="btn btn-success rounded-0 w-100">
+          <i className='fa-solid fa-add me-2'></i>
+          Add New User
+        </Link>
+
+        <div className="kazem-grid">
+          {Buyers.map((user) =>
+            <UserDataCard key={user.id} name={user.name} email={user.email} phone={user.phone} address={user.address} />
+          )}
+        </div>
+
       </div>
     </div>
   )

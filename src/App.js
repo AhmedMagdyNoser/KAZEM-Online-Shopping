@@ -17,6 +17,7 @@ import AdminAllOrders from "./Pages/Admin/AdminAllOrders";
 import AdminAllBuyers from "./Pages/Admin/AdminAllBuyers";
 import AddNewCategory from "./Pages/Admin/AddNewCategory";
 import AddNewProduct from "./Pages/Admin/AddNewProduct";
+import AddNewUser from "./Pages/Admin/AddNewUser";
 
 export default function App() {
   return (
@@ -46,6 +47,7 @@ export default function App() {
             <Route path="/admin/allBuyers" element={<AdminAllBuyers />} />
             <Route path="/admin/addNewCategory" element={<AddNewCategory />} />
             <Route path="/admin/addNewProduct" element={<AddNewProduct />} />
+            <Route path="/admin/addNewUser" element={<AddNewUser />} />
           </Route>
 
         </Routes>
