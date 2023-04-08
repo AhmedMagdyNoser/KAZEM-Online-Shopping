@@ -18,7 +18,7 @@ export default function ProductCard({ title, price, rating, editable }) {
 
   return (
     <div className='text-decoration-none text-black border-bottom p-3' style={{ background: '#f6f6f6' }}>
-      <Link to={"/producs/:id"}>
+      <Link to={"/product/:id"}>
         <img style={{ width: "100%" }} src={productImg} alt={productImg} />
       </Link>
       <p>{title}</p>

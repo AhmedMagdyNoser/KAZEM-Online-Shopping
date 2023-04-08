@@ -19,6 +19,7 @@ import AddNewCategory from "./Pages/Admin/AddNewCategory";
 import AddNewProduct from "./Pages/Admin/AddNewProduct";
 import AddNewUser from "./Pages/Admin/AddNewUser";
 import EditUser from "./Pages/Admin/EditUser";
+import ProductDetailsPage from "./Pages/Products/ProductDetailsPage";
 
 export default function App() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="/allcategories" element={<AllCategoriesPage />} />
           <Route path="/allbrands" element={<AllBrandsPage />} />
           <Route path="/allproducts" element={<AllProductsPage />} />
+          <Route path="/product/:id" element={<ProductDetailsPage />} />
 
           <Route>
             <Route path="/buyer/profile" element={<BuyerProfile />} />
