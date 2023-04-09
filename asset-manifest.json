@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/KAZEM-Online-Shopping/static/css/main.0a54657d.css",
-    "main.js": "/KAZEM-Online-Shopping/static/js/main.c834e567.js",
+    "main.js": "/KAZEM-Online-Shopping/static/js/main.bee50f23.js",
     "static/media/laptops.png": "/KAZEM-Online-Shopping/static/media/laptops.a5a6ab642345b5d38784.png",
     "static/media/slideImg1.png": "/KAZEM-Online-Shopping/static/media/slideImg1.d3f59304d1234076e906.png",
     "static/media/slideImg2.png": "/KAZEM-Online-Shopping/static/media/slideImg2.325230d272df31e36df9.png",
@@ -15,36 +15,14 @@
     "static/media/Women's Fashion.png": "/KAZEM-Online-Shopping/static/media/Women's Fashion.2436434a9b9e24625141.png",
     "static/media/Kids & Baby.png": "/KAZEM-Online-Shopping/static/media/Kids & Baby.15a29506fc2aace3e064.png",
     "static/media/Sports.png": "/KAZEM-Online-Shopping/static/media/Sports.af59dd28ac122e8b39b6.png",
-    "static/media/Aldoha.png": "/KAZEM-Online-Shopping/static/media/Aldoha.55bf2e792aa37f62b405.png",
-    "static/media/Oxi.png": "/KAZEM-Online-Shopping/static/media/Oxi.f0f61d815e3f74f55887.png",
     "static/media/Computers.png": "/KAZEM-Online-Shopping/static/media/Computers.b0ede735f53806586564.png",
     "static/media/Moblies & Accessories.png": "/KAZEM-Online-Shopping/static/media/Moblies & Accessories.47c0d75460977042efab.png",
-    "static/media/Defacto.png": "/KAZEM-Online-Shopping/static/media/Defacto.38656389c48cd23edf60.png",
-    "static/media/Adidas.png": "/KAZEM-Online-Shopping/static/media/Adidas.3808caf4b96ecd6ed18b.png",
-    "static/media/AEOEgypt.png": "/KAZEM-Online-Shopping/static/media/AEOEgypt.98afe07b58a4ef3764db.png",
-    "static/media/Crystal.png": "/KAZEM-Online-Shopping/static/media/Crystal.42b79f94ad611826e32d.png",
-    "static/media/Nivea.png": "/KAZEM-Online-Shopping/static/media/Nivea.bec9bce1a3334c3db89c.png",
-    "static/media/LG.png": "/KAZEM-Online-Shopping/static/media/LG.11d0944b6a10cfb29f83.png",
-    "static/media/Huawei.png": "/KAZEM-Online-Shopping/static/media/Huawei.49949353fda0cd70c97a.png",
-    "static/media/AbuAuf.png": "/KAZEM-Online-Shopping/static/media/AbuAuf.b78cecd8389c56ae3ba9.png",
-    "static/media/Honor.png": "/KAZEM-Online-Shopping/static/media/Honor.03c7c9584a9e49079cce.png",
-    "static/media/Realme.png": "/KAZEM-Online-Shopping/static/media/Realme.5f707ed8cb8ef492c4ea.png",
-    "static/media/Oppo.png": "/KAZEM-Online-Shopping/static/media/Oppo.a4f0db10f88e4192a2ff.png",
-    "static/media/Tornado.png": "/KAZEM-Online-Shopping/static/media/Tornado.e7d045123961f737c2f6.png",
-    "static/media/Caesar.png": "/KAZEM-Online-Shopping/static/media/Caesar.27b3c624190299bae061.png",
-    "static/media/Samsung.png": "/KAZEM-Online-Shopping/static/media/Samsung.2de1bfe668d9a53ab10a.png",
-    "static/media/Toshiba.png": "/KAZEM-Online-Shopping/static/media/Toshiba.27a4ac968ef4dcf7f214.png",
-    "static/media/Vivo.png": "/KAZEM-Online-Shopping/static/media/Vivo.29a3a4191fdfcc703873.png",
-    "static/media/Apple.png": "/KAZEM-Online-Shopping/static/media/Apple.0b8c9d447181bd2d535e.png",
-    "static/media/Infinix.png": "/KAZEM-Online-Shopping/static/media/Infinix.aee5cf7ce14990216345.png",
-    "static/media/JBL.png": "/KAZEM-Online-Shopping/static/media/JBL.f62d398a8351d43dc146.png",
-    "static/media/Xiaomi.png": "/KAZEM-Online-Shopping/static/media/Xiaomi.8949472c6cb0a0fbd793.png",
     "index.html": "/KAZEM-Online-Shopping/index.html",
     "main.0a54657d.css.map": "/KAZEM-Online-Shopping/static/css/main.0a54657d.css.map",
-    "main.c834e567.js.map": "/KAZEM-Online-Shopping/static/js/main.c834e567.js.map"
+    "main.bee50f23.js.map": "/KAZEM-Online-Shopping/static/js/main.bee50f23.js.map"
   },
   "entrypoints": [
     "static/css/main.0a54657d.css",
-    "static/js/main.c834e567.js"
+    "static/js/main.bee50f23.js"
   ]
 }
