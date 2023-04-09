@@ -28,7 +28,7 @@ export default function AddNewUser() {
           </div>
         </div>
         <div className="d-grid mt-3">
-          <input type="submit" value="ADD USER" className="btn btn-primary rounded-0" />
+          <input type="submit" value="ADD USER" className="btn btn-success rounded-0" />
         </div>
       </form>
 

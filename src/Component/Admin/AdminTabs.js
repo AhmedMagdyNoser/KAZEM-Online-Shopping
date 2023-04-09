@@ -7,7 +7,7 @@ export default function AdminTabs({ active }) {
         <NavTab label='Products & Categories' destination='/admin/products&categories' active={active} />
         <NavTab label='New Orders' destination='/admin/newOrders' active={active} />
         <NavTab label='All Orders' destination='/admin/allOrders' active={active} />
-        <NavTab label='All Buyers' destination='/admin/allUsers' active={active} />
+        <NavTab label='All Users' destination='/admin/allUsers' active={active} />
       </div>
     </div>
   )

@@ -1,9 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { store } from './Testing Data/store';
+import { Provider } from 'react-redux';
 
 import './Styles/master.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <App />
+  <Provider store={store}>
+    <App />
+  </Provider>
 );

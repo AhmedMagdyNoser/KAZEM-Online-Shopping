@@ -1,11 +1,11 @@
-import { Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, HashRouter, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import HomePage from "./Pages/Home/HomePage";
 import Header from "./Component/Uitility/Header";
 import Footer from "./Component/Uitility/Footer";
 import LoginPage from "./Pages/Auth/LoginPage";
 import RegisterPage from "./Pages/Auth/RegisterPage";
 import AllCategoriesPage from "./Pages/Categories/AllCategoriesPage";
-import AllBrandsPage from "./Pages/Brands/AllBrandsPage";
 import AllProductsPage from "./Pages/Products/AllProductsPage";
 import BuyerProfile from "./Pages/Buyer/BuyerProfile";
 import BuyerFavList from "./Pages/Buyer/BuyerFavList";
@@ -21,21 +21,25 @@ import AddNewProduct from "./Pages/Admin/AddNewProduct";
 import AddNewUser from "./Pages/Admin/AddNewUser";
 import EditUser from "./Pages/Admin/EditUser";
 import ProductDetailsPage from "./Pages/Products/ProductDetailsPage";
+import CategoryPage from "./Pages/Categories/CategoryPage";
+import EditCategory from "./Pages/Admin/EditCategory";
+import EditProduct from "./Pages/Admin/EditProduct";
 
 export default function App() {
   return (
     <div>
       <HashRouter>
         <Header />
+        <ScrollToTop />
         <Routes>
           
           <Route index element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/allcategories" element={<AllCategoriesPage />} />
-          <Route path="/allbrands" element={<AllBrandsPage />} />
           <Route path="/allproducts" element={<AllProductsPage />} />
           <Route path="/product/:id" element={<ProductDetailsPage />} />
+          <Route path="/category/:id" element={<CategoryPage />} />
 
           <Route>
             <Route path="/buyer/profile" element={<BuyerProfile />} />
@@ -53,6 +57,8 @@ export default function App() {
             <Route path="/admin/addNewCategory" element={<AddNewCategory />} />
             <Route path="/admin/addNewProduct" element={<AddNewProduct />} />
             <Route path="/admin/addNewUser" element={<AddNewUser />} />
+            <Route path="/admin/editCategory/:id" element={<EditCategory />} />
+            <Route path="/admin/editProduct/:id" element={<EditProduct />} />
             <Route path="/admin/editUser/:id" element={<EditUser />} />
           </Route>
 
@@ -61,4 +67,15 @@ export default function App() {
       </HashRouter>
     </div>
   );
+}
+
+// To scroll to top on routing
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
 }
