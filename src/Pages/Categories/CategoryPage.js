@@ -4,7 +4,7 @@ import ProductCard from "../../Component/Product/ProductCard";
 
 export default function CategoryPage() {
 
-  const params = useParams(); // it's the parameters in the current url '/product/:id' the only param is the id
+  const params = useParams(); // it's the parameters in the current url '/category/:id' the only param is the id
   
   // We must fetch data from api using the parameter (id) but for testing we use redux
   let products = useSelector(state => state.products);
@@ -21,7 +21,7 @@ export default function CategoryPage() {
       <h2 className='m-0 py-3 bg-dark text-white text-center text-uppercase'>{currentCategory.title}</h2>
       <div className="kazem-grid p-3">
         {products.map(product =>
-          product.categoryId === currentCategory.id ? <ProductCard key={product.id} product={product} editable /> : null
+          product.categoryId === currentCategory.id ? <ProductCard key={product.id} product={product} /> : null
         )}
       </div>
     </div>

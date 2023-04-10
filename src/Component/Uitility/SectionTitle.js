@@ -2,11 +2,11 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 // you can pass to this component 1 of 3 things
-// title
+// editable & category
 // category
-// category & editable
+// title & link
 
-export default function SectionTitle({ title, category, editable }) {
+export default function SectionTitle({ title, link, category, editable }) {
 
   // if it is editable, the functionalities (edit, delete) is added to this component
   // if not, the button (more) is added
@@ -22,7 +22,7 @@ export default function SectionTitle({ title, category, editable }) {
     if (category) {
       return <Link to={'/category/' + category.id} className='btn btn-primary rounded-0'>More</Link>
     } 
-    return <Link to={'/allProducts'} className='btn btn-primary rounded-0'>More</Link>
+    return <Link to={link} className='btn btn-primary rounded-0'>More</Link>
   }
 
   return (

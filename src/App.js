@@ -36,8 +36,8 @@ export default function App() {
           <Route index element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
-          <Route path="/allcategories" element={<AllCategoriesPage />} />
-          <Route path="/allproducts" element={<AllProductsPage />} />
+          <Route path="/allCategories" element={<AllCategoriesPage />} />
+          <Route path="/allProducts" element={<AllProductsPage />} />
           <Route path="/product/:id" element={<ProductDetailsPage />} />
           <Route path="/category/:id" element={<CategoryPage />} />
 
