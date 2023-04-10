@@ -1,11 +1,12 @@
 {
   "files": {
     "main.css": "/KAZEM-Online-Shopping/static/css/main.0a54657d.css",
-    "main.js": "/KAZEM-Online-Shopping/static/js/main.bee50f23.js",
+    "main.js": "/KAZEM-Online-Shopping/static/js/main.23c747aa.js",
     "static/media/laptops.png": "/KAZEM-Online-Shopping/static/media/laptops.a5a6ab642345b5d38784.png",
     "static/media/slideImg1.png": "/KAZEM-Online-Shopping/static/media/slideImg1.d3f59304d1234076e906.png",
     "static/media/slideImg2.png": "/KAZEM-Online-Shopping/static/media/slideImg2.325230d272df31e36df9.png",
     "static/media/slideImg3.png": "/KAZEM-Online-Shopping/static/media/slideImg3.cfaebaca614293f1a826.png",
+    "static/media/mobile1.png": "/KAZEM-Online-Shopping/static/media/mobile1.1997f77f2ce6b9677dc6.png",
     "static/media/item.png": "/KAZEM-Online-Shopping/static/media/item.79eafdfba70f40ed66c5.png",
     "static/media/Beauty & Health.png": "/KAZEM-Online-Shopping/static/media/Beauty & Health.d02fb6e1808a968f1085.png",
     "static/media/Supermarket.png": "/KAZEM-Online-Shopping/static/media/Supermarket.1bb0c64ed2ef0f0bd2b9.png",
@@ -19,10 +20,10 @@
     "static/media/Moblies & Accessories.png": "/KAZEM-Online-Shopping/static/media/Moblies & Accessories.47c0d75460977042efab.png",
     "index.html": "/KAZEM-Online-Shopping/index.html",
     "main.0a54657d.css.map": "/KAZEM-Online-Shopping/static/css/main.0a54657d.css.map",
-    "main.bee50f23.js.map": "/KAZEM-Online-Shopping/static/js/main.bee50f23.js.map"
+    "main.23c747aa.js.map": "/KAZEM-Online-Shopping/static/js/main.23c747aa.js.map"
   },
   "entrypoints": [
     "static/css/main.0a54657d.css",
-    "static/js/main.bee50f23.js"
+    "static/js/main.23c747aa.js"
   ]
 }
