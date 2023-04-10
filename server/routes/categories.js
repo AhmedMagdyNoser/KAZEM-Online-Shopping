@@ -106,6 +106,30 @@ router.post(
     }
   }
 );
+//==================================================
+router.delete('/delete/:id',admin, (req, res) => {
+  const categoryId = req.params.id;
+
+  const sql = 'DELETE FROM category WHERE id = ?';
+
+  try {
+    connection.query(sql, [categoryId], (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: 'Category not found' });
+      }
+
+      return res.json({ message: 'Category deleted successfully' });
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
  
   module.exports = router;
