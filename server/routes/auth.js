@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken");
 // Authorization middleware function
 
 
-//register
+// Register
 router.post("/register", (req, res) => {
   const { firstName, lastName, email, phone, address, password } = req.body;
 
@@ -36,8 +36,8 @@ router.post("/register", (req, res) => {
 
       // Insert the user into the database with the hashed password
       connection.query(
-        "INSERT INTO users (first_name,last_name, email, password,phone,address) VALUES (?, ?, ?, ?, ?, ?)",
-        [firstName,lastName, email,hashedPassword,phone, address],
+        "INSERT INTO users (first_name, last_name, email, password, phone, address) VALUES (?, ?, ?, ?, ?, ?)",
+        [firstName, lastName, email, hashedPassword, phone, address],
         (err, result) => {
           if (err) {
             console.error("Error inserting user into database:", err);
@@ -75,7 +75,7 @@ router.post("/register", (req, res) => {
   });
 });
 
-//login
+// Login
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
 

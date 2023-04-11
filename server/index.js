@@ -15,7 +15,7 @@ const products = require('./routes/products');
 const categories = require('./routes/categories');
 //=============== run the app ================
 app.listen(5000, "localhost", () => {
-    console.log("server is running");
+    console.log("Server is running");
 })
 
 //================ app routes endpoints ===================
