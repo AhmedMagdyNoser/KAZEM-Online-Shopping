@@ -66,17 +66,57 @@ router.post('/create', admin,
       console.error(err);
       res.status(500).json({ error: 'Internal Server Error' });
     }
+});
+  
+
+router.put('/update/:id',
+    admin,
+    upload.single('img'), 
+ 
+   async (req, res) => {
+    try {
+      // 1- VALIDATE REQUEST [manual, express validation]
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+  
+      // 2- CHECK IF PRODUCT EXISTS OR NOT 
+      const query = util.promisify(connection.query).bind(connection);
+      const product = await query('SELECT * FROM product WHERE id = ?', [req.params.id]);
+      if (!product[0]) {
+        return res.status(404).json({ ms: 'Product not found!' });
+      }
+  
+      // 3- PREPARE PRODUCT OBJECT
+      const productObj = {
+        title: req.body.title || product[0].title,
+        description: req.body.description || product[0].description,
+        cat_id: req.body.cat_id || product[0].cat_id,
+        price: req.body.price || product[0].price,
+        brand: req.body.brand || product[0].brand,
+      };
+  
+      if (req.file && product[0].img) {
+        productObj.img = req.file.filename;
+        fs.unlinkSync('./upload/' + product[0].img); // delete old image
+      } else {
+        productObj.img = product[0].img;
+      }
+  
+      // 4- UPDATE PRODUCT
+      await query('UPDATE product SET ? WHERE id = ?', [productObj, product[0].id]);
+  
+      // 5- SEND RESPONSE 
+      res.status(200).json({
+        msg: 'Product updated successfully',
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
   });
-
-
-
-
-router.put('/update', admin,(req, res) => {
-    res.status(200).json({
-        message:"product updated", 
-    })
-})
-
+  
 
 router.delete('/delete', (req, res) => {
     res.status(200).json({
