@@ -132,7 +132,21 @@ router.delete('/delete/:id',admin, (req, res) => {
       console.error(err);
       return res.status(500).json({ error: 'Internal server error' });
     }
+});
+
+//==================================================
+// list all the categories 
+router.get("", async (req, res) => {
+    const query = util.promisify(connection.query).bind(connection);
+    const categories = await query(`select * from category`);
+   categories.map((category) => {
+      category.image = "http://" + req.hostname + ":5000/" + category.image;
+    });
+    res.status(200).json(categories);
   });
+  
+  
+
   
  
   module.exports = router;
