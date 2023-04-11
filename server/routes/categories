@@ -62,7 +62,6 @@ router.post(
 
 
   //update category 
-
   router.put(
     "/update/:id", // params
     admin,
@@ -134,9 +133,9 @@ router.delete('/delete/:id',admin, (req, res) => {
     }
 });
 
-//==================================================
+
 // list all the categories 
-router.get("", async (req, res) => {
+router.get("/getAll", async (req, res) => {
     const query = util.promisify(connection.query).bind(connection);
     const categories = await query(`select * from category`);
    categories.map((category) => {
@@ -145,7 +144,22 @@ router.get("", async (req, res) => {
     res.status(200).json(categories);
   });
   
-  
+
+//show specific category 
+router.get('/:id', (req, res) => {
+    const categoryId = req.params.id;
+    const sql = 'SELECT * FROM category WHERE id = ?';
+    connection.query(sql, [categoryId], (err, results) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+      } else if (results.length === 0) {
+        return res.status(404).json({ error: `Category with ID ${categoryId} not found` });
+      } else {
+        return res.json(results[0]);
+      }
+    });
+  });
 
   
  
