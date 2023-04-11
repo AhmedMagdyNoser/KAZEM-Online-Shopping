@@ -145,11 +145,20 @@ router.delete('/delete/:id', admin, (req, res) => {
 });
 
 
-router.get('/get', (req, res) => {
-    res.status(200).json({
-        message:"get all products ", 
-    })
-})
+router.get('/getAll', async (req, res) => {
+  const query = util.promisify(connection.query).bind(connection);
+  let search = '';
+  if (req.query.search) {
+    // QUERY PARAMS
+    search = `WHERE title LIKE '%${req.query.search}%' OR description LIKE '%${req.query.search}%'`;
+  }
+  const products = await query(`SELECT * FROM product ${search}`);
+  products.map((product) => {
+    product.img = 'http://' + req.hostname + ':4000/upload/' + product.img;
+  });
+  res.status(200).json(products);
+});
+
 
 
 
