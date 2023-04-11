@@ -158,9 +158,25 @@ router.get('/getAll', async (req, res) => {
   });
   res.status(200).json(products);
 });
+ 
 
 
-
+// Show Specific Product
+router.get('/:id', (req, res) => {
+  const productId = req.params.id;
+  const sql = 'SELECT * FROM product WHERE id = ?';
+  connection.query(sql, [productId], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    } else if (results.length === 0) {
+      return res.status(404).json({ error: `Product with ID ${productId} not found` });
+    } else {
+      results[0].img = 'http://' + req.hostname + ':4000/upload/' + results[0].img; // update image URL
+      return res.json(results[0]);
+    }
+  });
+});
 
 
 
