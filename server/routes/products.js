@@ -8,7 +8,7 @@ const util = require("util"); // helper
 const fs = require("fs"); // file system
 
 
-
+//create product
 router.post('/create', admin,
     upload.single('img'),
     [
@@ -69,6 +69,7 @@ router.post('/create', admin,
 });
   
 
+//update product
 router.put('/update/:id',
     admin,
     upload.single('img'), 
@@ -118,11 +119,30 @@ router.put('/update/:id',
   });
   
 
-router.delete('/delete', (req, res) => {
-    res.status(200).json({
-        message:"product deleted", 
-    })
-})
+//delete product
+router.delete('/delete/:id', admin, (req, res) => {
+  const productId = req.params.id;
+
+  const sql = 'DELETE FROM product WHERE id = ?';
+
+  try {
+    connection.query(sql, [productId], (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: 'Product not found' });
+      }
+
+      return res.json({ message: 'Product deleted successfully' });
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 
 router.get('/get', (req, res) => {
