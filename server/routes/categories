@@ -8,7 +8,7 @@ const util = require("util"); // helper
 const fs = require("fs"); // file system
 
 
-//create category 
+//create category
 router.post(
     "/create",
     admin,
@@ -59,6 +59,8 @@ router.post(
       }
     }
   );
+  
+  
 
 
   //update category 
