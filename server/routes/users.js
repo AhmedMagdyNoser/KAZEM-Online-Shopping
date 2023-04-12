@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken");
 const authorized = require('../middleware/authorize');
 const admin = require('../middleware/admin');
 
-
+//create
 router.post("/create",admin, (req, res) => {
     const { firstName, lastName, email, phone, address, password , status,type} = req.body;
   
@@ -76,6 +76,7 @@ router.post("/create",admin, (req, res) => {
 });
   
 
+//update
 router.put('/update/:id',
     admin,
     async (req, res) => {
@@ -149,7 +150,7 @@ router.put('/update/:id',
   
 
 //delete
-router.delete('/delete/:id', admin, async (req, res) => {
+ router.delete('/delete/:id', admin, async (req, res) => {
     const userId = req.params.id;
 
     const sql = 'DELETE FROM users WHERE id = ?';
@@ -167,5 +168,19 @@ router.delete('/delete/:id', admin, async (req, res) => {
       console.error(err);
       return res.status(500).json({ error: 'Internal server error' });
     }
-});
+ });
+
+
+ router.get('/getAll',admin, async (req, res) => {
+    const query = util.promisify(connection.query).bind(connection);
+    let search = '';
+    if (req.query.search) {
+      // QUERY PARAMS
+      search = `WHERE first_name LIKE '%${req.query.search}%' OR last_name LIKE '%${req.query.search}%' OR email LIKE '%${req.query.search}%'`;
+    }
+    const users = await query(`SELECT id, first_name, last_name, email, phone, address, status, type FROM users ${search}`);
+    res.status(200).json(users);
+ });
+  
+
 module.exports = router;
