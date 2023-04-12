@@ -13,6 +13,9 @@ app.use(cors());  // allow http requests localhost
 const auth = require('./routes/auth');
 const products = require('./routes/products');
 const categories = require('./routes/categories');
+const users = require('./routes/users');
+
+
 //=============== run the app ================
 app.listen(5000, "localhost", () => {
     console.log("Server is running");
@@ -22,6 +25,9 @@ app.listen(5000, "localhost", () => {
 app.use("/auth",auth);
 app.use("/products", products);
 app.use("/categories", categories);
+app.use('/users', users);
+
+
 
 
 
