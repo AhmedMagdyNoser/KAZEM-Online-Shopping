@@ -1,41 +1,56 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
-import Fade from '../../Component/Uitility/Fade'
+import Fade from '../../Component/Uitility/Fade';
+import axios from "axios";
 
 export default function AddNewCategory() {
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [img, setImg] = useState('');
-  const [showAnimation, setShowAnimation] = useState(false);
+  const [image, setImage] = useState('');
+  const [added, setAdded] = useState(false);
 
   const createCategory = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("image", img);
+    formData.append("image", image);
     try {
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:5000/categories/create",
         formData,
         { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (this token is for admin)
       );
-      console.log(response.data);
-      setShowAnimation(true);
-    } catch (err) {
-      console.log(err);
+      setAdded(true);
+      // console.log('Success');
+    } catch (error) {
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        // console.log(error.response.data);
+        // console.log(error.response.status);
+        // console.log(error.response.headers);
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        // console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        // console.log('Error', error.message);
+      }
     }
   };
 
+  // Deleted Soon
   useEffect(() => {
-    if (showAnimation) {
+    if (added) {
       const timer = setTimeout(() => {
-        setShowAnimation(false);
-      }, 5000);
+        setAdded(false);
+      }, 10000);
       return () => clearTimeout(timer);
     }
-  }, [showAnimation]);
+  }, [added]);
 
   return (
     <div className="container py-4" style={{ minHeight: '85vh' }}>
@@ -53,13 +68,13 @@ export default function AddNewCategory() {
         {/* Image */}
         <div>
           <label htmlFor="formFile" className="form-label">Select a photo for this category (prefered dimensions: 300 x 235)</label>
-          <input required onChange={(e) => setImg(e.target.files[0])} className="form-control shadow-none rounded-0" type="file" id="formFile" />
+          <input required onChange={(e) => setImage(e.target.files[0])} className="form-control shadow-none rounded-0" type="file" id="formFile" />
         </div>
         {/* Submit */}
         <input type="submit" value='ADD CATEGORY' className="btn btn-success w-100 rounded-0" />
       </form>
       {/* Success Animation */}
-      {showAnimation && (
+      {added && (
         <div className="alert alert-success rounded-0 mt-3">
           <Fade time='1s'>
             Category added successfully!
