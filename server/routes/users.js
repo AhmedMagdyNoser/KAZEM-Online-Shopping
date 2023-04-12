@@ -145,8 +145,27 @@ router.put('/update/:id',
       console.error(err);
       res.status(500).json({ error: 'Internal Server Error' });
     }
-  });
+ });
+  
 
+//delete
+router.delete('/delete/:id', admin, async (req, res) => {
+    const userId = req.params.id;
 
+    const sql = 'DELETE FROM users WHERE id = ?';
 
+    try {
+      const query = util.promisify(connection.query).bind(connection);
+      const result = await query(sql, [userId]);
+      
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: 'User not found' });
+      }
+  
+      return res.json({ message: 'User deleted successfully' });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Internal server error' });
+    }
+});
 module.exports = router;
