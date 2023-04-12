@@ -9,7 +9,7 @@ const jwt = require("jsonwebtoken");
 const authorized = require('../middleware/authorize');
 const admin = require('../middleware/admin');
 
-//create
+//create user 
 router.post("/create",admin, (req, res) => {
     const { firstName, lastName, email, phone, address, password , status,type} = req.body;
   
@@ -76,7 +76,7 @@ router.post("/create",admin, (req, res) => {
 });
   
 
-//update
+//update user
 router.put('/update/:id',
     admin,
     async (req, res) => {
@@ -149,7 +149,7 @@ router.put('/update/:id',
  });
   
 
-//delete
+//delete user
  router.delete('/delete/:id', admin, async (req, res) => {
     const userId = req.params.id;
 
@@ -171,6 +171,7 @@ router.put('/update/:id',
  });
 
 
+ //get and searh for user 
  router.get('/getAll',admin, async (req, res) => {
     const query = util.promisify(connection.query).bind(connection);
     let search = '';
@@ -181,6 +182,25 @@ router.put('/update/:id',
     const users = await query(`SELECT id, first_name, last_name, email, phone, address, status, type FROM users ${search}`);
     res.status(200).json(users);
  });
+
+ // Show Specific User
+router.get('/:id', admin,async (req, res) => {
+    const userId = req.params.id;
+    const sql = 'SELECT id, first_name, last_name, email, phone, address, status, type FROM users WHERE id = ?';
+    try {
+      const query = util.promisify(connection.query).bind(connection);
+      const results = await query(sql, [userId]);
+  
+      if (results.length === 0) {
+        return res.status(404).json({ error: `User with ID ${userId} not found` });
+      } else {
+        return res.json(results[0]);
+      }
+    } catch (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
   
 
 module.exports = router;
