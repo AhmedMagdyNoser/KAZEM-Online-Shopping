@@ -123,20 +123,37 @@ router.put('/update/:id',
 router.delete('/delete/:id', admin, (req, res) => {
   const productId = req.params.id;
 
-  const sql = 'DELETE FROM product WHERE id = ?';
+  // First, retrieve the image field of the product using the specified id
+  const selectSql = 'SELECT img FROM product WHERE id = ?';
 
   try {
-    connection.query(sql, [productId], (err, result) => {
+    connection.query(selectSql, [productId], (err, selectResult) => {
       if (err) {
         console.error(err);
         return res.status(500).json({ error: 'Internal server error' });
       }
 
-      if (result.affectedRows === 0) {
-        return res.status(404).json({ error: 'Product not found' });
+      // If the query returns a result with a non-empty image field, delete the corresponding image file
+      if (selectResult[0] && selectResult[0].img) {
+        fs.unlinkSync(`./upload/${selectResult[0].img}`);
       }
 
-      return res.json({ message: 'Product deleted successfully' });
+      // Then, delete the product using the specified id
+      const deleteSql = 'DELETE FROM product WHERE id = ?';
+
+      connection.query(deleteSql, [productId], (err, deleteResult) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({ error: 'Internal server error' });
+        }
+
+        // If no rows were affected by the delete query, return a 404 error
+        if (deleteResult.affectedRows === 0) {
+          return res.status(404).json({ error: 'Product not found' });
+        }
+
+        return res.json({ message: 'Product deleted successfully' });
+      });
     });
   } catch (err) {
     console.error(err);
@@ -162,7 +179,7 @@ router.get('/getAll', async (req, res) => {
 
 
 // Show Specific Product
-router.get('/:id', (req, res) => {
+router.get('get/:id', (req, res) => {
   const productId = req.params.id;
   const sql = 'SELECT * FROM product WHERE id = ?';
   connection.query(sql, [productId], (err, results) => {
@@ -174,6 +191,26 @@ router.get('/:id', (req, res) => {
     } else {
       results[0].img = 'http://' + req.hostname + ':4000/upload/' + results[0].img; // update image URL
       return res.json(results[0]);
+    }
+  });
+});
+
+
+router.get('/filter/:cat_id', (req, res) => {
+  const cat_id = req.params.cat_id;
+  const query = `SELECT * FROM product WHERE cat_id = ${cat_id}`;
+
+  connection.query(query, (error, results, fields) => {
+    if (error) {
+      console.error(error);
+      res.status(500).send('Error retrieving products');
+    } else if (results.length === 0) {
+      res.status(404).send('This category does not exist');
+    } else {
+      for (let result of results) {
+        result.img = `http://${req.hostname}:4000/upload/${result.img}`;
+      }
+      res.status(200).json(results);
     }
   });
 });
