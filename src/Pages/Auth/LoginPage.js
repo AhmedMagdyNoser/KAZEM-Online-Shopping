@@ -18,7 +18,7 @@ export default function LoginPage() {
         email,
         password
       });
-      navigate('/')
+      navigate('/');
       // console.log('Success');
     } catch (error) {
       if (error.response) {

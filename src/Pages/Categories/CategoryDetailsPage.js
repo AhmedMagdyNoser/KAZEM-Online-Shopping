@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import ProductCard from "../../Component/Product/ProductCard";
 
-export default function CategoryPage() {
+export default function CategoryDetailsPage() {
 
   const params = useParams(); // it's the parameters in the current url '/category/:id' the only param is the id
   

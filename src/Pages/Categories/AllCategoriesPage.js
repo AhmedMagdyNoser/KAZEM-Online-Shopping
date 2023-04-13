@@ -20,7 +20,7 @@ export default function AllCategoryPage() {
   let categories = useSelector(state => state.categories)
 
   return (
-    <div style={{ minHeight: "675px" }}>
+    <div>
       <div className='container pb-4'>
         <h2 className='my-4 py-3 bg-dark text-white text-center text-uppercase'>All Categories</h2>
         <div className='kazem-sm-grid'>

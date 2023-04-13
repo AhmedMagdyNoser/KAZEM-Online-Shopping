@@ -117,9 +117,13 @@ router.put(
 );
 
 
-//Delete category 
+// Delete category 
 router.delete('/delete/:id', admin, (req, res) => {
   const categoryId = req.params.id;
+
+  // To delete the img from the uploads (Doesn't Work)
+  // const deletedCategory = query('SELECT * FROM category WHERE id = ?', [categoryId]);
+  // fs.unlinkSync('./upload/' + deletedCategory[0].img);
 
   const sql = 'DELETE FROM category WHERE id = ?';
 
@@ -133,6 +137,7 @@ router.delete('/delete/:id', admin, (req, res) => {
       if (result.affectedRows === 0) {
         return res.status(404).json({ error: 'Category not found' });
       }
+
 
       return res.json({ message: 'Category deleted successfully' });
     });
@@ -154,7 +159,7 @@ router.get("/getAll", async (req, res) => {
 });
 
 
-//show specific category 
+// show specific category 
 router.get('/:id', (req, res) => {
   const categoryId = req.params.id;
   const sql = 'SELECT * FROM category WHERE id = ?';
@@ -165,7 +170,9 @@ router.get('/:id', (req, res) => {
     } else if (results.length === 0) {
       return res.status(404).json({ error: `Category with ID ${categoryId} not found` });
     } else {
-      return res.json(results[0]);
+      let requiredCategory = results[0];
+      requiredCategory.image = "http://" + req.hostname + ":5000/" + requiredCategory.img;
+      return res.json(requiredCategory);
     }
   });
 });
