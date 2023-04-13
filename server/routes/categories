@@ -109,30 +109,50 @@ router.post(
   });
   
   
+
 //Delete category 
-router.delete('/delete/:id',admin, (req, res) => {
-    const categoryId = req.params.id;
-  
-    const sql = 'DELETE FROM category WHERE id = ?';
-  
-    try {
-      connection.query(sql, [categoryId], (err, result) => {
+router.delete('/delete/:id', admin, (req, res) => {
+  const categoryId = req.params.id;
+
+  // First, retrieve the image field of the category using the specified id
+  const selectSql = 'SELECT image FROM category WHERE id = ?';
+
+  try {
+    connection.query(selectSql, [categoryId], (err, selectResult) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal server error' });
+      }
+
+      // If the query returns a result with a non-empty image field, delete the corresponding image file
+      if (selectResult[0] && selectResult[0].image) {
+        fs.unlinkSync(`./upload/${selectResult[0].image}`);
+      }
+
+      // Then, delete the category using the specified id
+      const deleteSql = 'DELETE FROM category WHERE id = ?';
+
+      connection.query(deleteSql, [categoryId], (err, deleteResult) => {
         if (err) {
           console.error(err);
           return res.status(500).json({ error: 'Internal server error' });
         }
-  
-        if (result.affectedRows === 0) {
+
+        // If no rows were affected by the delete query, return a 404 error
+        if (deleteResult.affectedRows === 0) {
           return res.status(404).json({ error: 'Category not found' });
         }
-  
+
         return res.json({ message: 'Category deleted successfully' });
       });
-    } catch (err) {
-      console.error(err);
-      return res.status(500).json({ error: 'Internal server error' });
-    }
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
 });
+
+
 
 
 // list all the categories 
