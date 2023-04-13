@@ -1,12 +1,12 @@
 import { useEffect, useRef } from "react"
 
-export default function Fade(props) {
+export default function Fade({ time, children }) {
 
   let myElement = useRef(0);
 
   function showIfOnScreen() {
     if (myElement.current && window.pageYOffset + window.innerHeight > myElement.current.offsetTop) { // when scrolling into an element
-      myElement.current.style.animation = `fade-in ${props.time}`; // fade-in should be defined in css
+      myElement.current.style.animation = `fade-in ${time}`; // fade-in should be defined in css
       myElement.current.style.opacity = `1`;
     }
   }
@@ -19,7 +19,7 @@ export default function Fade(props) {
   
   return (
     <div ref={myElement} style={{ opacity: '0' }} >
-      {props.children}
+      {children}
     </div>
   )
 

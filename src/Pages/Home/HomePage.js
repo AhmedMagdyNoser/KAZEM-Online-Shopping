@@ -1,16 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
 import Slider from '../../Component/Home/Slider'
 import ProductsSection from '../../Component/Product/ProductsSection'
 import DiscountSection from '../../Component/Home/DiscountSection'
 import ProductCard from '../../Component/Product/ProductCard'
 import SimpleCard from '../../Component/Uitility/SimpleCard'
-import { useSelector } from 'react-redux';
+const api = require('../../api');
 
 export default function HomePage() {
 
-  // We must fetch data of all products and categroies from api but for testing we get them from redux
-  let categories = useSelector(state => state.categories);
-  let products = useSelector(state => state.products);
+  let [categories, setCategories] = useState([]);
+  let [products, setProducts] = useState([]);
+
+  async function getAllCategories() {
+    await api.getAllCategories(setCategories);
+  }
+
+  async function getAllProducts() {
+    await api.getAllProducts(setProducts);
+  }
+
+  useEffect(() => {
+    getAllCategories();
+    getAllProducts();
+  }, []);
 
   return (
     <div className='d-flex flex-column gap-4 pb-4'>
@@ -18,32 +30,30 @@ export default function HomePage() {
       <Slider /> {/* needs to be clickable */}
 
       <ProductsSection title="Explore Categories" link='/allCategories' smallGrid >
-        {categories.slice(0, 6).map(category => <SimpleCard key={category.id} category={category} />)}
-      </ProductsSection>
-
-      <ProductsSection title='Best Seller' link='/allProducts' >
-        {products.slice(0, 8).map(product => <ProductCard key={product.id} product={product} />)}
+        {categories.slice(0, 7).map(category => <SimpleCard key={category.id} category={category} />)}
       </ProductsSection>
 
       <DiscountSection /> {/* needs to be clickable */}
 
       <ProductsSection title='For You' link='/allProducts' >
-        {products.slice(8, 16).map(product => <ProductCard key={product.id} product={product} />)}
+        {products.slice(0, 10).map(product => <ProductCard key={product.id} product={product} />)}
       </ProductsSection>
 
-      {/* need to fetch category name */}
-      <ProductsSection category={categories[1]} >
-        {products.map(product =>
-          product.categoryId === categories[1].id ? <ProductCard key={product.id} product={product} /> : null
-        )}
-      </ProductsSection>
+      {categories[0] &&
+        <ProductsSection category={categories[0]} >
+          {products.map(product =>
+            product.cat_id === categories[0].id ? <ProductCard key={product.id} product={product} /> : null
+          )}
+        </ProductsSection>
+      }
 
-      {/* need to fetch category name */}
-      <ProductsSection category={categories[2]} >
-        {products.map(product =>
-          product.categoryId === categories[2].id ? <ProductCard key={product.id} product={product} /> : null
-        )}
-      </ProductsSection>
+      {categories[1] &&
+        <ProductsSection category={categories[1]} >
+          {products.map(product =>
+            product.cat_id === categories[1].id ? <ProductCard key={product.id} product={product} /> : null
+          )}
+        </ProductsSection>
+      }
 
     </div>
   )

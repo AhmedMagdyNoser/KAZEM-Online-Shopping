@@ -39,7 +39,7 @@ export default function ProductDetailsPage() {
             <small>{currentProduct.description} + {testDescription}</small>
             <div className='mt-4 d-flex gap-3 flex-wrap'>
               <div className="btn btn-primary px-4 rounded-0 d-inline"><i className="fa-solid fa-cart-shopping"></i> Add To Cart</div>
-              <div className="btn btn-danger px-4 rounded-0 d-inline"><i className="fa-solid fa-heart"></i>  Add To Favourite</div>
+              <div className="btn btn-danger px-4 rounded-0 d-inline"><i className="fa-solid fa-heart"></i>  Add To Favourites</div>
             </div>
           </div>
         </div>

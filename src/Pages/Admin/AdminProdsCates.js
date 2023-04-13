@@ -1,16 +1,35 @@
-import { Link } from "react-router-dom";
 import AdminTabs from "../../Component/Admin/AdminTabs";
 import ProductCard from "../../Component/Product/ProductCard";
 import ProductsSection from "../../Component/Product/ProductsSection";
-
-// testing data
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+const api = require('../../api');
 
 export default function AdminProdsCates() {
 
-  // We must fetch data of all products and categroies from api but for testing we get them from redux
-  let categories = useSelector(state => state.categories);
-  let products = useSelector(state => state.products);
+  let [categories, setCategories] = useState([]);
+  let [products, setProducts] = useState([]);
+
+  async function getAllCategories() {
+    await api.getAllCategories(setCategories);
+  }
+
+  async function getAllProducts() {
+    await api.getAllProducts(setProducts);
+  }
+
+  async function deleteCategory(categoryId) {
+    await api.deleteCategory(categoryId, categories, setCategories);
+  }
+
+  async function deleteProduct(productId) {
+    await api.deleteProduct(productId, products, setProducts);
+  }
+
+  useEffect(() => {
+    getAllCategories();
+    getAllProducts();
+  }, []);
 
   return (
     <div className="d-flex flex-column gap-4 mb-4">
@@ -25,9 +44,11 @@ export default function AdminProdsCates() {
       <div className="container d-flex flex-column gap-4">
 
         {categories.map(cat => (
-          <ProductsSection key={cat.id} category={cat} editable >
+          <ProductsSection key={cat.id} category={cat} editable deleteCategory={deleteCategory} >
             {products.map(product =>
-              product.categoryId === cat.id ? <ProductCard key={product.id} product={product} editable /> : null
+              product.cat_id === cat.id ?
+                <ProductCard key={product.id} product={product} editable deleteProduct={deleteProduct} />
+                : null
             )}
           </ProductsSection>
         ))}

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom'
 import FloatingInput from '../../Component/Uitility/FloatingInput';
+import axios from 'axios';
+import Fade from '../../Component/Uitility/Fade';
 
 export default function RegisterPage() {
 
@@ -11,8 +12,10 @@ export default function RegisterPage() {
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [password, setPassword] = useState('');
+  const [emailExists, setEmailExists] = useState(false);
+  const navigate = useNavigate();
 
-  const register = async (event) => { 
+  const register = async (event) => {
     event.preventDefault();
     try {
       await axios.post('http://localhost:5000/auth/register', {
@@ -23,9 +26,25 @@ export default function RegisterPage() {
         address,
         password
       });
-      console.log('Success');
+      navigate('/');
+      // console.log('Success');
     } catch (error) {
-      console.log(error);
+      if (error.response) {
+        // The request was made and the server responded with a status code
+        // that falls out of the range of 2xx
+        // console.log(error.response.data);
+        // console.log(error.response.status);
+        // console.log(error.response.headers);
+        (error.response.status === 409 && setEmailExists(true))
+      } else if (error.request) {
+        // The request was made but no response was received
+        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+        // http.ClientRequest in node.js
+        // console.log(error.request);
+      } else {
+        // Something happened in setting up the request that triggered an Error
+        // console.log('Error', error.message);
+      }
     }
   };
 
@@ -42,9 +61,18 @@ export default function RegisterPage() {
           <div className='d-flex flex-column gap-2'>
             <FloatingInput type='email' name='email' required onChange={(e) => setEmail(e.target.value)} icon='fa-solid fa-envelope' label='Email' />
             <FloatingInput type='number' name='phone' required onChange={(e) => setPhone(e.target.value)} icon='fa-solid fa-phone' label='Phone Number' />
-            <FloatingInput type='text' name='address'  required onChange={(e) => setAddress(e.target.value)} icon='fa-solid fa-location-dot' label='Address' />
+            <FloatingInput type='text' name='address' required onChange={(e) => setAddress(e.target.value)} icon='fa-solid fa-location-dot' label='Address' />
             <FloatingInput type='password' name='password' required onChange={(e) => setPassword(e.target.value)} icon='fa-solid fa-lock' label='Password' />
           </div>
+
+          {/* Failure Message */}
+          {emailExists && (
+            <div className="text-danger my-2">
+              <Fade time='1s'>
+                Email already exists!
+              </Fade>
+            </div>
+          )}
 
           <div className="d-grid my-3">
             <input type="submit" value="REGISTER" className="btn btn-primary rounded-0" />
