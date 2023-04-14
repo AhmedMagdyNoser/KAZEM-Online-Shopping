@@ -28,7 +28,7 @@ import EditProduct from "./Pages/Admin/EditProduct";
 export default function App() {
   return (
     <HashRouter>
-      <div style={{ minHeight: '100vh' }} className="d-flex flex-column">
+      <div style={{ minHeight: '101vh' }} className="d-flex flex-column">
         <Header />
         <ScrollToTop />
         <div className="flex-grow-1">
@@ -39,6 +39,7 @@ export default function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/allCategories" element={<AllCategoriesPage />} />
             <Route path="/allProducts" element={<AllProductsPage />} />
+            <Route path="/allProducts/:query" element={<AllProductsPage />} />
             <Route path="/product/:id" element={<ProductDetailsPage />} />
             <Route path="/category/:id" element={<CategoryDetailsPage />} />
 

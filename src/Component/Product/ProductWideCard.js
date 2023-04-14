@@ -17,7 +17,7 @@ export default function ProductWideCard({ title, price, quantity, description })
       </Link>
       <div className='d-flex flex-column justify-content-between gap-2 flex-fill'>
         <h5>{title}</h5>
-        <small className='text-muted'>{(description.length > 325 ? description.substr(0, 325) : description)}..</small>
+        <small className='text-muted'>{(description.length > 325 ? description.substr(0, 325) + '..' : description)}</small>
         {quantity ?
           <div className='d-flex align-items-center gap-2'>
             <label className='fw-bold'>Quantity:</label>

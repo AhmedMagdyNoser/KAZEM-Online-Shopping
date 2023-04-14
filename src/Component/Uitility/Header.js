@@ -1,9 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // The header will expand from the md screens (>=768px) and collapse on smaller screens
 
 export default function Header() {
+
+  const navigate = useNavigate();
+
   return (
     <div className='navbar navbar-expand-md bg-dark'>
       <div className='container'>
@@ -15,7 +18,7 @@ export default function Header() {
         </button>
 
         <div className='collapse navbar-collapse' id="collapsed">
-          <input className="form-control my-2 mx-md-2 w-100 shadow-none rounded-0" type="search" placeholder="Search.." />
+          <input onChange={(e) => navigate(`/allProducts/${e.target.value}`)} className="form-control my-2 mx-md-2 w-100 shadow-none rounded-0" type="search" placeholder="Search.." />
           <div className='d-flex gap-2'>
             <HeaderLink destination='/login' icon='fa-solid fa-user' text='Login' />
             <HeaderLink destination='/buyer/cart' icon='fa-solid fa-cart-shopping' text='Cart' />

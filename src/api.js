@@ -18,20 +18,8 @@ export async function createNewCategory(formData, setIsCreated) {
       { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (this token is for admin)
     );
     setIsCreated(true);
-    // console.log('Success');
   } catch (error) {
-    if (error.response) {
-      // The request was made and the server responded with a status code
-      // console.log(error.response.data);
-      // console.log(error.response.status);
-      // console.log(error.response.headers);
-    } else if (error.request) {
-      // The request was made but no response was received
-      // console.log(error.request);
-    } else {
-      // Something happened in setting up the request that triggered an Error
-      // console.log('Error', error.message);
-    }
+    console.log(error);
   }
 }
 
@@ -42,7 +30,7 @@ export async function deleteCategory(categoryId, categories, setCategories) {
     );
     setCategories(categories.filter(cat => cat.id !== categoryId)); // to remove from the page immediately
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 }
 
@@ -54,6 +42,11 @@ export async function deleteCategory(categoryId, categories, setCategories) {
 
 export async function getAllProducts(setProducts) {
   let res = await axios.get('http://localhost:5000/products/getAll');
+  setProducts(res.data);
+}
+
+export async function searchForProducts(query, setProducts) {
+  let res = await axios.get(`http://localhost:5000/products/getAll?search=${query}`);
   setProducts(res.data);
 }
 
@@ -73,20 +66,8 @@ export async function createNewProduct(formData, setIsCreated) {
       { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (this token is for admin)
     );
     setIsCreated(true);
-    // console.log('Success');
   } catch (error) {
-    if (error.response) {
-      // The request was made and the server responded with a status code
-      // console.log(error.response.data);
-      // console.log(error.response.status);
-      // console.log(error.response.headers);
-    } else if (error.request) {
-      // The request was made but no response was received
-      // console.log(error.request);
-    } else {
-      // Something happened in setting up the request that triggered an Error
-      // console.log('Error', error.message);
-    }
+    console.log(error);
   }
 }
 
@@ -97,7 +78,7 @@ export async function deleteProduct(productId, products, setProducts) {
     );
     setProducts(products.filter(product => product.id !== productId)); // to remove from the page immediately
   } catch (error) {
-    throw error;
+    console.log(error);
   }
 }
 

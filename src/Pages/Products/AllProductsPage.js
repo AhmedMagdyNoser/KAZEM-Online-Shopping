@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../../Component/Product/ProductCard'
+import { useParams } from 'react-router-dom';
 const api = require('../../api');
 
 export default function AllProductsPage() {
+
+  const params = useParams(); // to get params.query
 
   let [categories, setCategories] = useState([]);
   let [products, setProducts] = useState([]);
@@ -15,10 +18,14 @@ export default function AllProductsPage() {
     await api.getAllProducts(setProducts);
   }
 
+  async function searchForProducts(query) {
+    await api.searchForProducts(query, setProducts);
+  }
+
   useEffect(() => {
     getAllCategories();
-    getAllProducts();
-  }, []);
+    params.query ? searchForProducts(params.query) : getAllProducts();
+  }, [params]);
 
   let brands = [...new Set(products.map(product => product.brand))];
 
