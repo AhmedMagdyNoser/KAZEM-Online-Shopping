@@ -208,7 +208,7 @@ router.get('/filter/:cat_id', (req, res) => {
       res.status(404).send('This category does not exist');
     } else {
       for (let result of results) {
-        result.img = `http://${req.hostname}:4000/upload/${result.img}`;
+        result.image = `http://${req.hostname}:5000/${result.img}`;
       }
       res.status(200).json(results);
     }

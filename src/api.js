@@ -7,6 +7,11 @@ export async function getAllCategories(setCategories) {
   setCategories(res.data);
 }
 
+export async function getCategory(categoryId, setCategory) {
+  let res = await axios.get(`http://localhost:5000/categories/${categoryId}`);
+  setCategory(res.data);
+}
+
 export async function createNewCategory(formData, setIsCreated) {
   try {
     await axios.post("http://localhost:5000/categories/create", formData,
@@ -43,10 +48,22 @@ export async function deleteCategory(categoryId, categories, setCategories) {
 
 
 
+
+
 // ===================== Products =====================
 
 export async function getAllProducts(setProducts) {
   let res = await axios.get('http://localhost:5000/products/getAll');
+  setProducts(res.data);
+}
+
+export async function getProduct(productId, setProduct) {
+  let res = await axios.get(`http://localhost:5000/products/${productId}`);
+  setProduct(res.data);
+}
+
+export async function getProductsOfCategory(categoryId, setProducts) {
+  let res = await axios.get(`http://localhost:5000/products/filter/${categoryId}`);
   setProducts(res.data);
 }
 
