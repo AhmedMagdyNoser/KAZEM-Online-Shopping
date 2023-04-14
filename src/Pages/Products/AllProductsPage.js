@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import ProductCard from '../../Component/Product/ProductCard'
-import { useSelector } from 'react-redux';
+const api = require('../../api');
 
 export default function AllProductsPage() {
 
-  // We must fetch data of all products and categroies from api but for testing we get them from redux
-  let categories = useSelector(state => state.categories);
-  let products = useSelector(state => state.products);
+  let [categories, setCategories] = useState([]);
+  let [products, setProducts] = useState([]);
+
+  async function getAllCategories() {
+    await api.getAllCategories(setCategories);
+  }
+
+  async function getAllProducts() {
+    await api.getAllProducts(setProducts);
+  }
+
+  useEffect(() => {
+    getAllCategories();
+    getAllProducts();
+  }, []);
+
   let brands = [...new Set(products.map(product => product.brand))];
 
   return (
@@ -18,14 +31,14 @@ export default function AllProductsPage() {
         <div className='mb-4'>
           <p className='fw-bold mb-2'>Category</p>
           <div className='d-flex flex-column gap-2'>
-            {categories.map(cate => <CheckItem label={cate.title} />)}
+            {categories.map(cate => <CheckItem key={cate.id} label={cate.title} />)}
           </div>
         </div>
 
         <div className='mb-4'>
           <p className='fw-bold mb-2'>Brand</p>
           <div className='d-flex flex-column gap-2'>
-            {brands.map(brand => <CheckItem label={brand} />)}
+            {brands.map(brand => <CheckItem key={Math.random()} label={brand} />)}
           </div>
         </div>
 
@@ -33,7 +46,7 @@ export default function AllProductsPage() {
           <p className='fw-bold mb-2'>Price</p>
           <input id='price-start' type='number' className='form-control shadow-none rounded-0 mb-2' placeholder='From' />
           <input id='price-start' type='number' className='form-control shadow-none rounded-0 mb-2' placeholder='To' />
-          <input type='submin' value='Filter' className='btn btn-primary rounded-0' />
+          <input type='submit' value='Filter' className='btn btn-primary rounded-0' />
         </div>
 
       </form>

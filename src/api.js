@@ -57,14 +57,14 @@ export async function getAllProducts(setProducts) {
   setProducts(res.data);
 }
 
-export async function getProduct(productId, setProduct) {
-  let res = await axios.get(`http://localhost:5000/products/${productId}`);
-  setProduct(res.data);
-}
-
 export async function getProductsOfCategory(categoryId, setProducts) {
   let res = await axios.get(`http://localhost:5000/products/filter/${categoryId}`);
   setProducts(res.data);
+}
+
+export async function getProduct(productId, setProduct) {
+  let res = await axios.get(`http://localhost:5000/products/get/${productId}`);
+  setProduct(res.data);
 }
 
 export async function createNewProduct(formData, setIsCreated) {
