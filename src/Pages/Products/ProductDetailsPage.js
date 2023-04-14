@@ -1,42 +1,62 @@
-import { useParams } from "react-router-dom";
-import { useSelector } from 'react-redux'
-import Img from "./../../Images/mobile1.png"
 import ProductsSection from "../../Component/Product/ProductsSection";
 import ProductCard from "../../Component/Product/ProductCard";
-let testDescription = 'Canon is proud of its long and unwavering tradition of protecting and preserving our most precious of resources - the world we share. We work to harmonize environmental commitment and economic interests in all our business activities. We believe this balance is essential to sustain prosperity for future generations. Create detailed DSLR quality pictures and cinematic Full HD movies with ease, even in difficult low light situations, using the 24.1 Megapixel EOS 4000D. Share instantly and shoot remotely with Wi-Fi, NFC and Canon Camera Connect app.Step up to a 24.1 Megapixel sensor that has up to 19x more surface area than many smartphones to capture stories with beautiful background blur, even in tricky light.Enjoy guided Live View shooting with Creative Auto mode and add unique finishes with Creative Filters. Just point and shoot for great results with Scene Intelligent Auto.Turn spontaneous moments into creative films in Full HD, or use Video Snapshot to simply capture highlights of your day.Capture the moment just as you remember with precise Auto Focus, 3.0 fps and DIGIC 4+.';
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+const api = require('../../api');
 
 export default function ProductDetailsPage() {
 
+  let [product, setProduct] = useState({});
+  let [category, setCategory] = useState({});
+  let [products, setProducts] = useState([]);
+
   const params = useParams(); // it's the parameters in the current url '/product/:id' the only param is the id
 
-  // We must fetch data from api using the parameter (id) but for testing we use redux
-  let categories = useSelector(state => state.categories);
-  let products = useSelector(state => state.products);
-  let currentProduct = {};
-  products.forEach(product => {
-    if (product.id === parseInt(params.id)) {
-      currentProduct = product;
-    }
-  })
+  async function getProduct(id) {
+    await api.getProduct(id, setProduct);
+  }
+
+  async function getCategory(id) {
+    await api.getCategory(id, setCategory);
+  }
+
+  async function getProductsOfCategory(id) {
+    await api.getProductsOfCategory(id, setProducts);
+  }
+
+  // get the product details onload
+  useEffect(() => {
+    getProduct(params.id);
+  }, [])
+
+  // get the product category details after getting data of product
+  useEffect(() => {
+    product.cat_id && getCategory(product.cat_id);
+  }, [product])
+
+  // get the other products of the same category after getting data of the category
+  useEffect(() => {
+    category.id && getProductsOfCategory(category.id);
+  }, [category])
 
   return (
     <div className="container d-flex flex-column gap-4 py-4">
 
       <div className="container border-bottom bg-white py-3">
         <div className="row">
-          <div className="col-md-5">
-            <img src={Img} className="img-fluid" alt='Img' />
+          <div className="col-md-5"> 
+            <img src={product.image} className="img-fluid" alt={product.title} />
           </div>
           <div className="col-md-7">
-            <span className="text-muted">{currentProduct.categoryId} Electronics</span> {/* A Problem */}
+            <span className="text-muted">{category.title}</span>
             <p className="fw-bold">
-              {currentProduct.title}
-              <span className="fw-bold text-warning ms-2">{currentProduct.rating} <i className="fa-solid fa-star"></i></span>
+              {product.title}
+              <span className="fw-bold text-warning ms-2">{product.rating} <i className="fa-solid fa-star"></i></span>
             </p>
-            <p className="text-muted">Brand: <span className="fw-bold text-dark">{currentProduct.brand}</span></p>
-            <p className="text-muted">Price: <span className="fw-bold text-dark">{currentProduct.price}<small>$</small></span></p>
+            <p className="text-muted">Brand: <span className="fw-bold text-dark">{product.brand}</span></p>
+            <p className="text-muted">Price: <span className="fw-bold text-dark">{product.price}<small>$</small></span></p>
             <p className="text-muted mb-1">Specifications: </p>
-            <small>{currentProduct.description} + {testDescription}</small>
+            <small>{product.description}</small>
             <div className='mt-4 d-flex gap-3 flex-wrap'>
               <div className="btn btn-primary px-4 rounded-0 d-inline"><i className="fa-solid fa-cart-shopping"></i> Add To Cart</div>
               <div className="btn btn-danger px-4 rounded-0 d-inline"><i className="fa-solid fa-heart"></i>  Add To Favourites</div>
@@ -45,10 +65,9 @@ export default function ProductDetailsPage() {
         </div>
       </div>
 
-      {/* Need Editing to the category of the current product */}
-      <ProductsSection category={categories[1]} >
+      <ProductsSection category={category} >
         {products.map(product =>
-          product.categoryId === categories[1].id ? <ProductCard key={product.id} product={product} /> : null
+          <ProductCard key={product.id} product={product} />
         )}
       </ProductsSection>
 

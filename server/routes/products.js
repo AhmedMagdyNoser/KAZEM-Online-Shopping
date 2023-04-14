@@ -179,7 +179,7 @@ router.get('/getAll', async (req, res) => {
 
 
 // Show Specific Product
-router.get('get/:id', (req, res) => {
+router.get('/get/:id', (req, res) => {
   const productId = req.params.id;
   const sql = 'SELECT * FROM product WHERE id = ?';
   connection.query(sql, [productId], (err, results) => {
@@ -189,7 +189,7 @@ router.get('get/:id', (req, res) => {
     } else if (results.length === 0) {
       return res.status(404).json({ error: `Product with ID ${productId} not found` });
     } else {
-      results[0].img = 'http://' + req.hostname + ':4000/upload/' + results[0].img; // update image URL
+      results[0].image = 'http://' + req.hostname + ':5000/' + results[0].img; // update image URL
       return res.json(results[0]);
     }
   });
@@ -208,7 +208,7 @@ router.get('/filter/:cat_id', (req, res) => {
       res.status(404).send('This category does not exist');
     } else {
       for (let result of results) {
-        result.img = `http://${req.hostname}:4000/upload/${result.img}`;
+        result.image = `http://${req.hostname}:5000/${result.img}`;
       }
       res.status(200).json(results);
     }

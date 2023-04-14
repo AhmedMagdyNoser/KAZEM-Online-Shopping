@@ -1,27 +1,35 @@
-import { useSelector } from 'react-redux';
 import { useParams } from "react-router-dom";
 import ProductCard from "../../Component/Product/ProductCard";
+import { useState } from 'react';
+import { useEffect } from 'react';
+const api = require('../../api');
 
 export default function CategoryDetailsPage() {
 
+  let [category, setCategory] = useState({});
+  let [products, setProducts] = useState([]);
+
   const params = useParams(); // it's the parameters in the current url '/category/:id' the only param is the id
   
-  // We must fetch data from api using the parameter (id) but for testing we use redux
-  let products = useSelector(state => state.products);
-  let categories = useSelector(state => state.categories)
-  let currentCategory = {};
-  categories.forEach(category => {
-    if (category.id === parseInt(params.id)) {
-      currentCategory = category;
-    }
-  })
+  async function getCategory(id) {
+    await api.getCategory(id, setCategory);
+  }
+
+  async function getProductsOfCategory(id) {
+    await api.getProductsOfCategory(id, setProducts);
+  }
+
+  useEffect(() => {
+    getCategory(params.id);
+    getProductsOfCategory(params.id);
+  }, [])
 
   return (
     <div className="container bg-white p-0 my-4 border-bottom">
-      <h2 className='m-0 py-3 bg-dark text-white text-center text-uppercase'>{currentCategory.title}</h2>
+      <h2 className='m-0 py-3 bg-dark text-white text-center text-uppercase'>{category.title}</h2>
       <div className="kazem-grid p-3">
         {products.map(product =>
-          product.categoryId === currentCategory.id ? <ProductCard key={product.id} product={product} /> : null
+          <ProductCard key={product.id} product={product} />
         )}
       </div>
     </div>
