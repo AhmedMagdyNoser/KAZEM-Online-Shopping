@@ -8,7 +8,7 @@ const util = require("util"); // helper
 const fs = require("fs"); // file system
 
 
-//create category 
+// create category 
 router.post(
   "/create",
   admin,
@@ -61,56 +61,48 @@ router.post(
 );
 
 
-//update category 
-router.put(
-  '/update/:id',
+// update category 
+router.put('/update/:id',
   admin,
-  upload.single('img'),
+  upload.single('image'),
   async (req, res) => {
     try {
-      // Validate request
+      // 1- VALIDATE REQUEST [manual, express validation]
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
 
-      // Check if product exists
+      // 2- CHECK IF CATEGORY EXISTS OR NOT 
       const query = util.promisify(connection.query).bind(connection);
-      const product = await query('SELECT * FROM product WHERE id = ?', [req.params.id]);
-      console.log('product:', product);
-      if (!product[0]) {
-        return res.status(404).json({ ms: 'Product not found!' });
+      const category = await query('SELECT * FROM category WHERE id = ?', [req.params.id]);
+      if (!category[0]) {
+        return res.status(404).json({ ms: 'Category not found!' });
       }
 
-      // Prepare product object
-      const productObj = {
-        title: req.body.title || product[0].title,
-        description: req.body.description || product[0].description,
-        cat_id: req.body.cat_id || product[0].cat_id,
-        price: req.body.price || product[0].price,
-        brand: req.body.brand || product[0].brand,
+      // 3- PREPARE CATEGORY OBJECT
+      const categoryObj = {
+        title: req.body.title || category[0].e,
+        description: req.body.description || category[0].description,
+        // ... other fields to update
       };
 
-      if (req.file && product[0].img) {
-        productObj.img = req.file.filename;
-        const filePath = './upload/' + product[0].img;
-        if (fs.existsSync(filePath)) {
-          fs.unlinkSync(filePath);
-        }
+      if (req.file && category[0].image) {
+        categoryObj.image = req.file.filename;
+        fs.unlinkSync('./upload/' + category[0].image); // delete old image
       } else {
-        productObj.img = product[0].img;
+        categoryObj.image_path = category[0].image;
       }
 
-      console.log('productObj:', productObj);
+      // 4- UPDATE CATEGORY
+      await query('UPDATE category SET ? WHERE id = ?', [categoryObj, category[0].id]);
 
-      // Update product
-      const result = await query('UPDATE product SET ? WHERE id = ?', [productObj, product[0].id]);
-      console.log('result:', result);
-
-      // Send response
-      res.status(200).json({ msg: 'Product updated successfully' });
+      // 5- SEND RESPONSE 
+      res.status(200).json({
+        msg: 'Category updated successfully',
+      });
     } catch (err) {
-      console.error('Error:', err);
+      console.error(err);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   }
@@ -121,25 +113,37 @@ router.put(
 router.delete('/delete/:id', admin, (req, res) => {
   const categoryId = req.params.id;
 
-  // To delete the img from the uploads (Doesn't Work)
-  // const deletedCategory = query('SELECT * FROM category WHERE id = ?', [categoryId]);
-  // fs.unlinkSync('./upload/' + deletedCategory[0].img);
-
-  const sql = 'DELETE FROM category WHERE id = ?';
+  // First, retrieve the image field of the category using the specified id
+  const selectSql = 'SELECT img FROM category WHERE id = ?';
 
   try {
-    connection.query(sql, [categoryId], (err, result) => {
+    connection.query(selectSql, [categoryId], (err, selectResult) => {
       if (err) {
         console.error(err);
         return res.status(500).json({ error: 'Internal server error' });
       }
 
-      if (result.affectedRows === 0) {
-        return res.status(404).json({ error: 'Category not found' });
+      // If the query returns a result with a non-empty image field, delete the corresponding image file
+      if (selectResult[0] && selectResult[0].img) {
+        fs.unlinkSync(`./upload/${selectResult[0].img}`);
       }
 
+      // Then, delete the category using the specified id
+      const deleteSql = 'DELETE FROM category WHERE id = ?';
 
-      return res.json({ message: 'Category deleted successfully' });
+      connection.query(deleteSql, [categoryId], (err, deleteResult) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).json({ error: 'Internal server error' });
+        }
+
+        // If no rows were affected by the delete query, return a 404 error
+        if (deleteResult.affectedRows === 0) {
+          return res.status(404).json({ error: 'Category not found' });
+        }
+
+        return res.json({ message: 'Category deleted successfully' });
+      });
     });
   } catch (err) {
     console.error(err);
