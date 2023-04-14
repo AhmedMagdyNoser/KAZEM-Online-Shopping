@@ -15,6 +15,7 @@ const products = require('./routes/products');
 const categories = require('./routes/categories');
 const users = require('./routes/users');
 const carts = require('./routes/cart');
+const fav = require('./routes/fav_list');
 
 
 
@@ -28,7 +29,9 @@ app.use("/auth",auth);
 app.use("/products", products);
 app.use("/categories", categories);
 app.use('/users', users);
-app.use('/carts',carts);
+app.use('/carts', carts);
+app.use('/fav', fav);
+
 
 
 
