@@ -39,21 +39,15 @@ export default function HomePage() {
         {products.slice(0, 10).map(product => <ProductCard key={product.id} product={product} />)}
       </ProductsSection>
 
-      {categories[0] &&
-        <ProductsSection category={categories[0]} >
-          {products.map(product =>
-            product.cat_id === categories[0].id ? <ProductCard key={product.id} product={product} /> : null
-          )}
-        </ProductsSection>
-      }
-
-      {categories[1] &&
-        <ProductsSection category={categories[1]} >
-          {products.map(product =>
-            product.cat_id === categories[1].id ? <ProductCard key={product.id} product={product} /> : null
-          )}
-        </ProductsSection>
-      }
+      {categories.map(cat => (
+          <ProductsSection key={cat.id} category={cat}>
+            {products.map(product =>
+              product.cat_id === cat.id ?
+                <ProductCard key={product.id} product={product}/>
+                : null
+            )}
+          </ProductsSection>
+        ))}
 
     </div>
   )

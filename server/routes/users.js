@@ -1,4 +1,3 @@
-
 const router = require("express").Router();
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
@@ -12,7 +11,7 @@ const admin = require('../middleware/admin');
 //create user 
 router.post("/create",admin, (req, res) => {
     const { firstName, lastName, email, phone, address, password , status,type} = req.body;
-  
+
     // Check if a user with the same email already exists in the database
     const sql = 'SELECT * FROM users WHERE email = ?';
     connection.query(sql, [email], (err, result) => {

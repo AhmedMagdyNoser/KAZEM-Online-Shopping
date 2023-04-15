@@ -1,14 +1,24 @@
-import { Link } from "react-router-dom";
 import AdminTabs from "../../Component/Admin/AdminTabs";
 import UserDataCard from "../../Component/Uitility/UserDataCard";
-
-// testing data
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+const api = require('../../api');
 
 export default function AdminAllUsers() {
 
-  // We must fetch data of all users from api but for testing we get them from redux
-  let users = useSelector(state => state.users)
+  let [users, setUsers] = useState([]);
+
+  async function getAllUsers() {
+    await api.getAllUsers(setUsers);
+  }
+
+  async function deleteUser(id) {
+    await api.deleteUser(id, users, setUsers);
+  }
+
+  useEffect(() => {
+    getAllUsers();
+  }, []);
 
   return (
     <div>
@@ -24,7 +34,7 @@ export default function AdminAllUsers() {
 
         <div className="kazem-grid">
           {users.map((user) =>
-            <UserDataCard key={user.id} user={user} />
+            <UserDataCard key={user.id} user={user} deleteUser={deleteUser} />
           )}
         </div>
 

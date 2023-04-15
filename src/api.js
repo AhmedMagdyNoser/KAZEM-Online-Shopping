@@ -88,6 +88,44 @@ export async function deleteProduct(productId, products, setProducts) {
 
 
 
+// ===================== Users =====================
+
+export async function getAllUsers(setUsers) {
+  let res = await axios.get('http://localhost:5000/users/getAll',
+    { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (this token is for admin)
+  );
+  setUsers(res.data);
+}
+
+export async function createNewUser(formData, setIsCreated) {
+  try {
+    await axios.post("http://localhost:5000/users/create", formData,
+      {
+        headers: {
+          'token': '5639b565897c7304d440ad1e4dfff115', // testing (this token is for admin)
+          'Content-Type': 'application/json',
+        }
+      }
+    );
+    setIsCreated(true);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteUser(userId, users, setUsers) {
+  try {
+    await axios.delete(`http://localhost:5000/users/delete/${userId}`,
+      { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (this token is for admin)
+    );
+    setUsers(users.filter(user => user.id !== userId)); // to remove from the page immediately
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
+
 
 // ===================== Examples =====================
 
