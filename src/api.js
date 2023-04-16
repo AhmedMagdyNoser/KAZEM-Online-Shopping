@@ -15,34 +15,35 @@ export async function getCategory(categoryId, setCategory) {
 export async function createNewCategory(formData, setIsCreated) {
   try {
     await axios.post("http://localhost:5000/categories/create", formData,
-      { headers: { token: '5639b565897c7304d440ad1e4dfff115', } } // testing (this token is for admin)
+      { headers: { token: '5639b565897c7304d440ad1e4dfff115', } } // testing (token for admin)
     );
     setIsCreated(true);
   } catch (error) {
-    console.log(error);
+    setIsCreated(false);
+    throw error;
   }
 }
 
-export async function updateCategory(formData, category, setCategory, setUpdated) {
+export async function updateCategory(categoryId, formData, setUpdated) {
   try {
-    await axios.put(`http://localhost:5000/categories/update/${category.id}`, formData,
+    await axios.put(`http://localhost:5000/categories/update/${categoryId}`, formData,
       {
         headers: {
-          token: '5639b565897c7304d440ad1e4dfff115',
+          token: '5639b565897c7304d440ad1e4dfff115',  // testing (token for admin)
         }
-      } // testing (this token is for admin)
+      }
     );
-    setCategory(category);
     setUpdated(true);
   } catch (error) {
-    console.log(error);
+    setUpdated(false);
+    throw error;
   }
 }
 
 export async function deleteCategory(categoryId, categories, setCategories) {
   try {
     await axios.delete(`http://localhost:5000/categories/delete/${categoryId}`,
-      { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (this token is for admin)
+      { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (token for admin)
     );
     setCategories(categories.filter(cat => cat.id !== categoryId)); // to remove from the page immediately
   } catch (error) {
@@ -84,34 +85,35 @@ export async function getProduct(productId, setProduct) {
 export async function createNewProduct(formData, setIsCreated) {
   try {
     await axios.post("http://localhost:5000/products/create", formData,
-      { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (this token is for admin)
+      { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (token for admin)
     );
     setIsCreated(true);
   } catch (error) {
-    console.log(error);
+    setIsCreated(false);
+    throw error;
   }
 }
 
-export async function updateProduct(formData, product, setProduct, setUpdated) {
+export async function updateProduct(productId, formData, setUpdated) {
   try {
-    await axios.put(`http://localhost:5000/products/update/${product.id}`, formData,
+    await axios.put(`http://localhost:5000/products/update/${productId}`, formData,
       {
         headers: {
           token: '5639b565897c7304d440ad1e4dfff115', // testing (token for admin)
         }
       }
     );
-    setProduct(product);
     setUpdated(true);
   } catch (error) {
-    console.log(error);
+    setUpdated(false);
+    throw error;
   }
 }
 
 export async function deleteProduct(productId, products, setProducts) {
   try {
     await axios.delete(`http://localhost:5000/products/delete/${productId}`,
-      { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (this token is for admin)
+      { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (token for admin)
     );
     setProducts(products.filter(product => product.id !== productId)); // to remove from the page immediately
   } catch (error) {
@@ -132,7 +134,7 @@ export async function deleteProduct(productId, products, setProducts) {
 
 export async function getAllUsers(setUsers) {
   let res = await axios.get('http://localhost:5000/users/getAll',
-    { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (this token is for admin)
+    { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (token for admin)
   );
   setUsers(res.data);
 }
@@ -144,25 +146,28 @@ export async function getUser(userId, setUser) {
   setUser(res.data);
 }
 
-export async function createNewUser(formData, setIsCreated) {
+export async function createNewUser(formData, setIsCreated, setEmailExists) {
   try {
     await axios.post("http://localhost:5000/users/create", formData,
       {
         headers: {
-          'token': '5639b565897c7304d440ad1e4dfff115', // testing (this token is for admin)
+          'token': '5639b565897c7304d440ad1e4dfff115', // testing (token for admin)
           'Content-Type': 'application/json',
         }
       }
     );
     setIsCreated(true);
+    setEmailExists(false);
   } catch (error) {
-    console.log(error);
+    setIsCreated(false);
+    setEmailExists(true);
+    throw error;
   }
 }
 
-export async function updateUser(formData, user, setUser, setUpdated) {
+export async function updateUser(userId, formData, setUpdated, setEmailExists) {
   try {
-    await axios.put(`http://localhost:5000/users/update/${user.id}`,
+    await axios.put(`http://localhost:5000/users/update/${userId}`,
       formData,
       {
         headers: {
@@ -171,10 +176,12 @@ export async function updateUser(formData, user, setUser, setUpdated) {
         }
       }
     );
-    setUser(user);
     setUpdated(true);
+    setEmailExists(false);
   } catch (error) {
-    console.log(error);
+    setUpdated(false);
+    setEmailExists(true);
+    throw error;
   }
 }
 
@@ -182,7 +189,7 @@ export async function updateUser(formData, user, setUser, setUpdated) {
 export async function deleteUser(userId, users, setUsers) {
   try {
     await axios.delete(`http://localhost:5000/users/delete/${userId}`,
-      { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (this token is for admin)
+      { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (token for admin)
     );
     setUsers(users.filter(user => user.id !== userId)); // to remove from the page immediately
   } catch (error) {

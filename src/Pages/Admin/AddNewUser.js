@@ -6,12 +6,11 @@ const api = require('../../api');
 export default function AddNewUser() {
 
   const [isCreated, setIsCreated] = useState(false);
+  const [emailExists, setEmailExists] = useState(false);
 
-  async function createNewUser(e) {
-    e.preventDefault();
-    const form = e.target;
-    const formData = new FormData(form);
-    await api.createNewUser(formData, setIsCreated);
+  async function createNewUser(event) {
+    event.preventDefault();
+    await api.createNewUser(new FormData(event.target), setIsCreated, setEmailExists);
   };
 
   return (
@@ -19,7 +18,7 @@ export default function AddNewUser() {
 
       {/* Basic Information */}
       <form onSubmit={createNewUser} className="d-flex flex-column gap-2">
-        <p className="fw-bold text-center">Update User</p>
+        <p className="fw-bold text-center">Add New User</p>
 
         {/* Name */}
         <div className='d-flex gap-2'>
@@ -88,13 +87,22 @@ export default function AddNewUser() {
           <input type="submit" value="ADD USER" className="btn btn-success rounded-0" />
         </div>
 
-        {isCreated && (
+        {(isCreated && !emailExists) && (
           <div className="alert alert-success rounded-0 mt-3">
             <Fade time='0.5s'>
-              User Added successfully!
+              User Added Successfully!
             </Fade>
           </div>
         )}
+
+        {(!isCreated && emailExists) && (
+          <div className="alert alert-danger rounded-0 mt-3">
+            <Fade time='0.5s'>
+              This Email Already Exists!
+            </Fade>
+          </div>
+        )}
+        
 
       </form>
 

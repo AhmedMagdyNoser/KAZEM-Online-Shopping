@@ -1,29 +1,28 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import Fade from '../../Component/Uitility/Fade';
 import FloatingInput from "../../Component/Uitility/FloatingInput";
+import Fade from '../../Component/Uitility/Fade';
 const api = require('../../api');
 
 export default function EditUser() {
 
   const [user, setUser] = useState(null);
   const [updated, setUpdated] = useState(false);
+  const [emailExists, setEmailExists] = useState(false)
 
   const params = useParams();
 
-  async function getUser(id) {
-    await api.getUser(id, setUser)
+  async function getUser() {
+    await api.getUser(params.id, setUser);
   }
 
   useEffect(() => {
-    getUser(params.id);
+    getUser();
   }, []);
 
   const updateUser = async (event) => {
     event.preventDefault();
-    const form = event.target;
-    const formData = new FormData(form);
-    await api.updateUser(formData, user, setUser, setUpdated);
+    await api.updateUser(user.id, new FormData(event.target), setUpdated, setEmailExists);
   }
 
   return (
@@ -106,10 +105,18 @@ export default function EditUser() {
             <input type="submit" value="UPDATE USER" className="btn btn-success rounded-0" />
           </div>
 
-          {updated && (
+          {(updated && !emailExists) && (
             <div className="alert alert-success rounded-0 mt-3">
               <Fade time='0.5s'>
-                User updated successfully!
+                User Updated Successfully!
+              </Fade>
+            </div>
+          )}
+
+          {(!updated && emailExists) && (
+            <div className="alert alert-danger rounded-0 mt-3">
+              <Fade time='0.5s'>
+                This Email Already Exists!
               </Fade>
             </div>
           )}
