@@ -54,6 +54,11 @@ export async function deleteCategory(categoryId, categories, setCategories) {
 
 
 
+
+
+
+
+
 // ===================== Products =====================
 
 export async function getAllProducts(setProducts) {
@@ -94,7 +99,7 @@ export async function updateProduct(formData, product, setProduct, setUpdated) {
         headers: {
           token: '5639b565897c7304d440ad1e4dfff115', // testing (token for admin)
         }
-      } 
+      }
     );
     setProduct(product);
     setUpdated(true);
@@ -120,6 +125,9 @@ export async function deleteProduct(productId, products, setProducts) {
 
 
 
+
+
+
 // ===================== Users =====================
 
 export async function getAllUsers(setUsers) {
@@ -127,6 +135,13 @@ export async function getAllUsers(setUsers) {
     { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (this token is for admin)
   );
   setUsers(res.data);
+}
+
+export async function getUser(userId, setUser) {
+  let res = await axios.get(`http://localhost:5000/users/${userId}`,
+    { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (token for admin)
+  );
+  setUser(res.data);
 }
 
 export async function createNewUser(formData, setIsCreated) {
@@ -145,6 +160,25 @@ export async function createNewUser(formData, setIsCreated) {
   }
 }
 
+export async function updateUser(formData, user, setUser, setUpdated) {
+  try {
+    await axios.put(`http://localhost:5000/users/update/${user.id}`,
+      formData,
+      {
+        headers: {
+          'token': '5639b565897c7304d440ad1e4dfff115', // testing (token for admin)
+          'Content-Type': 'application/json',
+        }
+      }
+    );
+    setUser(user);
+    setUpdated(true);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+
 export async function deleteUser(userId, users, setUsers) {
   try {
     await axios.delete(`http://localhost:5000/users/delete/${userId}`,
@@ -155,33 +189,3 @@ export async function deleteUser(userId, users, setUsers) {
     console.log(error);
   }
 }
-
-
-
-
-// ===================== Examples =====================
-
-// export async function getUsers() {
-//   const response = await axios.get('/api/users');
-//   return response.data;
-// }
-
-// export async function getUserById(id) {
-//   const response = await axios.get(`/api/users/${id}`);
-//   return response.data;
-// }
-
-// export async function createUser(userData) {
-//   const response = await axios.post('/api/users', userData);
-//   return response.data;
-// }
-
-// export async function updateUser(id, userData) {
-//   const response = await axios.put(`/api/users/${id}`, userData);
-//   return response.data;
-// }
-
-// export async function deleteUser(id) {
-//   const response = await axios.delete(`/api/users/${id}`);
-//   return response.data;
-// }

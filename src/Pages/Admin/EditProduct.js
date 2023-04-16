@@ -13,7 +13,7 @@ export default function EditProduct() {
   const [price, setPrice] = useState('');
 
   const [product, setProduct] = useState({});
-  let [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [updated, setUpdated] = useState(false);
 
   const params = useParams(); // to get the id of the current product 

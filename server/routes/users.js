@@ -10,7 +10,7 @@ const admin = require('../middleware/admin');
 
 //create user 
 router.post("/create", admin, (req, res) => {
-  const { firstName, lastName, email, phone, address, password, status, type } = req.body;
+  const { first_name, last_name, email, phone, address, password, status, type } = req.body;
 
   // Check if a user with the same email already exists in the database
   const sql = 'SELECT * FROM users WHERE email = ?';
@@ -36,7 +36,7 @@ router.post("/create", admin, (req, res) => {
       // Insert the user into the database with the hashed password
       connection.query(
         "INSERT INTO users (first_name, last_name, email, password, phone, address ,status,type) VALUES (?, ?, ?, ?, ?, ?,?,?)",
-        [firstName, lastName, email, hashedPassword, phone, address, status, type],
+        [first_name, last_name, email, hashedPassword, phone, address, status, type],
         (err, result) => {
           if (err) {
             console.error("Error inserting user into database:", err);
@@ -106,7 +106,7 @@ router.put('/update/:id',
       };
 
       // Check if the new email already exists in the database
-      if (req.body.email && req.body.email !== user[0].email) {
+      if (req.body.email !== user[0].email) {
         const emailExists = await query('SELECT * FROM users WHERE email = ?', [req.body.email]);
         if (emailExists.length > 0) {
           return res.status(400).json({ message: 'Email already exists. Please choose another email.' });
@@ -126,7 +126,7 @@ router.put('/update/:id',
           query('UPDATE users SET ? WHERE id = ?', [userObj, user[0].id])
             .then(() => {
               res.status(200).json({
-                msg: 'User updated successfully',
+                msg: 'User updated successfully with password',
               });
             })
             .catch((err) => {
@@ -138,7 +138,7 @@ router.put('/update/:id',
         // Update the user in the database
         await query('UPDATE users SET ? WHERE id = ?', [userObj, user[0].id]);
         res.status(200).json({
-          msg: 'User updated successfully',
+          msg: 'User updated successfully without password',
         });
       }
     } catch (err) {
