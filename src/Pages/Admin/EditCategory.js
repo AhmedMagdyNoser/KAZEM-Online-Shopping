@@ -11,12 +11,12 @@ export default function EditCategory() {
   const [category, setCategory] = useState({});
   const [updated, setUpdated] = useState(false);
 
-  const params = useParams(); 
-  
+  const params = useParams();
+
   async function getCategory(id) {
     await api.getCategory(id, setCategory);
   }
-  
+
   useEffect(() => {
     getCategory(params.id);
   }, []);
@@ -26,7 +26,7 @@ export default function EditCategory() {
     setDescription(category.description);
   }, [category]);
 
-  
+
   async function updateCategory(e) {
     e.preventDefault();
     const formData = new FormData();
@@ -35,7 +35,7 @@ export default function EditCategory() {
     formData.append("image", image);
     await api.updateCategory(formData, category, setCategory, setUpdated);
   };
-  
+
   return (
     <div className="container py-4">
       <form onSubmit={updateCategory} className="d-flex flex-column gap-4">
@@ -73,13 +73,13 @@ export default function EditCategory() {
         </div>
         <input type="submit" value='EDIT CATEGORY' className="btn btn-success w-100 rounded-0" />
       </form>
-        {updated && (
-          <div className="alert alert-success rounded-0 mt-3">
-            <Fade time='0.5s'>
-              Category updated successfully!
-            </Fade>
-          </div>
-        )}
+      {updated && (
+        <div className="alert alert-success rounded-0 mt-3">
+          <Fade time='0.5s'>
+            Category updated successfully!
+          </Fade>
+        </div>
+      )}
     </div>
   );
 }

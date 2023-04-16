@@ -38,7 +38,7 @@ export default function AddNewProduct() {
   // the first category is selected automaticaly (if not selected from select menu)
   useEffect(() => {
     categories.length > 0 && setCatId(categories[0].id);
-  }, [categories]);
+  }, [categories]); // after getting categories from database
 
   return (
     <div>

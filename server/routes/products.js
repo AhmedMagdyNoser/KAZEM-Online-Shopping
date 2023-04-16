@@ -72,7 +72,7 @@ router.post('/create', admin,
 //update product
 router.put('/update/:id',
   admin,
-  upload.single('img'),
+  upload.single('image'),
 
   async (req, res) => {
     try {
@@ -114,7 +114,7 @@ router.put('/update/:id',
       });
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({ error: 'Internal Server Error!' });
     }
   });
 

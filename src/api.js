@@ -87,6 +87,22 @@ export async function createNewProduct(formData, setIsCreated) {
   }
 }
 
+export async function updateProduct(formData, product, setProduct, setUpdated) {
+  try {
+    await axios.put(`http://localhost:5000/products/update/${product.id}`, formData,
+      {
+        headers: {
+          token: '5639b565897c7304d440ad1e4dfff115', // testing (token for admin)
+        }
+      } 
+    );
+    setProduct(product);
+    setUpdated(true);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function deleteProduct(productId, products, setProducts) {
   try {
     await axios.delete(`http://localhost:5000/products/delete/${productId}`,
