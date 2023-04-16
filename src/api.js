@@ -15,9 +15,25 @@ export async function getCategory(categoryId, setCategory) {
 export async function createNewCategory(formData, setIsCreated) {
   try {
     await axios.post("http://localhost:5000/categories/create", formData,
-      { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (this token is for admin)
+      { headers: { token: '5639b565897c7304d440ad1e4dfff115', } } // testing (this token is for admin)
     );
     setIsCreated(true);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function updateCategory(formData, category, setCategory, setUpdated) {
+  try {
+    await axios.put(`http://localhost:5000/categories/update/${category.id}`, formData,
+      {
+        headers: {
+          token: '5639b565897c7304d440ad1e4dfff115',
+        }
+      } // testing (this token is for admin)
+    );
+    setCategory(category);
+    setUpdated(true);
   } catch (error) {
     console.log(error);
   }

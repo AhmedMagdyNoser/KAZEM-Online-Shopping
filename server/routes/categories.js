@@ -87,11 +87,11 @@ router.put('/update/:id',
         // ... other fields to update
       };
 
-      if (req.file && category[0].image) {
-        categoryObj.image = req.file.filename;
-        fs.unlinkSync('./upload/' + category[0].image); // delete old image
+      if (req.file && category[0].img) {
+        categoryObj.img = req.file.filename;
+        fs.unlinkSync('./upload/' + category[0].img); // delete old image
       } else {
-        categoryObj.image_path = category[0].image;
+        categoryObj.img = category[0].img;
       }
 
       // 4- UPDATE CATEGORY
