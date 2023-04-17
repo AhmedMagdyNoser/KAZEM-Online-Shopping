@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import SimpleCard from '../../Component/Uitility/SimpleCard'
-const api = require('../../api')
+const api = require('../../Services/api')
 
 export default function AllCategoriesPage() {
 

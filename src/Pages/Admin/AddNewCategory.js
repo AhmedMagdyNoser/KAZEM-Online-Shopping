@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import AdminTabs from '../../Component/Admin/AdminTabs';
 import Fade from '../../Component/Uitility/Fade';
-const api = require('../../api');
+const api = require('../../Services/api');
 
 export default function AddNewCategory() {
 

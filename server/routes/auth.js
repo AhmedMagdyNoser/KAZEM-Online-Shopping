@@ -94,10 +94,20 @@ router.post("/login", async (req, res) => {
 
       if (result) {
         // Use the token from the register endpoint
-        const token = user[0].token;
+        // const token = user[0].token;
 
-        // Return the token to the user
-        res.json({ token: token });
+        // Return the user data and token to the client
+        res.json({ 
+          user: {
+            id: user[0].id,
+            first_name: user[0].first_name,
+            last_name: user[0].last_name,
+            email: user[0].email,
+            token: user[0].token,
+            type: user[0].type
+            // add more user data here as needed
+          },
+        });
       } else {
         res.status(401).json({ message: "Invalid email or password" });
       }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductCard from '../../Component/Product/ProductCard'
 import { useParams } from 'react-router-dom';
-const api = require('../../api');
+const api = require('../../Services/api');
 
 export default function AllProductsPage() {
 

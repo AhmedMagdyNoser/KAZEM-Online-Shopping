@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import Fade from '../../Component/Uitility/Fade';
-const api = require('../../api');
+const api = require('../../Services/api');
 
 export default function EditProduct() {
 
@@ -77,7 +77,7 @@ export default function EditProduct() {
             </Fade>
           </div>
         )}
-        
+
       </form>
     </div>
   )

@@ -2,7 +2,7 @@ import AdminTabs from "../../Component/Admin/AdminTabs";
 import UserDataCard from "../../Component/Uitility/UserDataCard";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-const api = require('../../api');
+const api = require('../../Services/api');
 
 export default function AdminAllUsers() {
 

@@ -1,7 +1,7 @@
 import FloatingInput from "../../Component/Uitility/FloatingInput";
 import Fade from '../../Component/Uitility/Fade'
 import { useState } from "react";
-const api = require('../../api');
+const api = require('../../Services/api');
 
 export default function AddNewUser() {
 
@@ -102,7 +102,7 @@ export default function AddNewUser() {
             </Fade>
           </div>
         )}
-        
+
 
       </form>
 

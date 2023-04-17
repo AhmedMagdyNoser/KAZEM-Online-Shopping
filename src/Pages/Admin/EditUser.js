@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import FloatingInput from "../../Component/Uitility/FloatingInput";
 import Fade from '../../Component/Uitility/Fade';
-const api = require('../../api');
+const api = require('../../Services/api');
 
 export default function EditUser() {
 

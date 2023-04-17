@@ -26,8 +26,10 @@ import EditCategory from "./Pages/Admin/EditCategory";
 import EditProduct from "./Pages/Admin/EditProduct";
 import PageNotFound from "./Pages/Global/PageNotFound";
 import NotAuthorized from "./Pages/Global/NotAuthorized";
+import { getAuthUser } from "./Services/Storage";
 
 export default function App() {
+
   return (
     <HashRouter>
       <div style={{ minHeight: '101vh' }} className="d-flex flex-column">
@@ -37,8 +39,8 @@ export default function App() {
           <Routes>
 
             <Route index element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/login" element={getAuthUser() ? <PageNotFound /> : <LoginPage /> } />
+            <Route path="/register" element={getAuthUser() ? <PageNotFound /> : <RegisterPage />} />
             <Route path="/allCategories" element={<AllCategoriesPage />} />
             <Route path="/allProducts" element={<AllProductsPage />} />
             <Route path="/allProducts/:query" element={<AllProductsPage />} />
@@ -54,16 +56,16 @@ export default function App() {
             </Route>
 
             <Route>
-              <Route path="/admin/products&categories" element={<AdminProdsCates />} />
-              <Route path="/admin/newOrders" element={<AdminNewOrders />} />
-              <Route path="/admin/allOrders" element={<AdminAllOrders />} />
-              <Route path="/admin/allUsers" element={<AdminAllUsers />} />
-              <Route path="/admin/addNewCategory" element={<AddNewCategory />} />
-              <Route path="/admin/addNewProduct" element={<AddNewProduct />} />
-              <Route path="/admin/addNewUser" element={<AddNewUser />} />
-              <Route path="/admin/editCategory/:id" element={<EditCategory />} />
-              <Route path="/admin/editProduct/:id" element={<EditProduct />} />
-              <Route path="/admin/editUser/:id" element={<EditUser />} />
+              <Route path="/admin/products&categories" element={getAuthUser() && getAuthUser().type === 1 ? <AdminProdsCates /> : <NotAuthorized />} />
+              <Route path="/admin/newOrders" element={getAuthUser() && getAuthUser().type === 1 ? <AdminNewOrders /> : <NotAuthorized />} />
+              <Route path="/admin/allOrders" element={getAuthUser() && getAuthUser().type === 1 ? <AdminAllOrders /> : <NotAuthorized />} />
+              <Route path="/admin/allUsers" element={getAuthUser() && getAuthUser().type === 1 ? <AdminAllUsers /> : <NotAuthorized />} />
+              <Route path="/admin/addNewCategory" element={getAuthUser() && getAuthUser().type === 1 ? <AddNewCategory /> : <NotAuthorized />} />
+              <Route path="/admin/addNewProduct" element={getAuthUser() && getAuthUser().type === 1 ? <AddNewProduct /> : <NotAuthorized />} />
+              <Route path="/admin/addNewUser" element={getAuthUser() && getAuthUser().type === 1 ? <AddNewUser /> : <NotAuthorized />} />
+              <Route path="/admin/editCategory/:id" element={getAuthUser() && getAuthUser().type === 1 ? <EditCategory /> : <NotAuthorized />} />
+              <Route path="/admin/editProduct/:id" element={getAuthUser() && getAuthUser().type === 1 ? <EditProduct /> : <NotAuthorized />} />
+              <Route path="/admin/editUser/:id" element={getAuthUser() && getAuthUser().type === 1 ? <EditUser /> : <NotAuthorized />} />
             </Route>
 
             <Route path="*" element={<PageNotFound />} />

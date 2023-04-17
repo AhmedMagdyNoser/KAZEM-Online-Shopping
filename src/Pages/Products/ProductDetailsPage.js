@@ -2,7 +2,7 @@ import ProductsSection from "../../Component/Product/ProductsSection";
 import ProductCard from "../../Component/Product/ProductCard";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-const api = require('../../api');
+const api = require('../../Services/api');
 
 export default function ProductDetailsPage() {
 
@@ -27,7 +27,7 @@ export default function ProductDetailsPage() {
   // get the product details onload
   useEffect(() => {
     getProduct(params.id);
-  }, [])
+  }, [params.id])
 
   // get the product category details after getting data of product
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function ProductDetailsPage() {
 
       <div className="container border-bottom bg-white py-3">
         <div className="row">
-          <div className="col-md-5"> 
+          <div className="col-md-5">
             <img src={product.image} className="img-fluid" alt={product.title} />
           </div>
           <div className="col-md-7">

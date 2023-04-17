@@ -4,7 +4,7 @@ import ProductsSection from '../../Component/Product/ProductsSection'
 import DiscountSection from '../../Component/Home/DiscountSection'
 import ProductCard from '../../Component/Product/ProductCard'
 import SimpleCard from '../../Component/Uitility/SimpleCard'
-const api = require('../../api');
+const api = require('../../Services/api');
 
 export default function HomePage() {
 
@@ -40,14 +40,14 @@ export default function HomePage() {
       </ProductsSection>
 
       {categories.map(cat => (
-          <ProductsSection key={cat.id} category={cat}>
-            {products.map(product =>
-              product.cat_id === cat.id ?
-                <ProductCard key={product.id} product={product}/>
-                : null
-            )}
-          </ProductsSection>
-        ))}
+        <ProductsSection key={cat.id} category={cat}>
+          {products.map(product =>
+            product.cat_id === cat.id ?
+              <ProductCard key={product.id} product={product} />
+              : null
+          )}
+        </ProductsSection>
+      ))}
 
     </div>
   )

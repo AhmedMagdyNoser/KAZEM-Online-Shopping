@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-const api = require('../../api');
+const api = require('../../Services/api');
 
 export default function ProductsSection({ title, link, category, editable, deleteCategory, children, smallGrid }) {
 
@@ -36,7 +36,7 @@ export default function ProductsSection({ title, link, category, editable, delet
       </div>
 
       {/* Section Body */}
-      <div className={(smallGrid ? 'kazem-sm-grid' : 'kazem-grid') + ' p-3'}>
+      <div className={(smallGrid ? 'kazem-sm-grid' : 'kazem-grid') + ' p-3'} style={{background: '#f6f6f6'}}>
         {children}
       </div>
 

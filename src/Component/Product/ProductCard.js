@@ -17,7 +17,7 @@ export default function ProductCard({ product, editable, deleteProduct }) {
 
   return (
     <Fade time='0.5s'>
-      <div className='border-bottom p-3 d-flex flex-column' style={{ background: '#f6f6f6', height: '100%' }}>
+      <div className='border-bottom p-3 bg-white d-flex flex-column' style={{ height: '100%' }}>
         <Link to={"/product/" + product.id} className='d-flex justify-content-center overflow-hidden mb-3 '>
           <div style={{ height: '200px', width: '200px' }} className='d-flex justify-content-center'>
             <img style={{ height: '100%' }} src={product.image} alt={product.title} />

@@ -1,7 +1,7 @@
 import Fade from '../../Component/Uitility/Fade';
 import AdminTabs from '../../Component/Admin/AdminTabs';
 import { useEffect, useState } from 'react';
-const api = require('../../api');
+const api = require('../../Services/api');
 
 export default function AddNewProduct() {
 

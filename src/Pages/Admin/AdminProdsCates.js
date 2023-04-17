@@ -3,7 +3,7 @@ import ProductCard from "../../Component/Product/ProductCard";
 import ProductsSection from "../../Component/Product/ProductsSection";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-const api = require('../../api');
+const api = require('../../Services/api');
 
 export default function AdminProdsCates() {
 

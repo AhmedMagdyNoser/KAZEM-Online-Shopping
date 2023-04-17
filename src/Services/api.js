@@ -1,4 +1,33 @@
 import axios from 'axios';
+import { setAuthUser } from './Storage';
+
+// ===================== Authentication =====================
+export async function login(formData, setInvalidData, navigate) {
+    await axios.post('http://localhost:5000/auth/login', formData,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
+    ).then((res) => {
+      setAuthUser(res.data.user);
+      res.data.user.type === 1 ? navigate('/admin/products&categories') : navigate('/');
+      window.location.reload();
+    }).catch ((error) => {
+      setInvalidData(true);
+      throw error;
+    })
+};
+
+
+
+
+
+
+
+
+
+
 
 // ===================== Categories =====================
 
