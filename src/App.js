@@ -24,6 +24,8 @@ import ProductDetailsPage from "./Pages/Products/ProductDetailsPage";
 import CategoryDetailsPage from "./Pages/Categories/CategoryDetailsPage";
 import EditCategory from "./Pages/Admin/EditCategory";
 import EditProduct from "./Pages/Admin/EditProduct";
+import PageNotFound from "./Pages/Global/PageNotFound";
+import NotAuthorized from "./Pages/Global/NotAuthorized";
 
 export default function App() {
   return (
@@ -63,6 +65,8 @@ export default function App() {
               <Route path="/admin/editProduct/:id" element={<EditProduct />} />
               <Route path="/admin/editUser/:id" element={<EditUser />} />
             </Route>
+
+            <Route path="*" element={<PageNotFound />} />
 
           </Routes>
         </div>
