@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function UserDataCard({ user, deleteUser }) {
   return (
-    <div className='bg-white border-bottom position-relative overflow-hidden'>
+    <div className='border-bottom position-relative overflow-hidden l-gray'>
 
       <div className='bg-primary py-5 position-absolute top-0 start-0 w-100' style={{ zIndex: '1' }}></div>
       <div className='text-center mt-5'>

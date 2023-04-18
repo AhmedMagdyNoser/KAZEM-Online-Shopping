@@ -104,7 +104,8 @@ router.post("/login", async (req, res) => {
             last_name: user[0].last_name,
             email: user[0].email,
             token: user[0].token,
-            type: user[0].type
+            status: user[0].status,
+            type: user[0].type,
             // add more user data here as needed
           },
         });

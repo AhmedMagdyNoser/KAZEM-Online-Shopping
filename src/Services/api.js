@@ -3,20 +3,20 @@ import { setAuthUser } from './Storage';
 
 // ===================== Authentication =====================
 export async function login(formData, setInvalidData, navigate) {
-    await axios.post('http://localhost:5000/auth/login', formData,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        }
+  await axios.post('http://localhost:5000/auth/login', formData,
+    {
+      headers: {
+        'Content-Type': 'application/json',
       }
-    ).then((res) => {
-      setAuthUser(res.data.user);
-      res.data.user.type === 1 ? navigate('/admin/products&categories') : navigate('/');
-      window.location.reload();
-    }).catch ((error) => {
-      setInvalidData(true);
-      throw error;
-    })
+    }
+  ).then((res) => {
+    setAuthUser(res.data.user);
+    res.data.user.type === 1 ? navigate('/admin/products&categories') : navigate('/');
+    window.location.reload();
+  }).catch((error) => {
+    setInvalidData(true);
+    throw error;
+  })
 };
 
 
@@ -223,5 +223,60 @@ export async function deleteUser(userId, users, setUsers) {
     setUsers(users.filter(user => user.id !== userId)); // to remove from the page immediately
   } catch (error) {
     console.log(error);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+// ===================== Cart =====================
+
+export async function addToCart(formData, setAdded) {
+  try {
+    await axios.post(`http://localhost:5000/carts/add`, formData,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+    setAdded(true);
+  } catch (error) {
+    setAdded(false);
+    throw error;
+  }
+}
+
+export async function checkIfInCart(userId, prodId, setAddedToCart) {
+  axios.get(`http://localhost:5000/carts/check/${userId}/${prodId}`)
+  .then((response) => response.data.inCart ? setAddedToCart(true) : setAddedToCart(false))
+  .catch((error) => { console.error(error) });
+}
+
+export async function getCart(userId, setItems) {
+  let res = await axios.get(`http://localhost:5000/carts/get/${userId}`);
+  setItems(res.data.cart);
+}
+
+export async function updateQuantity(userId, prodId, quantity) {
+  await axios.put(`http://localhost:5000/carts/${userId}/${prodId}`, { quantity });
+}
+
+export async function cartTotalCost(userId, setTotalCost) {
+  let res = await axios.get(`http://localhost:5000/carts/total/${userId}`);
+  setTotalCost(res.data.total_cost);
+}
+
+export async function removeItemFromCart(userId, prodId, setItems) {
+  try {
+    await axios.delete(`http://localhost:5000/carts/remove/${userId}`, { data: { prod_id: prodId }},);
+    setItems(prevItems => prevItems.filter(item => item.prod_id !== prodId)); // to remove from the page immediately
+  } catch (error) {
+    throw error;
   }
 }
