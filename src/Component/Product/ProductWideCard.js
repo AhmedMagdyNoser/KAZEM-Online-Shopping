@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getAuthUser } from '../../Services/Storage';
 const api = require('../../Services/api')
-export default function ProductWideCard({ productId, quantity, removeItemFromCart, cartTotalCost }) {
+export default function ProductWideCard({ productId, quantity, removeItemFromCart, removeItemFromFav, cartTotalCost }) {
 
   let [product, setProduct] = useState({});
 
@@ -23,12 +23,21 @@ export default function ProductWideCard({ productId, quantity, removeItemFromCar
     await api.getProduct(id, setProduct);
   }
 
+  function remove() {
+    if (removeItemFromCart) {
+      removeItemFromCart(product.id);
+      cartTotalCost();
+    } else {
+      removeItemFromFav(product.id)
+    }
+  }
+
   useEffect(() => {
     getProduct(productId);
   }, [])
 
   useEffect(() => {
-    setFinalPrice(quantity * product.price)
+    quantity ? setFinalPrice(quantity * product.price) : setFinalPrice(product.price);
   }, [product])
 
   return (
@@ -50,7 +59,7 @@ export default function ProductWideCard({ productId, quantity, removeItemFromCar
           : null}
         <div className='d-flex justify-content-between align-items-center'>
           <b>{finalPrice}$</b>
-          <Link className='btn btn-danger rounded-0' onClick={() => removeItemFromCart(product.id)}>
+          <Link className='btn btn-danger rounded-0' onClick={remove}>
             Remove<i className='fa-solid fa-trash ms-2'></i>
           </Link>
         </div>

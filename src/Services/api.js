@@ -280,3 +280,51 @@ export async function removeItemFromCart(userId, prodId, setItems) {
     throw error;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+// ===================== Fav List =====================
+
+export async function addToFav(formData, setAdded) {
+  try {
+    await axios.post(`http://localhost:5000/fav/add`, formData,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+    setAdded(true);
+  } catch (error) {
+    setAdded(false);
+    throw error;
+  }
+}
+
+export async function checkIfInFav(userId, prodId, setAddedToFav) {
+  axios.get(`http://localhost:5000/fav/check/${userId}/${prodId}`)
+  .then((response) => response.data.inFav ? setAddedToFav(true) : setAddedToFav(false))
+  .catch((error) => { console.error(error) });
+}
+
+export async function getFav(userId, setItems) {
+  let res = await axios.get(`http://localhost:5000/fav/get/${userId}`);
+  setItems(res.data.fav_list);
+}
+
+export async function removeItemFromFav(userId, prodId, setItems) {
+  try {
+    await axios.delete(`http://localhost:5000/fav/remove/${userId}`, { data: { prod_id: prodId }},);
+    setItems(prevItems => prevItems.filter(item => item.prod_id !== prodId)); // to remove from the page immediately
+  } catch (error) {
+    throw error;
+  }
+}

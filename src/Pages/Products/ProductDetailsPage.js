@@ -33,10 +33,15 @@ export default function ProductDetailsPage() {
     await api.checkIfInCart(userId, prodId, setAddedToCart);
   }
 
+  async function checkIfInFav(userId, prodId) {
+    await api.checkIfInFav(userId, prodId, setAddedToFav);
+  }
+
   // get the product details onload
   useEffect(() => {
     getProduct(params.id);
     getAuthUser() && checkIfInCart(getAuthUser().id, params.id);
+    getAuthUser() && checkIfInFav(getAuthUser().id, params.id);
   }, [params.id])
 
   // get the product category details after getting data of product
@@ -56,6 +61,17 @@ export default function ProductDetailsPage() {
       formData.append('user_id', getAuthUser().id);
       formData.append('quantity', 1);
       await api.addToCart(formData, setAddedToCart);
+    } else {
+      setloggedIn(false);
+    }
+  }
+
+  async function addToFav() {
+    if (getAuthUser()) {
+      let formData = new FormData();
+      formData.append('prod_id', params.id);
+      formData.append('user_id', getAuthUser().id);
+      await api.addToFav(formData, setAddedToFav);
     } else {
       setloggedIn(false);
     }
@@ -94,10 +110,10 @@ export default function ProductDetailsPage() {
                   </button>}
               </div>
 
-              <div onClick={() => setAddedToFav(true)}> { /* Need api */}
+              <div onClick={addToFav}>
                 {!addedToFav ? (
                   <button className="btn btn-danger px-4 rounded-0 d-inline">
-                    <i className="fa-solid fa-cart-shopping"></i> Add To Favourites
+                    <i className="fa-solid fa-heart"></i> Add To Favourites
                   </button>
                 ) :
                   <button className="btn btn-danger px-4 rounded-0 d-inline disabled">

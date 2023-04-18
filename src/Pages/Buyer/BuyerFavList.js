@@ -1,32 +1,41 @@
+import { useState, useEffect } from "react";
 import BuyerTabs from "../../Component/Buyer/BuyerTabs"
 import ProductWideCard from "../../Component/Product/ProductWideCard"
+import { getAuthUser } from "../../Services/Storage";
+const api = require('../../Services/api');
 
 export default function BuyerFavList() {
+
+  let [items, setItems] = useState([]);
+
+  async function getFav() {
+    await api.getFav(getAuthUser().id, setItems);
+  }
+
+  async function removeItemFromFav(productId) {
+    await api.removeItemFromFav(getAuthUser().id, productId, setItems);
+  }
+
+  useEffect(() => {
+    getFav();
+  }, [])
+
   return (
     <div>
       <BuyerTabs active='Favorites List' />
-      <h3 className='container my-4 py-3 bg-dark text-white text-center text-uppercase'>Your Favorites List</h3>
-      <div className="container pb-3">
-        <ProductWideCard
-          title="Nova Y70 Dual Sim Pearl White 4GB RAM 128GB"
-          price='350'
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        />
-        <ProductWideCard
-          title="Nova Y70 Dual Sim Pearl White 4GB RAM 128GB"
-          price='350'
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        />
-        <ProductWideCard
-          title="Nova Y70 Dual Sim Pearl White 4GB RAM 128GB"
-          price='350'
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        />
-        <ProductWideCard
-          title="Nova Y70 Dual Sim Pearl White 4GB RAM 128GB"
-          price='350'
-          description='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-        />
+      <h3 className='container mb-0 mt-4 py-3 bg-dark text-white text-center text-uppercase'>Your Favorites List</h3>
+      <div className="container p-3 l-gray">
+        {items.length > 0 ?
+          (
+            items.map((item) =>
+              <ProductWideCard
+                key={item.prod_id}
+                productId={item.prod_id}
+                removeItemFromFav={removeItemFromFav}
+              />
+            )
+          )
+          : <h3 className="text-center my-5">No Items In Your Favorites List</h3>}
       </div>
     </div>
   )
