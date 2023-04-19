@@ -15,43 +15,35 @@ export default function LoginPage() {
   }
 
   return (
-    <div className='d-flex align-items-center'>
-      <div className="container mt-5 py-5 px-4 px-sm-5 border-bottom shadow-sm"
-        style={{ maxWidth: "500px", background: '#f9f9f9' }}>
-        <h2 className="fw-bold text-center mb-3">Login</h2>
+    <div className="container mt-5 py-5 px-4 px-sm-5 border-bottom shadow-sm l-gray"
+      style={{ maxWidth: "500px" }}>
+      <h2 className="fw-bold text-center mb-3">Login</h2>
 
-        <form onSubmit={login}>
-          <div className='d-flex flex-column gap-2'>
-            <FloatingInput type='email' name='email' required icon='fa-solid fa-user' label='Email' />
-            <FloatingInput type='password' name='password' required icon='fa-solid fa-lock' label='Password' />
+      <form onSubmit={login}>
+        <div className='d-flex flex-column gap-2'>
+          <FloatingInput type='email' name='email' required icon='fa-solid fa-user' label='Email' />
+          <FloatingInput type='password' name='password' required icon='fa-solid fa-lock' label='Password' />
+        </div>
+
+        {/* Failure Alert */}
+        {invalidData && (
+          <div className="text-danger my-2">
+            <Fade time='0.5s'>
+              Invalid email or password!
+            </Fade>
           </div>
+        )}
 
-          {/* Failure Alert */}
-          {invalidData && (
-            <div className="text-danger my-2">
-              <Fade time='0.5s'>
-                Invalid email or password!
-              </Fade>
-            </div>
-          )}
+        <div className="d-grid my-3">
+          <input type="submit" value="LOGIN" className="btn btn-primary rounded-0" />
+        </div>
 
-          <div className="d-grid my-3">
-            <input type="submit" value="LOGIN" className="btn btn-primary rounded-0" />
-          </div>
+        <div className="text-center">
+          <span>You don't have an account ? </span>
+          <Link to="/register" className="text-decoration-none">Sign Up</Link>
+        </div>
+      </form>
 
-          <div className="text-center">
-            <span>You don't have an account ? </span>
-            <Link to="/register" className="text-decoration-none">Sign Up</Link>
-          </div>
-        </form>
-
-        {/* For testing */}
-        {/* <div className='d-flex justify-content-between mt-3'>
-          <Link to={'/buyer/profile'} className='text-decoration-none'>TestBuyerModule</Link>
-          <Link to={'/admin/products&categories'} className='text-decoration-none'>TestAdminModule</Link>
-        </div> */}
-
-      </div>
     </div>
   )
 }

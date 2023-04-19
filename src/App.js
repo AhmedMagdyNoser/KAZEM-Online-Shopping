@@ -27,6 +27,7 @@ import EditProduct from "./Pages/Admin/EditProduct";
 import PageNotFound from "./Pages/Global/PageNotFound";
 import NotAuthorized from "./Pages/Global/NotAuthorized";
 import { getAuthUser } from "./Services/Storage";
+import AcountCreated from "./Pages/Auth/AcountCreated";
 
 export default function App() {
 
@@ -41,6 +42,7 @@ export default function App() {
             <Route index element={<HomePage />} />
             <Route path="/login" element={getAuthUser() ? <PageNotFound /> : <LoginPage /> } />
             <Route path="/register" element={getAuthUser() ? <PageNotFound /> : <RegisterPage />} />
+            <Route path="/acountCreated" element={<AcountCreated />} />
             <Route path="/allCategories" element={<AllCategoriesPage />} />
             <Route path="/allProducts" element={<AllProductsPage />} />
             <Route path="/allProducts/:query" element={<AllProductsPage />} />
@@ -48,11 +50,11 @@ export default function App() {
             <Route path="/category/:id" element={<CategoryDetailsPage />} />
 
             <Route>
-              <Route path="/buyer/profile" element={<BuyerProfile />} />
-              <Route path="/buyer/favList" element={<BuyerFavList />} />
-              <Route path="/buyer/cart" element={<BuyerCart />} />
-              <Route path="/buyer/orders" element={<BuyerOrders />} />
-              <Route path="/buyer/checkout" element={<CheckoutPage />} />
+              <Route path="/buyer/profile" element={getAuthUser() ? <BuyerProfile /> : <PageNotFound />} />
+              <Route path="/buyer/favList" element={getAuthUser() ? <BuyerFavList /> : <PageNotFound />} />
+              <Route path="/buyer/cart" element={getAuthUser() ? <BuyerCart /> : <PageNotFound />} />
+              <Route path="/buyer/orders" element={getAuthUser() ? <BuyerOrders /> : <PageNotFound />} />
+              <Route path="/buyer/checkout" element={getAuthUser() ? <CheckoutPage /> : <PageNotFound />} />
             </Route>
 
             <Route>
