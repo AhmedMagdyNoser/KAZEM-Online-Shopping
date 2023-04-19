@@ -1,8 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import Fade from '../Uitility/Fade';
+import { useState } from 'react';
+import { useEffect } from 'react';
+const api = require('../../Services/api');
 
 export default function ProductCard({ product, editable, deleteProduct }) {
+
+  let [rating, setRating] = useState(0);
+
+  async function getProductRating() {
+    await api.getProductRating(product.id, setRating);
+  }
+
+  useEffect(() => {
+    getProductRating();
+  }, []);
 
   function checkEditability() {
     if (editable) {
@@ -28,7 +41,7 @@ export default function ProductCard({ product, editable, deleteProduct }) {
           <div className='d-flex justify-content-between'>
             <b>{product.price}$</b>
             <span className='text-warning fw-bold d-flex gap-1 align-items-center'>
-              {product.rating}
+              {rating}
               <i className='fa-solid fa-star'></i>
             </span>
           </div>

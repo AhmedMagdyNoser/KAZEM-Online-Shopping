@@ -254,8 +254,8 @@ export async function addToCart(formData, setAdded) {
 
 export async function checkIfInCart(userId, prodId, setAddedToCart) {
   axios.get(`http://localhost:5000/carts/check/${userId}/${prodId}`)
-  .then((response) => response.data.inCart ? setAddedToCart(true) : setAddedToCart(false))
-  .catch((error) => { console.error(error) });
+    .then((response) => response.data.inCart ? setAddedToCart(true) : setAddedToCart(false))
+    .catch((error) => { console.error(error) });
 }
 
 export async function getCart(userId, setItems) {
@@ -274,7 +274,7 @@ export async function cartTotalCost(userId, setTotalCost) {
 
 export async function removeItemFromCart(userId, prodId, setItems) {
   try {
-    await axios.delete(`http://localhost:5000/carts/remove/${userId}`, { data: { prod_id: prodId }},);
+    await axios.delete(`http://localhost:5000/carts/remove/${userId}`, { data: { prod_id: prodId } },);
     setItems(prevItems => prevItems.filter(item => item.prod_id !== prodId)); // to remove from the page immediately
   } catch (error) {
     throw error;
@@ -311,8 +311,8 @@ export async function addToFav(formData, setAdded) {
 
 export async function checkIfInFav(userId, prodId, setAddedToFav) {
   axios.get(`http://localhost:5000/fav/check/${userId}/${prodId}`)
-  .then((response) => response.data.inFav ? setAddedToFav(true) : setAddedToFav(false))
-  .catch((error) => { console.error(error) });
+    .then((response) => response.data.inFav ? setAddedToFav(true) : setAddedToFav(false))
+    .catch((error) => { console.error(error) });
 }
 
 export async function getFav(userId, setItems) {
@@ -322,9 +322,52 @@ export async function getFav(userId, setItems) {
 
 export async function removeItemFromFav(userId, prodId, setItems) {
   try {
-    await axios.delete(`http://localhost:5000/fav/remove/${userId}`, { data: { prod_id: prodId }},);
+    await axios.delete(`http://localhost:5000/fav/remove/${userId}`, { data: { prod_id: prodId } },);
     setItems(prevItems => prevItems.filter(item => item.prod_id !== prodId)); // to remove from the page immediately
   } catch (error) {
     throw error;
   }
 }
+
+
+
+
+
+
+
+
+
+
+// ===================== Rating =====================
+
+export async function rateProduct(userId, prodId, rating) {
+  try {
+    await axios.post(`http://localhost:5000/rating/${prodId}`, { user_id: userId, rating: rating })
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function updateRating(userId, prodId, rate) {
+  try {
+    await axios.put(`http://localhost:5000/rating/${userId}/${prodId}`, { rate })
+  } catch (error) {
+    throw error;
+  }
+}
+
+export async function checkIfRated(userId, prodId, setUserProdRating) {
+  let res = await axios.get(`http://localhost:5000/rating/${userId}/${prodId}`);
+  setUserProdRating(res.data);
+}
+
+export async function getProductRating(prodId, setRating) {
+  let res = await axios.get(`http://localhost:5000/rating/${prodId}`);
+  setRating(res.data);
+}
+
+export async function deleteRating(userId, prodId) {
+  await axios.delete(`http://localhost:5000/rating/${userId}/${prodId}`);
+}
+
+

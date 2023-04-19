@@ -6,8 +6,12 @@ const api = require('../../Services/api')
 export default function ProductWideCard({ productId, quantity, removeItemFromCart, removeItemFromFav, cartTotalCost }) {
 
   let [product, setProduct] = useState({});
-
   let [finalPrice, setFinalPrice] = useState(0);
+  let [rating, setRating] = useState(0);
+
+  async function getProductRating() {
+    await api.getProductRating(product.id, setRating);
+  }
 
   function calcPrice(e) {
     updateQuantity(Number(e.target.value));
@@ -38,6 +42,7 @@ export default function ProductWideCard({ productId, quantity, removeItemFromCar
 
   useEffect(() => {
     quantity ? setFinalPrice(quantity * product.price) : setFinalPrice(product.price);
+    getProductRating();
   }, [product])
 
   return (
@@ -46,7 +51,11 @@ export default function ProductWideCard({ productId, quantity, removeItemFromCar
         <img style={{ height: "200px" }} src={product.image} alt={product.title} />
       </Link>
       <div className='d-flex flex-column justify-content-between gap-2 flex-fill'>
-        <h5>{product.title}</h5>
+        {/* <h5>{product.title}</h5> */}
+        <p className="fw-bold">
+          {product.title}
+          <span className="fw-bold text-warning ms-2">{rating} <i className="fa-solid fa-star"></i></span>
+        </p>
         {
           product.description &&
           <small className='text-muted'>{(product.description.length > 325 ? product.description.substr(0, 325) + '..' : product.description)}</small>

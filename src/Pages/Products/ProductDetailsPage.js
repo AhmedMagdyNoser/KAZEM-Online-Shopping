@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getAuthUser } from "../../Services/Storage";
 import Fade from "../../Component/Uitility/Fade";
+import Rating from "react-rating";
 const api = require('../../Services/api');
 
 export default function ProductDetailsPage() {
@@ -14,6 +15,8 @@ export default function ProductDetailsPage() {
   let [addedToCart, setAddedToCart] = useState(false);
   let [addedToFav, setAddedToFav] = useState(false);
   let [loggedIn, setloggedIn] = useState(true); // suppose
+  let [userProdRating, setUserProdRating] = useState(false);
+  let [productRating, setProductRating] = useState(0);
 
   const params = useParams(); // it's the parameters in the current url '/product/:id' the only param is the id
 
@@ -25,8 +28,24 @@ export default function ProductDetailsPage() {
     await api.getCategory(id, setCategory);
   }
 
-  async function getProductsOfCategory(id) {
-    await api.getProductsOfCategory(id, setProducts);
+  async function getProductRating(id) {
+    await api.getProductRating(id, setProductRating);
+  }
+
+  async function rateProduct(rate) {
+    if (userProdRating.rated)
+      await api.updateRating(getAuthUser().id, product.id, rate);
+    else
+      await api.rateProduct(getAuthUser().id, product.id, rate);
+  }
+
+  async function deleteRating() {
+    setUserProdRating({ rated: false, rate: 0 });
+    await api.deleteRating(getAuthUser().id, product.id);
+  }
+
+  async function checkIfRated() {
+    await api.checkIfRated(getAuthUser().id, product.id, setUserProdRating)
   }
 
   async function checkIfInCart(userId, prodId) {
@@ -37,6 +56,10 @@ export default function ProductDetailsPage() {
     await api.checkIfInFav(userId, prodId, setAddedToFav);
   }
 
+  async function getProductsOfCategory(id) {
+    await api.getProductsOfCategory(id, setProducts);
+  }
+
   // get the product details onload
   useEffect(() => {
     getProduct(params.id);
@@ -44,9 +67,11 @@ export default function ProductDetailsPage() {
     getAuthUser() && checkIfInFav(getAuthUser().id, params.id);
   }, [params.id])
 
-  // get the product category details after getting data of product
+  // get the product category details & rating after getting data of product
   useEffect(() => {
     product.cat_id && getCategory(product.cat_id);
+    getProductRating(product.id);
+    checkIfRated();
   }, [product])
 
   // get the other products of the same category after getting data of the category
@@ -89,8 +114,9 @@ export default function ProductDetailsPage() {
             <span className="text-muted">{category.title}</span>
             <p className="fw-bold">
               {product.title}
-              <span className="fw-bold text-warning ms-2">{product.rating} <i className="fa-solid fa-star"></i></span>
+              <span className="fw-bold text-warning ms-2">{productRating} <i className="fa-solid fa-star"></i></span>
             </p>
+
             <p className="text-muted">Brand: <span className="fw-bold text-dark">{product.brand}</span></p>
             <p className="text-muted">Price: <span className="fw-bold text-dark">{product.price}<small>$</small></span></p>
             <p className="text-muted mb-1">Specifications: </p>
@@ -124,12 +150,26 @@ export default function ProductDetailsPage() {
             </div>
 
             {!loggedIn && (
-            <div className="alert alert-warning rounded-0 mt-3">
-              <Fade time='0.5s'>
-                Please Login First!
-              </Fade>
+              <div className="alert alert-warning rounded-0 mt-3">
+                <Fade time='0.5s'>
+                  Please Login First!
+                </Fade>
+              </div>
+            )}
+
+            {/* Rating */}
+            <div className='l-gray p-3 mt-3 d-flex justify-content-between align-items-center'>
+              <div>
+                <span className="me-2">Rate this product:</span>
+                <Rating
+                  initialRating={userProdRating.rated ? userProdRating.rate : 0}
+                  emptySymbol="fa-regular fa-star text-secondary"
+                  fullSymbol="fa-solid fa-star text-warning"
+                  onChange={(rate) => rateProduct(rate)}
+                />
+              </div>
+              <button className="btn btn-danger btn-sm rounded-0" onClick={deleteRating}>Delete Rate</button>
             </div>
-          )}
 
           </div>
         </div>
