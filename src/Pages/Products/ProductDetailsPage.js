@@ -33,19 +33,28 @@ export default function ProductDetailsPage() {
   }
 
   async function rateProduct(rate) {
-    if (userProdRating.rated)
-      await api.updateRating(getAuthUser().id, product.id, rate);
-    else
-      await api.rateProduct(getAuthUser().id, product.id, rate);
+    if (getAuthUser()) {
+      if (userProdRating.rated)
+        await api.updateRating(getAuthUser().id, product.id, rate);
+      else
+        await api.rateProduct(getAuthUser().id, product.id, rate);
+    } else {
+      setloggedIn(false);
+    }
   }
 
   async function deleteRating() {
-    setUserProdRating({ rated: false, rate: 0 });
-    await api.deleteRating(getAuthUser().id, product.id);
+    if (getAuthUser()) {
+      setUserProdRating({ rated: false, rate: 0 });
+      await api.deleteRating(getAuthUser().id, product.id);
+    } else {
+      setloggedIn(false);
+    }
   }
 
   async function checkIfRated() {
-    await api.checkIfRated(getAuthUser().id, product.id, setUserProdRating)
+    getAuthUser() &&
+      await api.checkIfRated(getAuthUser().id, product.id, setUserProdRating);
   }
 
   async function checkIfInCart(userId, prodId) {
@@ -149,16 +158,8 @@ export default function ProductDetailsPage() {
 
             </div>
 
-            {!loggedIn && (
-              <div className="alert alert-warning rounded-0 mt-3">
-                <Fade time='0.5s'>
-                  Please Login First!
-                </Fade>
-              </div>
-            )}
-
             {/* Rating */}
-            <div className='l-gray p-3 mt-3 d-flex justify-content-between align-items-center'>
+            <div className='l-gray p-3 mt-3 d-flex justify-content-between align-items-center border-start'>
               <div>
                 <span className="me-2">Rate this product:</span>
                 <Rating
@@ -170,6 +171,14 @@ export default function ProductDetailsPage() {
               </div>
               <button className="btn btn-danger btn-sm rounded-0" onClick={deleteRating}>Delete Rate</button>
             </div>
+
+            {!loggedIn && (
+              <div className="alert alert-warning rounded-0 mt-3">
+                <Fade time='0.5s'>
+                  Please Login First!
+                </Fade>
+              </div>
+            )}
 
           </div>
         </div>
