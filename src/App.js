@@ -28,6 +28,7 @@ import PageNotFound from "./Pages/Global/PageNotFound";
 import NotAuthorized from "./Pages/Global/NotAuthorized";
 import { getAuthUser } from "./Services/Storage";
 import AcountCreated from "./Pages/Auth/AcountCreated";
+import Conditions from "./Pages/Global/ConditionsOfUse";
 
 export default function App() {
 
@@ -40,6 +41,7 @@ export default function App() {
           <Routes>
 
             <Route index element={<HomePage />} />
+            <Route path="/conditions" element={<Conditions />} />
             <Route path="/login" element={getAuthUser() ? <PageNotFound /> : <LoginPage /> } />
             <Route path="/register" element={getAuthUser() ? <PageNotFound /> : <RegisterPage />} />
             <Route path="/acountCreated" element={<AcountCreated />} />
