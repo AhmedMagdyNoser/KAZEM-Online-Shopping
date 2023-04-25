@@ -25,7 +25,7 @@ export default function CategoryDetailsPage() {
   }, [])
 
   return (
-    <div className="container bg-white p-0 my-4 border-bottom">
+    <div className="container l-gray p-0 my-4 border-bottom">
       <h2 className='m-0 py-3 bg-dark text-white text-center text-uppercase'>{category.title}</h2>
       <p className='m-0 py-3 text-center w-75 mx-auto'>{category.description}</p>
 

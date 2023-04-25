@@ -41,10 +41,10 @@ export async function getCategory(categoryId, setCategory) {
   setCategory(res.data);
 }
 
-export async function createNewCategory(formData, setIsCreated) {
+export async function createNewCategory(formData, token, setIsCreated) {
   try {
     await axios.post("http://localhost:5000/categories/create", formData,
-      { headers: { token: '5639b565897c7304d440ad1e4dfff115', } } // testing (token for admin)
+      { headers: { token: token } }
     );
     setIsCreated(true);
   } catch (error) {

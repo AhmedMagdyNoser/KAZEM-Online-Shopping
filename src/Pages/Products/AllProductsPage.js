@@ -30,10 +30,10 @@ export default function AllProductsPage() {
   let brands = [...new Set(products.map(product => product.brand))];
 
   return (
-    <div className='container d-flex gap-3 my-3'>
+    <div className='container my-3 mx-auto row'>
 
       {/* Filters */}
-      <form>
+      <form className='col-sm-5 col-lg-3'>
 
         <div className='mb-4'>
           <p className='fw-bold mb-2'>Category</p>
@@ -59,7 +59,7 @@ export default function AllProductsPage() {
       </form>
 
       {/* Shown Products */}
-      <div className='kazem-grid bg-white p-3 flex-grow-1'>
+      <div className='kazem-grid l-gray p-3 col-sm-7 col-lg-9'>
         {products.map(product => <ProductCard key={product.id} product={product} />)}
       </div>
 
@@ -69,7 +69,7 @@ export default function AllProductsPage() {
 
 function CheckItem({ label }) {
   return (
-    <div>
+    <div className='text-nowrap'>
       <input id={label} type='checkbox' value={label} className='form-check-input shadow-none me-2' />
       <label htmlFor={label} className='form-check-label'>{label}</label>
     </div>

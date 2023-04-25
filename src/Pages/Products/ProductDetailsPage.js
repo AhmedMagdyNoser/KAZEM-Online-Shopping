@@ -134,9 +134,9 @@ export default function ProductDetailsPage() {
             {/* Buttons */}
             <div className='mt-4 d-flex gap-3 flex-wrap'>
 
-              <div onClick={addToCart}>
+              <div>
                 {!addedToCart ? (
-                  <button className="btn btn-primary px-4 rounded-0 d-inline">
+                  <button className="btn btn-primary px-4 rounded-0 d-inline" onClick={addToCart}>
                     <i className="fa-solid fa-cart-shopping"></i> Add To Cart
                   </button>
                 ) :
@@ -145,9 +145,9 @@ export default function ProductDetailsPage() {
                   </button>}
               </div>
 
-              <div onClick={addToFav}>
+              <div>
                 {!addedToFav ? (
-                  <button className="btn btn-danger px-4 rounded-0 d-inline">
+                  <button className="btn btn-danger px-4 rounded-0 d-inline" onClick={addToFav}>
                     <i className="fa-solid fa-heart"></i> Add To Favourites
                   </button>
                 ) :

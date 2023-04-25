@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import AdminTabs from '../../Component/Admin/AdminTabs';
 import Fade from '../../Component/Uitility/Fade';
+import { getAuthUser } from '../../Services/Storage';
 const api = require('../../Services/api');
 
 export default function AddNewCategory() {
@@ -9,7 +10,7 @@ export default function AddNewCategory() {
 
   async function createNewCategory(event) {
     event.preventDefault();
-    await api.createNewCategory(new FormData(event.target), setIsCreated);
+    await api.createNewCategory(new FormData(event.target), getAuthUser().token, setIsCreated);
   };
 
   return (
