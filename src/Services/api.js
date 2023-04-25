@@ -19,6 +19,21 @@ export async function login(formData, setInvalidData, navigate) {
   })
 };
 
+export async function changePassword(id, formData, setPasswordChanged, setInvalidPassword) {
+  await axios.put(`http://localhost:5000/auth/change/${id}`, formData,
+  {
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  }).then((res) => {
+    setPasswordChanged(true);
+    setInvalidPassword(false);
+  }).catch((error) => {
+    setInvalidPassword(true);
+    setPasswordChanged(false);
+    throw error;
+  })
+}
 
 
 

@@ -118,4 +118,63 @@ router.post("/login", async (req, res) => {
   }
 });
 
+// Change Password
+router.put("/change/:id", async (req, res) => {
+  const { oldPassword, newPassword } = req.body;
+  const userId = req.params.id;
+
+  // Get the user with the corresponding ID from the database
+  const query = util.promisify(connection.query).bind(connection);
+  const user = await query("SELECT * FROM users WHERE id = ?", [userId]);
+
+  // Check if the user exists and the password is correct
+  if (user.length > 0) {
+    bcrypt.compare(oldPassword, user[0].password, (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).json({ message: "An error occurred while changing the password" });
+        return;
+      }
+
+      if (result) {
+        // Hash the new password
+        bcrypt.hash(newPassword, 10, (err, hashedPassword) => {
+          if (err) {
+            console.error("Error hashing new password:", err);
+            res.status(500).json({ message: "An error occurred while changing the password" });
+            return;
+          }
+
+          // Update the user's password in the database with the hashed new password
+          connection.query(
+            "UPDATE users SET password = ? WHERE id = ?",
+            [hashedPassword, userId],
+            (err, result) => {
+              if (err) {
+                console.error(
+                  "Error updating user password in database:",
+                  err
+                );
+                res.status(500).json({
+                  message:
+                    "An error occurred while changing the password",
+                });
+                return;
+              }
+
+              res.json({ message: "Password changed successfully" });
+            }
+          );
+        });
+      } else {
+        console.log("Invalid old password");
+        res.status(401).json({ message: "Invalid old password" });
+      }
+    });
+  } else {
+    console.log("User not found");
+    res.status(404).json({ message: "User not found" });
+  }
+});
+
 module.exports = router;

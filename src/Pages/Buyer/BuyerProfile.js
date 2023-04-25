@@ -10,6 +10,8 @@ export default function BuyerProfile() {
   const [user, setUser] = useState(null);
   const [updated, setUpdated] = useState(false);
   const [emailExists, setEmailExists] = useState(false);
+  const [passwordChanged, setPasswordChanged] = useState(false);
+  const [invalidPassword, setInvalidPassword] = useState(false);
 
   let saveInfoButton = useRef(0);
   let changePasswordButton = useRef(0);
@@ -29,6 +31,11 @@ export default function BuyerProfile() {
   const updateUser = async (event) => {
     event.preventDefault();
     await api.updateUser(user.id, new FormData(event.target), setUpdated, setEmailExists);
+  }
+
+  const changePassword = async (event) => {
+    event.preventDefault();
+    await api.changePassword(user.id, new FormData(event.target), setPasswordChanged, setInvalidPassword);
   }
 
   return (
@@ -72,15 +79,29 @@ export default function BuyerProfile() {
         }
 
         {/* Changing Password */}
-        <form>
+        <form onSubmit={changePassword}>
           <p className="fw-bold text-center">Change Your Password</p>
           <div className='d-flex flex-column gap-2'>
-            <FloatingInput type='password' name='oldPassord' required icon='fa-solid fa-lock' label='Old Password' />
-            <FloatingInput type='password' name='newPassord' required icon='fa-solid fa-lock' label='New Password' onChange={() => activateButton(changePasswordButton)} />
+            <FloatingInput type='password' name='oldPassword' required icon='fa-solid fa-lock' label='Old Password' />
+            <FloatingInput type='password' name='newPassword' required icon='fa-solid fa-lock' label='New Password' onChange={() => activateButton(changePasswordButton)} />
           </div>
           <div className="d-grid mt-3">
             <input type="submit" value="CHANGE" className="btn btn-primary rounded-0 disabled" ref={changePasswordButton} style={{ transition: '0.25s' }} />
           </div>
+          {(passwordChanged && !invalidPassword) && (
+            <div className="alert alert-success rounded-0 mt-3">
+              <Fade time='0.5s'>
+                Password Updated Successfully!
+              </Fade>
+            </div>
+          )}
+          {(!passwordChanged && invalidPassword) && (
+            <div className="alert alert-danger rounded-0 mt-3">
+              <Fade time='0.5s'>
+                Invalid Old Password!
+              </Fade>
+            </div>
+          )}
         </form>
 
         {/* Status Information */}
