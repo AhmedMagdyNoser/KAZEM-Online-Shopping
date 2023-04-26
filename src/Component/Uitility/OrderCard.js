@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FloatingInput from '../../Component/Uitility/FloatingInput';
 import { getAuthUser } from '../../Services/Storage';
+const api = require('../../Services/api');
 export default function OrderCard({ order }) {
+
+  let [status, setStatus] = useState(order.status);
 
   let totalCost = 0;
   order.products.forEach(product => totalCost += product.price * product.quantity);
+
+  async function toShipping() {
+    await api.toShipping(order.id, setStatus);
+  }
 
   return (
     <div className="card rounded-0 shadow-sm">
       <div className="card-header py-3 rounded-0 d-flex justify-content-between align-items-center bg-secondary text-white">
         <h5 className="m-0 lh-1" >Order #{order.id}</h5>
-        <span className="badge bg-dark p-2 rounded-0">{order.status}</span>
+        <span className="badge bg-dark p-2 rounded-0">{status}</span>
       </div>
       <div className="card-body">
 
@@ -61,10 +68,10 @@ export default function OrderCard({ order }) {
         {/* If order status is processing, some button will be : */}
         {/*   Accept and Decline Buttons in case of admin (called in admin dashboard) */}
         {/*   Cancel Button in case of Buyer */}
-        {order.status === 'processing' ?
+        {status === 'processing' ?
           getAuthUser().type === 1 ?
             <div className='d-flex gap-2 flex-wrap mt-2'>
-              <button className='btn btn-success flex-fill rounded-0'>Accept</button>
+              <button className='btn btn-success flex-fill rounded-0' onClick={toShipping}>Accept</button>
               <button className='btn btn-danger flex-fill rounded-0'>Decline</button>
             </div> :
             <div className='d-flex gap-2 flex-wrap mt-2'>

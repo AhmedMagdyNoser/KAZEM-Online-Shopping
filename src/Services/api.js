@@ -332,12 +332,11 @@ export async function getAllOrdersOfUser(userId, setOrders) {
   setOrders(res.data);
 }
 
-export async function toShipping(orderId, setShipping) {
-  await axios.post(`http://localhost:5000/orders/shipping/${orderId}`)
+export async function toShipping(orderId, setStatus) {
+  await axios.put(`http://localhost:5000/orders/shipping/${orderId}`)
   .then((res) => {
-    setShipping(true);
+    setStatus('shipping');
   }).catch((error) => {
-    setShipping(false);
     throw error;
   })
 }
