@@ -32,7 +32,7 @@ export default function BuyerCart() {
     <div>
       <BuyerTabs active='Cart' />
       <h3 className='container mb-0 mt-4 py-3 bg-dark text-white text-center text-uppercase'>Your Shopping Cart</h3>
-      <div className="container p-3 l-gray">
+      <div className="container p-3 l-gray mb-4">
         {items.length > 0 ?
           (<>
             {items.map((item) =>
@@ -47,7 +47,7 @@ export default function BuyerCart() {
             <div className="container text-center bg-white py-3 mb-3 border-top border-bottom">
               <span className="fs-4">Total: <b>{totalCost}$</b></span>
             </div>
-            <div className="container p-0 mb-4">
+            <div className="container p-0">
               <Link to="/buyer/checkout" style={{ textDecoration: "none" }}>
                 <button className="btn btn-primary rounded-0 w-100">Buy Now</button>
               </Link>
