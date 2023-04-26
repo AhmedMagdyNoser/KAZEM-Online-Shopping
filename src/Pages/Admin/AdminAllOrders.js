@@ -13,6 +13,10 @@ export default function AdminAllOrders() {
     await api.getAllOrders(setOrders)
   }
 
+  async function deleteOrder(id) {
+    await api.deleteOrder(id, setOrders)
+  }
+
   useEffect(() => {
     getAllOrders();
   }, [])
@@ -22,7 +26,7 @@ export default function AdminAllOrders() {
       <AdminTabs active='All Orders' />
       <div className="container d-flex flex-column gap-4 py-3">
         {orders.length > 0 ?
-          orders.map((order) => <OrderCard key={order.id} order={order} />)
+          orders.map((order) => <OrderCard key={order.id} order={order} deleteOrder={deleteOrder} />)
           :
           <h2 className="text-center py-5 l-gray">No Orders</h2>
         }

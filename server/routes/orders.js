@@ -242,4 +242,18 @@ router.get('/:userId', (req, res) => {
   });
 });
 
+router.delete('/:id', (req, res) => {
+  const orderId = req.params.id;
+  const sql = `DELETE FROM orders WHERE id = ${orderId}`;
+  connection.query(sql, (err, result) => {
+    if (err) {
+      res.status(500).send(err.message);
+    } else if (result.affectedRows === 0) {
+      res.status(404).send('Order not found');
+    } else {
+      res.send(`Order with ID ${orderId} has been deleted`);
+    }
+  });
+});
+
 module.exports = router;

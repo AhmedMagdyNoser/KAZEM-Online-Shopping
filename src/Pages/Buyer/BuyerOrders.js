@@ -14,6 +14,10 @@ export default function BuyerOrders() {
     await api.getAllOrdersOfUser(getAuthUser().id, setOrders)
   }
 
+  async function deleteOrder(id) {
+    await api.deleteOrder(id, setOrders)
+  }
+
   useEffect(() => {
     getAllOrdersOfUser();
   }, [])
@@ -23,7 +27,7 @@ export default function BuyerOrders() {
       <BuyerTabs active='Orders' />
       <div className="container d-flex flex-column gap-4 py-3">
         {orders.length > 0 ?
-          orders.map((order) => <OrderCard key={order.id} order={order} />)
+          orders.map((order) => <OrderCard key={order.id} order={order} deleteOrder={deleteOrder} />)
           :
           <h2 className="text-center py-5 l-gray">No Orders</h2>
         }

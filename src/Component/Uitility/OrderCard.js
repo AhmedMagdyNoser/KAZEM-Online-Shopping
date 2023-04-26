@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import FloatingInput from '../../Component/Uitility/FloatingInput';
 import { getAuthUser } from '../../Services/Storage';
 const api = require('../../Services/api');
-export default function OrderCard({ order }) {
+export default function OrderCard({ order, deleteOrder }) {
 
   let [status, setStatus] = useState(order.status);
 
@@ -72,10 +72,10 @@ export default function OrderCard({ order }) {
           getAuthUser().type === 1 ?
             <div className='d-flex gap-2 flex-wrap mt-2'>
               <button className='btn btn-success flex-fill rounded-0' onClick={toShipping}>Accept</button>
-              <button className='btn btn-danger flex-fill rounded-0'>Decline</button>
+              <button className='btn btn-danger flex-fill rounded-0' onClick={() => deleteOrder(order.id)}>Decline</button>
             </div> :
             <div className='d-flex gap-2 flex-wrap mt-2'>
-              <button className='btn btn-danger flex-fill rounded-0'>Cancel</button>
+              <button className='btn btn-danger flex-fill rounded-0' onClick={() => deleteOrder(order.id)}>Cancel</button>
             </div>
           : null}
       </div>

@@ -332,6 +332,15 @@ export async function toShipping(orderId, setStatus) {
     })
 }
 
+export async function deleteOrder(orderId, setOrders) {
+  await axios.delete(`http://localhost:5000/orders/${orderId}`)
+  .then((res) => {
+    setOrders(prevOrders => prevOrders.filter(order => order.id !== orderId));
+  }).catch((error) => {
+    console.log('errro')
+    throw error;
+  })
+}
 
 
 
