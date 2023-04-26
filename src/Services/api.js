@@ -21,18 +21,18 @@ export async function login(formData, setInvalidData, navigate) {
 
 export async function changePassword(id, formData, setPasswordChanged, setInvalidPassword) {
   await axios.put(`http://localhost:5000/auth/change/${id}`, formData,
-  {
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  }).then((res) => {
-    setPasswordChanged(true);
-    setInvalidPassword(false);
-  }).catch((error) => {
-    setInvalidPassword(true);
-    setPasswordChanged(false);
-    throw error;
-  })
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then((res) => {
+      setPasswordChanged(true);
+      setInvalidPassword(false);
+    }).catch((error) => {
+      setInvalidPassword(true);
+      setPasswordChanged(false);
+      throw error;
+    })
 }
 
 
@@ -297,6 +297,50 @@ export async function removeItemFromCart(userId, prodId, setItems) {
 }
 
 
+
+
+
+
+
+
+
+
+
+// ===================== Orders =====================
+export async function placeOrder(userId, setOrdered) {
+  await axios.post(`http://localhost:5000/orders/${userId}`)
+  .then((res) => {
+    setOrdered(true);
+  }).catch((error) => {
+    setOrdered(false);
+    throw error;
+  })
+}
+
+export async function getAllOrders(setOrders) {
+  let res = await axios.get(`http://localhost:5000/orders/all`);
+  setOrders(res.data);
+}
+
+export async function getProccessingOrders(setOrders) {
+  let res = await axios.get(`http://localhost:5000/orders/allproccessing`);
+  setOrders(res.data);
+}
+
+export async function getAllOrdersOfUser(userId, setOrders) {
+  let res = await axios.get(`http://localhost:5000/orders/${userId}`);
+  setOrders(res.data);
+}
+
+export async function toShipping(orderId, setShipping) {
+  await axios.post(`http://localhost:5000/orders/shipping/${orderId}`)
+  .then((res) => {
+    setShipping(true);
+  }).catch((error) => {
+    setShipping(false);
+    throw error;
+  })
+}
 
 
 

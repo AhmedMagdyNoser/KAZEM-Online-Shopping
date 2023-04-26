@@ -17,6 +17,7 @@ const users = require('./routes/users');
 const carts = require('./routes/cart');
 const fav = require('./routes/fav_list');
 const rating = require('./routes/rating');
+const orders = require('./routes/orders');
 
 
 
@@ -33,6 +34,7 @@ app.use('/users', users);
 app.use('/carts', carts);
 app.use('/fav', fav);
 app.use('/rating', rating);
+app.use('/orders', orders);
 
 
 
