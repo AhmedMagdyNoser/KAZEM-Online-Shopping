@@ -20,7 +20,7 @@ router.post(
   body("description")
     .isString()
     .withMessage("please enter a valid description")
-    .isLength({ min: 10 })
+    .isLength({ min: 5 })
     .withMessage("description name should be at lease 20 characters"),
   async (req, res) => {
     try {

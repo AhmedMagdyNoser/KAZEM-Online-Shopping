@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import FloatingInput from "../../Component/Uitility/FloatingInput";
 import Fade from '../../Component/Uitility/Fade';
+import { getAuthUser } from '../../Services/Storage';
 const api = require('../../Services/api');
 
 export default function EditUser() {
@@ -22,14 +23,14 @@ export default function EditUser() {
 
   const updateUser = async (event) => {
     event.preventDefault();
-    await api.updateUser(user.id, new FormData(event.target), setUpdated, setEmailExists);
+    await api.updateUser(user.id, new FormData(event.target), getAuthUser().token, setUpdated, setEmailExists);
   }
 
   return (
     <div className="container py-4">
 
       {user ? (
-        <form onSubmit={updateUser} className='d-flex flex-column gap-2'>
+        <form onSubmit={updateUser} className='d-flex flex-column gap-2 l-gray py-4 px-3'>
           <p className="fw-bold text-center">Update User</p>
 
           {/* Name */}

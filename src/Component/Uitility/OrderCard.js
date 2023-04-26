@@ -24,7 +24,7 @@ export default function OrderCard({ order }) {
         {/* Dates */}
         <div className='d-flex justify-content-between flex-wrap mb-1'>
           <span>Placed on <b>{order.order_date.slice(0, 10)}</b></span>
-          {order.status !== 'processing' ? <span>Delivered on <b>{order.deliver_date.slice(0, 10)}</b></span> : null}
+          {(status !== 'processing' && order.deliver_date) ? <span>Delivered on <b>{order.deliver_date.slice(0, 10)}</b></span> : null}
         </div>
 
         {/* Products Table */}

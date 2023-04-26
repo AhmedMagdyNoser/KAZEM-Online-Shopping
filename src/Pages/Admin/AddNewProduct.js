@@ -1,6 +1,7 @@
 import Fade from '../../Component/Uitility/Fade';
 import AdminTabs from '../../Component/Admin/AdminTabs';
 import { useEffect, useState } from 'react';
+import { getAuthUser } from '../../Services/Storage';
 const api = require('../../Services/api');
 
 export default function AddNewProduct() {
@@ -14,7 +15,7 @@ export default function AddNewProduct() {
 
   async function createNewProduct(event) {
     event.preventDefault();
-    await api.createNewProduct(new FormData(event.target), setIsCreated);
+    await api.createNewProduct(new FormData(event.target), getAuthUser().token, setIsCreated);
   }
 
   useEffect(() => {

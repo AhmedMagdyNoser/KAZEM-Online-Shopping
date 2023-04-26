@@ -2,6 +2,7 @@ import AdminTabs from "../../Component/Admin/AdminTabs";
 import UserDataCard from "../../Component/Uitility/UserDataCard";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getAuthUser } from "../../Services/Storage";
 const api = require('../../Services/api');
 
 export default function AdminAllUsers() {
@@ -9,11 +10,11 @@ export default function AdminAllUsers() {
   let [users, setUsers] = useState([]);
 
   async function getAllUsers() {
-    await api.getAllUsers(setUsers);
+    await api.getAllUsers(setUsers, getAuthUser().token);
   }
 
   async function deleteUser(id) {
-    await api.deleteUser(id, users, setUsers);
+    await api.deleteUser(id, getAuthUser().token, users, setUsers);
   }
 
   useEffect(() => {

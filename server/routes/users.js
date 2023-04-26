@@ -183,7 +183,7 @@ router.get('/getAll', admin, async (req, res) => {
 });
 
 // Show Specific User
-router.get('/:id', admin, async (req, res) => {
+router.get('/:id', async (req, res) => {
   const userId = req.params.id;
   const sql = 'SELECT id, first_name, last_name, email, phone, address, status, type FROM users WHERE id = ?';
   try {

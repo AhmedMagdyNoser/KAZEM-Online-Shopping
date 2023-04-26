@@ -7,7 +7,7 @@ export default function UserDataCard({ user, deleteUser }) {
 
       <div className='bg-primary py-5 position-absolute top-0 start-0 w-100' style={{ zIndex: '1' }}></div>
       <div className='text-center mt-5'>
-        <i className={'fa-solid fa-'+ (user.type? 'shield-halved' : 'user' ) +' text-secondary p-4 fs-2 rounded-circle position-relative'} style={{ background: '#eee', zIndex: '2' }}></i>
+        <i className={'fa-solid fa-'+ (user.type? 'shield-halved' : 'user' ) +' bg-white text-secondary p-4 fs-2 rounded-circle position-relative'} style={{ zIndex: '2' }}></i>
       </div>
 
       <div className='p-4 pt-3 text-nowrap'>

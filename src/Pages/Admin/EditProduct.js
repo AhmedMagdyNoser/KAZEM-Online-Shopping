@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import Fade from '../../Component/Uitility/Fade';
+import { getAuthUser } from '../../Services/Storage';
 const api = require('../../Services/api');
 
 export default function EditProduct() {
@@ -26,7 +27,7 @@ export default function EditProduct() {
 
   async function updateProduct(event) {
     event.preventDefault();
-    await api.updateProduct(product.id, new FormData(event.target), setUpdated);
+    await api.updateProduct(product.id, new FormData(event.target), getAuthUser().token, setUpdated);
   };
 
   return (

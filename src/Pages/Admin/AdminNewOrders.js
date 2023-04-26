@@ -25,7 +25,7 @@ export default function AdminNewOrders() {
         {orders.length > 0 ?
           orders.map((order) => <OrderCard key={order.id} order={order} />)
           :
-          <h2 className="text-center py-5">No Orders</h2>
+          <h2 className="text-center py-5 l-gray">No Orders</h2>
         }
       </div>
     </div>

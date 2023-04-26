@@ -3,6 +3,7 @@ import ProductCard from "../../Component/Product/ProductCard";
 import ProductsSection from "../../Component/Product/ProductsSection";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getAuthUser } from "../../Services/Storage";
 const api = require('../../Services/api');
 
 export default function AdminProdsCates() {
@@ -19,11 +20,11 @@ export default function AdminProdsCates() {
   }
 
   async function deleteCategory(categoryId) {
-    await api.deleteCategory(categoryId, categories, setCategories);
+    await api.deleteCategory(categoryId, getAuthUser().token, categories, setCategories);
   }
 
   async function deleteProduct(productId) {
-    await api.deleteProduct(productId, products, setProducts);
+    await api.deleteProduct(productId, getAuthUser().token, products, setProducts);
   }
 
   useEffect(() => {

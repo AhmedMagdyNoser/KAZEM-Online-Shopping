@@ -1,6 +1,7 @@
 import FloatingInput from "../../Component/Uitility/FloatingInput";
 import Fade from '../../Component/Uitility/Fade'
 import { useState } from "react";
+import { getAuthUser } from "../../Services/Storage";
 const api = require('../../Services/api');
 
 export default function AddNewUser() {
@@ -10,14 +11,14 @@ export default function AddNewUser() {
 
   async function createNewUser(event) {
     event.preventDefault();
-    await api.createNewUser(new FormData(event.target), setIsCreated, setEmailExists);
+    await api.createNewUser(new FormData(event.target), getAuthUser().token, setIsCreated, setEmailExists);
   };
 
   return (
     <div className="container d-flex flex-column gap-4 my-4">
 
       {/* Basic Information */}
-      <form onSubmit={createNewUser} className="d-flex flex-column gap-2">
+      <form onSubmit={createNewUser} className="d-flex flex-column gap-2 l-gray py-4 px-3">
         <p className="fw-bold text-center">Add New User</p>
 
         {/* Name */}

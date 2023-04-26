@@ -68,14 +68,10 @@ export async function createNewCategory(formData, token, setIsCreated) {
   }
 }
 
-export async function updateCategory(categoryId, formData, setUpdated) {
+export async function updateCategory(categoryId, formData, token, setUpdated) {
   try {
     await axios.put(`http://localhost:5000/categories/update/${categoryId}`, formData,
-      {
-        headers: {
-          token: '5639b565897c7304d440ad1e4dfff115',  // testing (token for admin)
-        }
-      }
+      { headers: { token: token } }
     );
     setUpdated(true);
   } catch (error) {
@@ -84,10 +80,10 @@ export async function updateCategory(categoryId, formData, setUpdated) {
   }
 }
 
-export async function deleteCategory(categoryId, categories, setCategories) {
+export async function deleteCategory(categoryId, token, categories, setCategories) {
   try {
     await axios.delete(`http://localhost:5000/categories/delete/${categoryId}`,
-      { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (token for admin)
+      { headers: { token: token } } 
     );
     setCategories(categories.filter(cat => cat.id !== categoryId)); // to remove from the page immediately
   } catch (error) {
@@ -126,10 +122,10 @@ export async function getProduct(productId, setProduct) {
   setProduct(res.data);
 }
 
-export async function createNewProduct(formData, setIsCreated) {
+export async function createNewProduct(formData, token, setIsCreated) {
   try {
     await axios.post("http://localhost:5000/products/create", formData,
-      { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (token for admin)
+      { headers: { token: token } }
     );
     setIsCreated(true);
   } catch (error) {
@@ -138,14 +134,10 @@ export async function createNewProduct(formData, setIsCreated) {
   }
 }
 
-export async function updateProduct(productId, formData, setUpdated) {
+export async function updateProduct(productId, formData, token, setUpdated) {
   try {
     await axios.put(`http://localhost:5000/products/update/${productId}`, formData,
-      {
-        headers: {
-          token: '5639b565897c7304d440ad1e4dfff115', // testing (token for admin)
-        }
-      }
+      { headers: { token: token } }
     );
     setUpdated(true);
   } catch (error) {
@@ -154,10 +146,10 @@ export async function updateProduct(productId, formData, setUpdated) {
   }
 }
 
-export async function deleteProduct(productId, products, setProducts) {
+export async function deleteProduct(productId, token, products, setProducts) {
   try {
     await axios.delete(`http://localhost:5000/products/delete/${productId}`,
-      { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (token for admin)
+      { headers: { token: token } }
     );
     setProducts(products.filter(product => product.id !== productId)); // to remove from the page immediately
   } catch (error) {
@@ -174,28 +166,27 @@ export async function deleteProduct(productId, products, setProducts) {
 
 
 
+
 // ===================== Users =====================
 
-export async function getAllUsers(setUsers) {
+export async function getAllUsers(setUsers, token) {
   let res = await axios.get('http://localhost:5000/users/getAll',
-    { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (token for admin)
+    { headers: { token: token } }
   );
   setUsers(res.data);
 }
 
 export async function getUser(userId, setUser) {
-  let res = await axios.get(`http://localhost:5000/users/${userId}`,
-    { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (token for admin)
-  );
+  let res = await axios.get(`http://localhost:5000/users/${userId}`);
   setUser(res.data);
 }
 
-export async function createNewUser(formData, setIsCreated, setEmailExists) {
+export async function createNewUser(formData, token, setIsCreated, setEmailExists) {
   try {
     await axios.post("http://localhost:5000/users/create", formData,
       {
         headers: {
-          'token': '5639b565897c7304d440ad1e4dfff115', // testing (token for admin)
+          'token': token,
           'Content-Type': 'application/json',
         }
       }
@@ -209,13 +200,13 @@ export async function createNewUser(formData, setIsCreated, setEmailExists) {
   }
 }
 
-export async function updateUser(userId, formData, setUpdated, setEmailExists) {
+export async function updateUser(userId, formData, token, setUpdated, setEmailExists) {
   try {
     await axios.put(`http://localhost:5000/users/update/${userId}`,
       formData,
       {
         headers: {
-          'token': '5639b565897c7304d440ad1e4dfff115', // testing (token for admin)
+          'token': token,
           'Content-Type': 'application/json',
         }
       }
@@ -230,10 +221,10 @@ export async function updateUser(userId, formData, setUpdated, setEmailExists) {
 }
 
 
-export async function deleteUser(userId, users, setUsers) {
+export async function deleteUser(userId, token, users, setUsers) {
   try {
     await axios.delete(`http://localhost:5000/users/delete/${userId}`,
-      { headers: { token: '5639b565897c7304d440ad1e4dfff115' } } // testing (token for admin)
+      { headers: { token: token } }
     );
     setUsers(users.filter(user => user.id !== userId)); // to remove from the page immediately
   } catch (error) {
@@ -309,12 +300,12 @@ export async function removeItemFromCart(userId, prodId, setItems) {
 // ===================== Orders =====================
 export async function placeOrder(userId, setOrdered) {
   await axios.post(`http://localhost:5000/orders/${userId}`)
-  .then((res) => {
-    setOrdered(true);
-  }).catch((error) => {
-    setOrdered(false);
-    throw error;
-  })
+    .then((res) => {
+      setOrdered(true);
+    }).catch((error) => {
+      setOrdered(false);
+      throw error;
+    })
 }
 
 export async function getAllOrders(setOrders) {
@@ -334,11 +325,11 @@ export async function getAllOrdersOfUser(userId, setOrders) {
 
 export async function toShipping(orderId, setStatus) {
   await axios.put(`http://localhost:5000/orders/shipping/${orderId}`)
-  .then((res) => {
-    setStatus('shipping');
-  }).catch((error) => {
-    throw error;
-  })
+    .then((res) => {
+      setStatus('shipping');
+    }).catch((error) => {
+      throw error;
+    })
 }
 
 
