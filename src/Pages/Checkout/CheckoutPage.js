@@ -2,22 +2,30 @@ import React, { useState } from 'react'
 import CreditCard from '../../Images/Checkout/card.png';
 import cashOnDelivery from '../../Images/Checkout/cash.png';
 import { Link } from 'react-router-dom';
+import { getAuthUser } from '../../Services/Storage';
+const api = require('../../Services/api');
 
 export default function CheckoutPage() {
   let [creditCardChecked, setCreditCardChecked] = useState(false);
-  let [done, setDone] = useState(false);
+  let [ordered, setOrdered] = useState(false);
+
+  async function placeOrder(e) {
+    e.preventDefault();
+    await api.placeOrder(getAuthUser().id, setOrdered);
+  }
+
   return (
     <div className='container'>
       <h2 className="container my-4 py-3 bg-dark text-white text-center text-uppercase">Choose Payment Method </h2>
-      {done ?
-        <Done />
+      {ordered ?
+        <Ordered />
         :
         creditCardChecked ?
-          <CreditCardForm setDone={setDone} />
+          <CreditCardForm placeOrder={placeOrder} />
           :
           <div className='d-flex gap-3 flex-wrap mb-4'>
             <Option img={CreditCard} title='Credit Card' onClick={() => setCreditCardChecked(true)} />
-            <Option img={cashOnDelivery} title='Cash on Delivery' onClick={() => setDone(true)} />
+            <Option img={cashOnDelivery} title='Cash on Delivery' onClick={placeOrder} />
           </div>
 
       }
@@ -37,9 +45,9 @@ function Option({ img, title, onClick }) {
   )
 }
 
-function CreditCardForm({ setDone }) {
+function CreditCardForm({ placeOrder }) {
   return (
-    <form className='l-gray p-4 mb-4 border-bottom border-top d-flex flex-column gap-3' onSubmit={() => setDone(true)}>
+    <form className='l-gray p-4 mb-4 border-bottom border-top d-flex flex-column gap-3' onSubmit={placeOrder}>
       <h4>Payment Details</h4>
       <div className="form-group">
         <label htmlFor="cardNumber">Credit Card Number</label>
@@ -68,7 +76,7 @@ function CreditCardForm({ setDone }) {
   )
 }
 
-function Done() {
+function Ordered() {
   return (
     <div className='text-center my-5'>
       <i className='fa-solid fa-circle-check mb-3 fs-1 text-success'></i>
