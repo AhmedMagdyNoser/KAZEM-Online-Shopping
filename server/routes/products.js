@@ -169,7 +169,7 @@ router.get('/getAll', async (req, res) => {
     // QUERY PARAMS
     search = `WHERE title LIKE '%${req.query.search}%' OR description LIKE '%${req.query.search}%'`;
   }
-  const products = await query(`SELECT * FROM product ${search}`);
+  const products = await query(`SELECT * FROM product ${search} ORDER BY RAND()`);
   products.map((product) => {
     product.image = 'http://' + req.hostname + ':5000/' + product.img;
   });
@@ -214,14 +214,6 @@ router.get('/filter/:cat_id', (req, res) => {
     }
   });
 });
-
-
-
-
-
-
-
-
 
 
 module.exports = router;

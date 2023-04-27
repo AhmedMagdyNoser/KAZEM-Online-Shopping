@@ -35,7 +35,7 @@ export default function HomePage() {
 
       <DiscountSection /> {/* needs to be clickable */}
 
-      <ProductsSection title='For You' link='/allProducts' >
+      <ProductsSection title="Today's Selections" link='/allProducts' >
         {products.slice(0, 10).map(product => <ProductCard key={product.id} product={product} />)}
       </ProductsSection>
 

@@ -8,7 +8,7 @@ app.use(express.urlencoded({ extended: true })); // to access url form encode d
 app.use(express.static('upload'));  // to upload pictures in the upload folder on the server 
 const cors = require('cors');
 app.use(cors());  // allow http requests localhost
-process.env.TZ = '+00:00'; // set the timezone correctly
+process.env.TZ = '+02:00'; // set the timezone correctly
 
 // =============== require modules =================
 const auth = require('./routes/auth');
