@@ -83,7 +83,7 @@ export async function updateCategory(categoryId, formData, token, setUpdated) {
 export async function deleteCategory(categoryId, token, categories, setCategories) {
   try {
     await axios.delete(`http://localhost:5000/categories/delete/${categoryId}`,
-      { headers: { token: token } } 
+      { headers: { token: token } }
     );
     setCategories(categories.filter(cat => cat.id !== categoryId)); // to remove from the page immediately
   } catch (error) {
@@ -310,17 +310,17 @@ export async function placeOrder(userId, setOrdered) {
 
 export async function getAllOrders(setOrders) {
   let res = await axios.get(`http://localhost:5000/orders/all`);
-  setOrders(res.data);
+  setOrders(res.data.sort((a, b) => b.id - a.id)); // sort them by id
 }
 
 export async function getProccessingOrders(setOrders) {
   let res = await axios.get(`http://localhost:5000/orders/allproccessing`);
-  setOrders(res.data);
+  setOrders(res.data.sort((a, b) => b.id - a.id)); // sort them by id
 }
 
 export async function getAllOrdersOfUser(userId, setOrders) {
   let res = await axios.get(`http://localhost:5000/orders/${userId}`);
-  setOrders(res.data);
+  setOrders(res.data.sort((a, b) => b.id - a.id)); // sort them by id
 }
 
 export async function toShipping(orderId, setStatus) {
@@ -334,12 +334,12 @@ export async function toShipping(orderId, setStatus) {
 
 export async function deleteOrder(orderId, setOrders) {
   await axios.delete(`http://localhost:5000/orders/${orderId}`)
-  .then((res) => {
-    setOrders(prevOrders => prevOrders.filter(order => order.id !== orderId));
-  }).catch((error) => {
-    console.log('errro')
-    throw error;
-  })
+    .then((res) => {
+      setOrders(prevOrders => prevOrders.filter(order => order.id !== orderId));
+    }).catch((error) => {
+      console.log('errro')
+      throw error;
+    })
 }
 
 
