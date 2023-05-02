@@ -66,7 +66,8 @@ router.post('/create', admin,
       console.error(err);
       res.status(500).json({ error: 'Internal Server Error' });
     }
-  });
+  }
+);
 
 
 //update product
@@ -196,6 +197,7 @@ router.get('/get/:id', (req, res) => {
 });
 
 
+
 router.get('/filter/:cat_id', (req, res) => {
   const cat_id = req.params.cat_id;
   const query = `SELECT * FROM product WHERE cat_id = ${cat_id}`;
@@ -215,5 +217,42 @@ router.get('/filter/:cat_id', (req, res) => {
   });
 });
 
+
+
+// API endpoint for filtering products
+router.get('/filteration', (req, res) => {
+  const categories = req.query.categories ? req.query.categories.split(',') : [];
+  const minPrice = req.query.minPrice || 0;
+  const maxPrice = req.query.maxPrice || Number.MAX_SAFE_INTEGER;
+
+  // build SQL query based on filters
+  let sql = 'SELECT * FROM product';
+  const values = [];
+  if (categories.length > 0) {
+    sql += ` WHERE cat_id IN (${categories.map(() => '?').join(',')})`;
+    values.push(...categories);
+  }
+
+  if (categories.length > 0) {
+    sql += ' AND';
+  } else {
+    sql += ' WHERE';
+  }
+  sql += ' price >= ? AND price <= ?';
+  values.push(minPrice, maxPrice);
+
+  // execute SQL query
+  connection.query(sql, values, (error, results, fields) => {
+    if (error) {
+      res.status(500).json({ error: 'Internal Server Error' });
+      console.log(error);
+    } else {
+      for (let result of results) {
+        result.image = `http://${req.hostname}:5000/${result.img}`;
+      }
+      res.json(results);
+    }
+  });
+});
 
 module.exports = router;
