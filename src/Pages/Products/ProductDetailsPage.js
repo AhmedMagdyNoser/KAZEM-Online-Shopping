@@ -131,54 +131,61 @@ export default function ProductDetailsPage() {
             <p className="text-muted mb-1">Specifications: </p>
             <small>{product.description}</small>
 
-            {/* Buttons */}
-            <div className='mt-4 d-flex gap-3 flex-wrap'>
 
-              <div>
-                {!addedToCart ? (
-                  <button className="btn btn-primary px-4 rounded-0 d-inline" onClick={addToCart}>
-                    <i className="fa-solid fa-cart-shopping"></i> Add To Cart
-                  </button>
-                ) :
-                  <button className="btn btn-primary px-4 rounded-0 d-inline disabled">
-                    <i className="fa-solid fa-check"></i> Added To Cart
-                  </button>}
-              </div>
+            {
+              getAuthUser().type === 0 ?
+                <>
+                  {/* Buttons */}
+                  <div className='mt-4 d-flex gap-3 flex-wrap'>
 
-              <div>
-                {!addedToFav ? (
-                  <button className="btn btn-danger px-4 rounded-0 d-inline" onClick={addToFav}>
-                    <i className="fa-solid fa-heart"></i> Add To Favourites
-                  </button>
-                ) :
-                  <button className="btn btn-danger px-4 rounded-0 d-inline disabled">
-                    <i className="fa-solid fa-check"></i> Added To Favourites
-                  </button>}
-              </div>
+                    <div>
+                      {!addedToCart ? (
+                        <button className="btn btn-primary px-4 rounded-0 d-inline" onClick={addToCart}>
+                          <i className="fa-solid fa-cart-shopping"></i> Add To Cart
+                        </button>
+                      ) :
+                        <button className="btn btn-primary px-4 rounded-0 d-inline disabled">
+                          <i className="fa-solid fa-check"></i> Added To Cart
+                        </button>}
+                    </div>
 
-            </div>
+                    <div>
+                      {!addedToFav ? (
+                        <button className="btn btn-danger px-4 rounded-0 d-inline" onClick={addToFav}>
+                          <i className="fa-solid fa-heart"></i> Add To Favourites
+                        </button>
+                      ) :
+                        <button className="btn btn-danger px-4 rounded-0 d-inline disabled">
+                          <i className="fa-solid fa-check"></i> Added To Favourites
+                        </button>}
+                    </div>
 
-            {/* Rating */}
-            <div className='l-gray p-3 mt-3 d-flex justify-content-between align-items-center border-start'>
-              <div>
-                <span className="me-2">Rate this product:</span>
-                <Rating
-                  initialRating={userProdRating.rated ? userProdRating.rate : 0}
-                  emptySymbol="fa-regular fa-star text-secondary"
-                  fullSymbol="fa-solid fa-star text-warning"
-                  onChange={(rate) => rateProduct(rate)}
-                />
-              </div>
-              <button className="btn btn-danger btn-sm rounded-0" onClick={deleteRating}>Delete Rate</button>
-            </div>
+                  </div>
 
-            {!loggedIn && (
-              <div className="alert alert-warning rounded-0 mt-3">
-                <Fade time='0.5s'>
-                  Please Login First!
-                </Fade>
-              </div>
-            )}
+                  {/* Rating */}
+                  <div className='l-gray p-3 mt-3 d-flex justify-content-between align-items-center border-start'>
+                    <div>
+                      <span className="me-2">Rate this product:</span>
+                      <Rating
+                        initialRating={userProdRating.rated ? userProdRating.rate : 0}
+                        emptySymbol="fa-regular fa-star text-secondary"
+                        fullSymbol="fa-solid fa-star text-warning"
+                        onChange={(rate) => rateProduct(rate)}
+                      />
+                    </div>
+                    <button className="btn btn-danger btn-sm rounded-0" onClick={deleteRating}>Delete Rate</button>
+                  </div>
+
+                  {!loggedIn && (
+                    <div className="alert alert-warning rounded-0 mt-3">
+                      <Fade time='0.5s'>
+                        Please Login First!
+                      </Fade>
+                    </div>
+                  )}
+                </>
+                : null
+            }
 
           </div>
         </div>

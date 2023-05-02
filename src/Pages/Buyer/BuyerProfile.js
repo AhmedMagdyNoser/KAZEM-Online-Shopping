@@ -40,7 +40,12 @@ export default function BuyerProfile() {
 
   return (
     <div>
+      {getAuthUser().type === 0 ?
+      
       <BuyerTabs active='Profile' />
+    :
+    null
+    }
       <div className="container d-flex flex-column gap-4 my-4">
 
         {/* Basic Information */}

@@ -53,10 +53,10 @@ export default function App() {
 
             <Route>
               <Route path="/buyer/profile" element={getAuthUser() ? <BuyerProfile /> : <PageNotFound />} />
-              <Route path="/buyer/favList" element={getAuthUser() ? <BuyerFavList /> : <PageNotFound />} />
-              <Route path="/buyer/cart" element={getAuthUser() ? <BuyerCart /> : <PageNotFound />} />
-              <Route path="/buyer/orders" element={getAuthUser() ? <BuyerOrders /> : <PageNotFound />} />
-              <Route path="/buyer/checkout" element={getAuthUser() ? <CheckoutPage /> : <PageNotFound />} />
+              <Route path="/buyer/favList" element={getAuthUser() && getAuthUser().type === 0 ? <BuyerFavList /> : <PageNotFound />} />
+              <Route path="/buyer/cart" element={getAuthUser() && getAuthUser().type === 0 ? <BuyerCart /> : <PageNotFound />} />
+              <Route path="/buyer/orders" element={getAuthUser() && getAuthUser().type === 0 ? <BuyerOrders /> : <PageNotFound />} />
+              <Route path="/buyer/checkout" element={getAuthUser() && getAuthUser().type === 0 ? <CheckoutPage /> : <PageNotFound />} />
             </Route>
 
             <Route>
