@@ -220,6 +220,14 @@ export async function updateUser(userId, formData, token, setUpdated, setEmailEx
   }
 }
 
+export async function updateStatus(userId, status) {
+  try {
+    await axios.put(`http://localhost:5000/users/status/${userId}`, { status });
+  } catch (error) {
+    throw error;
+  }
+}
+
 
 export async function deleteUser(userId, token, users, setUsers) {
   try {

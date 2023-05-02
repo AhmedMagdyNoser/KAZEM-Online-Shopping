@@ -148,6 +148,27 @@ router.put('/update/:id',
   });
 
 
+// Endpoint to update a user's status
+router.put('/status/:id', async (req, res) => {
+  const userId = req.params.id;
+  const newStatus = req.body.status;
+
+  // Update the user's status in the database
+  const query = util.promisify(connection.query).bind(connection);
+  await query(
+    'UPDATE users SET status = ? WHERE id = ?',
+    [newStatus, userId],
+    (error, results, fields) => {
+      if (error) {
+        console.error(error);
+        res.status(500).send('Failed to update user status');
+      } else {
+        res.send('User status updated successfully');
+      }
+    }
+  );
+});
+
 //delete user
 router.delete('/delete/:id', admin, async (req, res) => {
   const userId = req.params.id;
