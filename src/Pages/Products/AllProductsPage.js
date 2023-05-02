@@ -38,7 +38,7 @@ export default function AllProductsPage() {
         <div className='mb-4'>
           <p className='fw-bold mb-2'>Category</p>
           <div className='d-flex flex-column gap-2'>
-            {categories.map(cate => <CheckItem key={cate.id} label={cate.title} />)}
+            {categories.map(cate => <CheckItem key={cate.id} value={cate.id} label={cate.title} />)}
           </div>
         </div>
 
@@ -59,18 +59,22 @@ export default function AllProductsPage() {
       </form>
 
       {/* Shown Products */}
-      <div className='kazem-grid l-gray p-3 col-sm-7 col-lg-9'>
-        {products.map(product => <ProductCard key={product.id} product={product} />)}
-      </div>
+      {products.length !== 0 ?
+        <div className='kazem-grid l-gray p-3 col-sm-7 col-lg-9 h-100'>
+          {products.map(product => <ProductCard key={product.id} product={product} />)}
+        </div>
+        :
+        <h3 className='l-gray p-3 col-sm-7 col-lg-9 text-center py-5'>No Results</h3>
+      }
 
     </div>
   )
 }
 
-function CheckItem({ label }) {
+function CheckItem({ value, label }) {
   return (
     <div className='text-nowrap'>
-      <input id={label} type='checkbox' value={label} className='form-check-input shadow-none me-2' />
+      <input id={label} type='checkbox' value={value} className='form-check-input shadow-none me-2' />
       <label htmlFor={label} className='form-check-label'>{label}</label>
     </div>
   )
