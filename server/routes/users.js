@@ -10,7 +10,7 @@ const admin = require('../middleware/admin');
 
 //create user 
 router.post("/create", admin, (req, res) => {
-  const { first_name, last_name, email, phone, address, password, status, type } = req.body;
+  const { first_name, last_name, email, phone, address, password, status = '0', type } = req.body;
 
   // Check if a user with the same email already exists in the database
   const sql = 'SELECT * FROM users WHERE email = ?';

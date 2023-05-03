@@ -27,13 +27,13 @@ export default function HomePage() {
   return (
     <div className='d-flex flex-column gap-4 pb-4'>
 
-      <Slider /> {/* needs to be clickable */}
+      <Slider />
 
       <ProductsSection title="Explore Categories" link='/allCategories' smallGrid >
         {categories.slice(0, 7).map(category => <SimpleCard key={category.id} category={category} />)}
       </ProductsSection>
 
-      <DiscountSection /> {/* needs to be clickable */}
+      <DiscountSection />
 
       <ProductsSection title="Today's Selections" link='/allProducts' >
         {products.slice(0, 10).map(product => <ProductCard key={product.id} product={product} />)}

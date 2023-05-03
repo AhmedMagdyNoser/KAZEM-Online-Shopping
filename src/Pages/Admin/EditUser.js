@@ -89,18 +89,11 @@ export default function EditUser() {
             />
           </div>
 
-          <div className='d-flex gap-2'>
-            <select className="form-select py-3 shadow-none rounded-0 border-start-0 border-end-0"
-              required name='status' defaultValue={user.status ? 1 : 0}>
-              <option value="1">Active</option>
-              <option value="0">In-active</option>
-            </select>
-            <select className="form-select py-3 shadow-none rounded-0 border-start-0 border-end-0"
-              required name='type' defaultValue={user.type ? 1 : 0}>
-              <option value="1">Admin</option>
-              <option value="0">Buyer</option>
-            </select>
-          </div>
+          <select className="form-select py-3 shadow-none rounded-0 border-start-0 border-end-0"
+            required name='type' defaultValue={user.type ? 1 : 0}>
+            <option value="1">Admin</option>
+            <option value="0">Buyer</option>
+          </select>
 
           <div className="d-grid mt-3">
             <input type="submit" value="UPDATE USER" className="btn btn-success rounded-0" />
