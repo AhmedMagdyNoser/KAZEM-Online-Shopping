@@ -6,8 +6,13 @@ export default function UserDataCard({ user, deleteUser }) {
     <div className='border-bottom position-relative overflow-hidden l-gray'>
 
       <div className='bg-primary py-5 position-absolute top-0 start-0 w-100' style={{ zIndex: '1' }}></div>
-      <div className='text-center mt-5'>
-        <i className={'fa-solid fa-'+ (user.type? 'shield-halved' : 'user' ) +' bg-white text-secondary p-4 fs-2 rounded-circle position-relative'} style={{ zIndex: '2' }}></i>
+      <div className={'text-center mt-5'}>
+        <i className={'fa-solid fa-' + (user.type ? 'shield-halved' : 'user') + ' bg-white text-secondary p-4 fs-2 rounded-circle position-relative'} style={{ zIndex: '2' }}>
+          {user.status === 1 && // if Online
+            <span class="bg-success rounded-circle position-absolute border border-3 border-white"
+              style={{ zIndex: '3', height: '21px', width: '21px', top: '75%', left: '75%' }}></span>
+          }
+        </i>
       </div>
 
       <div className='p-4 pt-3 text-nowrap'>
