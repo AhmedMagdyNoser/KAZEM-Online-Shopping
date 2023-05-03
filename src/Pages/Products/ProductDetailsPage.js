@@ -133,7 +133,7 @@ export default function ProductDetailsPage() {
 
 
             {
-              getAuthUser().type === 0 ?
+              getAuthUser() && getAuthUser().type === 0 ?
                 <>
                   {/* Buttons */}
                   <div className='mt-4 d-flex gap-3 flex-wrap'>

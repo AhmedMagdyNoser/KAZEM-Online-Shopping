@@ -15,8 +15,8 @@ export default function Footer() {
             <i className="fa-solid fa-phone me-2"></i>
             +20 123 456 7890
           </span>
-          <a href='/'><i className="fa-brands fa-facebook-f text-muted"></i></a>
-          <a href='/'><i className="fa-brands fa-instagram text-muted"></i></a>
+          <a href='http://facebook.com/AhmedMagdyNoser' target='_blank'><i className="fa-brands fa-facebook-f text-muted"></i></a>
+          <a href='http://instagram.com/AhmedMagdyNoser' target='_blank'><i className="fa-brands fa-instagram text-muted"></i></a>
         </div>
       </div>
     </div>
